@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_TABL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD02V>
+    <TABNAME>ZCA_WF_S_OM_OBJECT_LOOKUP</TABNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <TABCLASS>INTTAB</TABCLASS>
+    <LANGDEP>X</LANGDEP>
+    <DDTEXT>Search result for org. management object</DDTEXT>
+    <MASTERLANG>E</MASTERLANG>
+    <EXCLASS>4</EXCLASS>
+   </DD02V>
+   <DD03P_TABLE>
+    <DD03P>
+     <FIELDNAME>.INCLUDE</FIELDNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <PRECFIELD>ZCA_WF_S_OM_OBJECT</PRECFIELD>
+     <MASK>      S</MASK>
+     <DDTEXT>Details to organizational object</DDTEXT>
+     <COMPTYPE>S</COMPTYPE>
+     <GROUPNAME>S_OM_OBJECT</GROUPNAME>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>.INCLUDE</FIELDNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <PRECFIELD>ZCA_WF_S_OM_ERROR</PRECFIELD>
+     <MASK>      S</MASK>
+     <DDTEXT>Error information (instead exception)</DDTEXT>
+     <COMPTYPE>S</COMPTYPE>
+     <GROUPNAME>S_ERROR</GROUPNAME>
+    </DD03P>
+   </DD03P_TABLE>
+  </asx:values>
+ </asx:abap>
+</abapGit>

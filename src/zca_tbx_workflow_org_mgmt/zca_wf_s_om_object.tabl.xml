@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_TABL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD02V>
+    <TABNAME>ZCA_WF_S_OM_OBJECT</TABNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <TABCLASS>INTTAB</TABCLASS>
+    <LANGDEP>X</LANGDEP>
+    <DDTEXT>Details to organizational object</DDTEXT>
+    <MASTERLANG>E</MASTERLANG>
+    <EXCLASS>4</EXCLASS>
+   </DD02V>
+   <DD03P_TABLE>
+    <DD03P>
+     <FIELDNAME>.INCLUDE</FIELDNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <PRECFIELD>SWHACTOR</PRECFIELD>
+     <MASK>      S</MASK>
+     <DDTEXT>Rule Resolution Result</DDTEXT>
+     <COMPTYPE>S</COMPTYPE>
+     <GROUPNAME>S_OM_OBJ_KEY</GROUPNAME>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>NAME</FIELDNAME>
+     <ROLLNAME>PCN_ORGTX</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <COMPTYPE>E</COMPTYPE>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>SHORT_NAME</FIELDNAME>
+     <ROLLNAME>SHORT_D</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <COMPTYPE>E</COMPTYPE>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>O_OWNER</FIELDNAME>
+     <ROLLNAME>ZCL_CA_WF_OM_EMPLOYEE</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <DATATYPE>REF</DATATYPE>
+     <MASK>  REF RC</MASK>
+     <COMPTYPE>R</COMPTYPE>
+     <REFTYPE>C</REFTYPE>
+    </DD03P>
+   </DD03P_TABLE>
+  </asx:values>
+ </asx:abap>
+</abapGit>

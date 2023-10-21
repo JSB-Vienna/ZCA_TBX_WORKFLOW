@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_WF_OM_EMPLOYEE</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>WF-OM: BC Employee in Org. management (workflow-capable)</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>DAV</KEY>
+     <ENTRY>Employee</ENTRY>
+     <LENGTH>25</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>MAD</KEY>
+     <ENTRY>Mail address</ENTRY>
+     <LENGTH>22</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>NID</KEY>
+     <ENTRY>NT-/Windows Id</ENTRY>
+     <LENGTH>24</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>SAP</KEY>
+     <ENTRY>SAP user Id</ENTRY>
+     <LENGTH>21</LENGTH>
+    </item>
+   </TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CHANGED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object changed</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CHANGE_VALIDITY_DATE_N_REFRESH</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Change validity date -&gt; this REFRESHES (!) the data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CHECK_EXISTENCE_PERS_MASTER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Check general existence of personnel master data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>COMPOSE_NAME_N_SALUTATION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Read name details and compose salutation</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CREATED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object created</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CREATE_SAP_USER_INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create SAP user instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CS_EMPLOYMENT_STATUS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Employment status</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CS_LOG_KEY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Log object for BAL and workflow status</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>C_MY_LOG_CLASS_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of specific, application individual log class</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>C_MY_TYPEID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>My type Id</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DETERMINE_LEADING_PERSONNEL_NO</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine leading personnel number</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_ASSIGNED_OM_OBJECTS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine assigned org. unit and its manager to employee</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_EMAIL_ADDR_VIA_PERNR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine email address via personnel number</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create instance by LPOR or by personnel number</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INSTANCE_BY_SAP_USER_ID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create instance by SAP user Id</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INSTANCE_BY_WINDOWS_NET_ID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create instance by windows net Id</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MASTER_RECORD_INDICATORS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Read specific indicators of personnel master record</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MASTER_RECORD_STATUS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get status of personnel master</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MY_MANAGER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get my manager</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_PERS_NO_BY_COMM_TYPE_VALUE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get personnel number by communication type from PA0105</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_SAP_USER_ID_VIA_PERNR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine SAP user Id via personnel number</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_VALUE_TO_COMM_TYPE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get value to communication type from PA0105</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_WINDOWS_NET_ID_VIA_PERNR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine email address Id via personnel number</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_PERSONNEL_MASTER_ACTIVE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Is the personnel master record in status active?</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_PERSONNEL_MASTER_LOCKED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Is the personnel master record locked?</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_SAP_USER_AVAILABLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Is the SAP user available?</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_EMPLOYEE_OPTIONS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constants and value checks for Org. managment Employee</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_MANAGER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Manager in Org. management (workflow-capable)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_USER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BC Extended user</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_LOG_KEY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Log object for BAL</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_LPOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow object instance key</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_MASTER_RECORD</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Specific master data indicators</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_BUFFER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance buffer</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_AGENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Compatible HCM person for usage in workflow expressions</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_IS_ERRONEOUS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Errors occurred while determine additional data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_KEY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Key attribute - Personnel number</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_MY_LOG_CLASS_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of specific, application individual log class</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_VALID_ON</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Current validity date the data were read</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MX_LAST_EXCEP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of last occurred exception</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>READ_NAME_DETAILS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Read name details</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TASK_CANCELLED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>User cancelled task without saving</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TASK_COMPLETED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Task is completed</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TY_S_BUFFER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Buffered instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TY_T_BUFFER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance buffer</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CHANGE_VALIDITY_DATE_N_REFRESH</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>New validity date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CHANGE_VALIDITY_DATE_N_REFRESH</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CHECK_EXISTENCE</CMPNAME>
+     <SCONAME>IV_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Personnel number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CHECK_EXISTENCE</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CHECK_EXISTENCE</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>COMPOSE_NAME_N_SALUTATION</CMPNAME>
+     <SCONAME>IV_INCL_MR_MRS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Include Mr or Mrs (no impact on the title)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Personnel number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validity date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DETERMINE_LEADING_PERSONNEL_NO</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Leading personnel number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DETERMINE_LEADING_PERSONNEL_NO</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ASSIGNED_OM_OBJECTS</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMAIL_ADDR_VIA_PERNR</CMPNAME>
+     <SCONAME>IV_RAISE_EXCEPTION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Raise exception instead of flag MV_IS_ERRONEOUS</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMAIL_ADDR_VIA_PERNR</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>eMail address</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMAIL_ADDR_VIA_PERNR</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>IS_LPOR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow instance key</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>IV_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Personnel number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validity date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Created instance or found in buffer</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_SAP_USER_ID</CMPNAME>
+     <SCONAME>IV_SAP_USER_ID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>SAP user id</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_SAP_USER_ID</CMPNAME>
+     <SCONAME>IV_USER_CLS_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of (inherited) user / employee class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_SAP_USER_ID</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validity date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_SAP_USER_ID</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Created instance or found in buffer</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_SAP_USER_ID</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_SAP_USER_ID</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_WINDOWS_NET_ID</CMPNAME>
+     <SCONAME>IV_USER_CLS_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of (inherited) user / employee class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_WINDOWS_NET_ID</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validity date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_WINDOWS_NET_ID</CMPNAME>
+     <SCONAME>IV_WINDOWS_NET_ID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Windows net Id</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_WINDOWS_NET_ID</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Created instance or found in buffer</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_WINDOWS_NET_ID</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_WINDOWS_NET_ID</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MASTER_RECORD_INDICATORS</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MASTER_RECORD_STATUS</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Status of personnel master (use MS_EMPL.. to compare)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MY_MANAGER</CMPNAME>
+     <SCONAME>IV_RAISE_EXCEPTION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Raise exception instead of flag MV_IS_ERRONEOUS</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MY_MANAGER</CMPNAME>
+     <SCONAME>RO_MANAGER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Manager</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MY_MANAGER</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PERS_NO_BY_COMM_TYPE_VALUE</CMPNAME>
+     <SCONAME>IV_COMM_TYPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Communication type in PA0105 (column USRTY)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PERS_NO_BY_COMM_TYPE_VALUE</CMPNAME>
+     <SCONAME>IV_COMM_VALUE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Value to communication type of PA0105 (column USRID)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PERS_NO_BY_COMM_TYPE_VALUE</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validity date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PERS_NO_BY_COMM_TYPE_VALUE</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Personnel number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PERS_NO_BY_COMM_TYPE_VALUE</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_SAP_USER_ID_VIA_PERNR</CMPNAME>
+     <SCONAME>IV_RAISE_EXCEPTION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Raise exception instead of flag MV_IS_ERRONEOUS</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_SAP_USER_ID_VIA_PERNR</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>SAP user Id</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_SAP_USER_ID_VIA_PERNR</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_VALUE_TO_COMM_TYPE</CMPNAME>
+     <SCONAME>EV_RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Result must be of a concrete type; is empty if not found</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_VALUE_TO_COMM_TYPE</CMPNAME>
+     <SCONAME>IV_COMM_TYPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Communication type of PA0105 (column USRTY)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_VALUE_TO_COMM_TYPE</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_WINDOWS_NET_ID_VIA_PERNR</CMPNAME>
+     <SCONAME>IV_RAISE_EXCEPTION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Raise exception instead of flag MV_IS_ERRONEOUS</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_WINDOWS_NET_ID_VIA_PERNR</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Windows net Id</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_WINDOWS_NET_ID_VIA_PERNR</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>READ_NAME_DETAILS</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

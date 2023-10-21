@@ -1,0 +1,657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_WF_OM_ORG_MODEL</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>WF-OM: Organisation model determinations</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>ALL</KEY>
+     <ENTRY>all</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>E01</KEY>
+     <ENTRY>for SAP user determination</ENTRY>
+     <LENGTH>50</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>MAN</KEY>
+     <ENTRY>Manager</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>MEM</KEY>
+     <ENTRY>Members only</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>TX1</KEY>
+     <ENTRY>No descriptive text found!</ENTRY>
+     <LENGTH>40</LENGTH>
+    </item>
+   </TPOOL>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>D</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>TX1</KEY>
+       <ENTRY>Keine Kurzbeschreibung gefunden!</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>W</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>ALL</KEY>
+       <ENTRY>all</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E01</KEY>
+       <ENTRY>for SAP user determination</ENTRY>
+       <LENGTH>50</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>MAN</KEY>
+       <ENTRY>Manager</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>MEM</KEY>
+       <ENTRY>Members only</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>TX1</KEY>
+       <ENTRY>No descriptive text found!</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>d</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>ALL</KEY>
+       <ENTRY>all</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E01</KEY>
+       <ENTRY>for SAP user determination</ENTRY>
+       <LENGTH>50</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>MAN</KEY>
+       <ENTRY>Manager</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>MEM</KEY>
+       <ENTRY>Members only</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>TX1</KEY>
+       <ENTRY>No descriptive text found!</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+   </I18N_TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CLASS_CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Class constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CS_EVAL_PATH</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluation path</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CS_SCOPE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Scope of determination</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>FIND_DEPENDENT_ORG_OBJECTS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Find personnel number to SAP user Id</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Find employees by different, normally unique, keys</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>FIND_MANAGER_2_ORG_UNIT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Find manager to org. unit, search upwards if requested</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get employees to the current org. object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine manager to organizational object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MANAGERS_2B_EXCLUDED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get leaders to the org. object in case of &apos;members only&apos;</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MEMBERS_2_ORG_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get members to the current org. object respecting the scope</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine (depending) org. unit data (using RH_STRUC_GET)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_SUPERIOR_ORG_UNIT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get next upper org. unit from result of org. unit search</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_TEXT_OF_ORG_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get short description of organizational unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_ANY_PERSON_ASSIGNED_2_OUNIT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Check whether a person is found to the requested org. unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_MEMBER_A_LEADER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Check if the personnel Id is a leader of the org. object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_ORG_OBJ_4_MULTIPLE_PEOPLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Check whether it is an org. object for multiple people</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_SCOPE_VALID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Check if the passed scope is valid</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_MY_ORG_UNIT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Details to the org. unit of the requested object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_MY_POSITION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Details to the position of the requested object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_ORG_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type and Id of organizational object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_ORG_OBJECT_FOR_SEARCH</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type and Id of organizational object for search</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_EXCL_LEADERS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Leaders to be excluded for a scope of &apos;members only&apos;</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_PLVAR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Plan version</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_SCOPE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Requested scope</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_VALID_ON</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object is valid on</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SEARCH_UPWARDS_4_ORG_UNIT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Search upwards in org. structure for superior org. unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TRANSF_EMPLOYEES_2_RULE_RESULT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Transfer determined employees into agent rule result</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TRANSF_RULE_RESULT_2_EMPLOYEES</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Transfer agent rule result into format of employee data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TY_T_POS_OWNER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Position owner</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IS_ORG_OBJECT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type and Id of org. object (use SWFCO_ORG_* for type)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object is valid on</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_DEPENDENT_ORG_OBJECTS</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>IT_EMPLOYEES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of keys to determine employees</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>IV_RAISE_EXCEP</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Raise an exception; &apos; &apos; = Return message</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>RT_EMPLOYEES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of completed employees</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_MANAGER_2_ORG_UNIT</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_MANAGER_2_ORG_UNIT</CMPNAME>
+     <SCONAME>IV_SEARCH_UPWARDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Search in higher levels if no manager is found</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_MANAGER_2_ORG_UNIT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determined manager</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_MANAGER_2_ORG_UNIT</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>IV_SCOPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Scope (only relevant for pos. + org. unit) -&gt; use CS_SCOPE-*</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>IV_SEARCH_UPWARDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Search in higher levels if no manager is found</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determined employees</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <SCONAME>IV_SEARCH_UPWARDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Search in higher levels if no manager is found</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Manager to current org. object</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGERS_2B_EXCLUDED</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGERS_2B_EXCLUDED</CMPNAME>
+     <SCONAME>IV_SEARCH_UPWARDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Search in higher levels if no manager is found</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGERS_2B_EXCLUDED</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Merged result of FM RH_STRUC_GET</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGERS_2B_EXCLUDED</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MEMBERS_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MEMBERS_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>IV_SEARCH_UPWARDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Search in higher levels if no manager is found</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MEMBERS_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Merged result of FM RH_STRUC_GET</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MEMBERS_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_EVAL_PATH</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluation path</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_INT_FLAG</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Read evaluation path in internal table</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_PLVAR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Plan version</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_TDEPTH</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Technical depth of structure</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_TFLAG</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Supply texts</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_VFLAG</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Supply relationship information</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Merged result of FM RH_STRUC_GET</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_SUPERIOR_ORG_UNIT</CMPNAME>
+     <SCONAME>IT_SUPERIOR_ORG_UNITS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Superior org. units to this org. unit</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_SUPERIOR_ORG_UNIT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Id of superior org. unit</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_SUPERIOR_ORG_UNIT</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TEXT_OF_ORG_OBJECT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Short description of org. object</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ANY_PERSON_ASSIGNED_2_OUNIT</CMPNAME>
+     <SCONAME>IO_ORG_OBJECT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instanz to object of last org. model search</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ANY_PERSON_ASSIGNED_2_OUNIT</CMPNAME>
+     <SCONAME>IT_ORG_UNIT_RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Result of last org. model search</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ANY_PERSON_ASSIGNED_2_OUNIT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Result of search contains at least one person</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ANY_PERSON_ASSIGNED_2_OUNIT</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_MEMBER_A_LEADER</CMPNAME>
+     <SCONAME>IS_PERSONNEL_ID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Personnel Id</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_MEMBER_A_LEADER</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Value for scope is valid</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ORG_OBJ_4_MULTIPLE_PEOPLE</CMPNAME>
+     <SCONAME>IV_SCOPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Scope (only for position + org. unit) -&gt; use CS_SCOPE-*</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ORG_OBJ_4_MULTIPLE_PEOPLE</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Org. object is a position or an org. unit</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ORG_OBJ_4_MULTIPLE_PEOPLE</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SCOPE_VALID</CMPNAME>
+     <SCONAME>IV_SCOPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Scope (only for position + org. unit) -&gt; use CS_SCOPE-*</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SCOPE_VALID</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Value for scope is valid</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SCOPE_VALID</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SEARCH_UPWARDS_4_ORG_UNIT</CMPNAME>
+     <SCONAME>IO_ORG_OBJECT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Current org. unit during drill up org. structure</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SEARCH_UPWARDS_4_ORG_UNIT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Next upper / superior org. unit to input org. unit</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SEARCH_UPWARDS_4_ORG_UNIT</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_EMPLOYEES_2_RULE_RESULT</CMPNAME>
+     <SCONAME>IT_EMPLOYEES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of keys to determine employees</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_EMPLOYEES_2_RULE_RESULT</CMPNAME>
+     <SCONAME>RT_ACTORS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid employees in agent rule format</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_RULE_RESULT_2_EMPLOYEES</CMPNAME>
+     <SCONAME>IT_ACTORS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid employees in agent rule format</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_RULE_RESULT_2_EMPLOYEES</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object is valid on</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_RULE_RESULT_2_EMPLOYEES</CMPNAME>
+     <SCONAME>RT_EMPLOYEES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of keys to determine employees</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZCA_WF_OM</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Org. management model</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>Error occurred during data determination in the organzational model</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>No &amp;1 maintained for personnel number &amp;2 in infotype 0105</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>No SAP user Id &amp;1 available in infotype 0105</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Error occurred during data determination. For details see fld. &quot;ERR_MSG&quot;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>No personnel number found to &amp;1 &amp;2 or is not valid on &amp;3</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>No position owner to plan version &amp;1 / org. type &amp;2 / org.unit &amp;3</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>No valid data found to personnel number(s)</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Too less data for determination of organizational informations</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>No valid superior found to org. unit &amp;1 &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>SAP user Id &amp;1 is timely delimited and currently invalid</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Error when determine employee details from org. management</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>No &amp;1 maintained for personnel number &amp;2 in infotype 0105</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>No personnel number found to user id &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>Exception during org. management determination</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>014</MSGNR>
+     <TEXT>Object type &apos;&amp;1&apos; is not allowed &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>015</MSGNR>
+     <TEXT>SAP user id &apos;&amp;1&apos; not maintained in personnel master or does not exist</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>016</MSGNR>
+     <TEXT>Search members to a person/SAP user (&amp;1) is not supported</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>017</MSGNR>
+     <TEXT>No people found to &amp;1 &amp;2 to scope &amp;3</TEXT>
+    </T100>
+   </T100>
+   <I18N_LANGS>
+    <LANGU>W</LANGU>
+    <LANGU>d</LANGU>
+   </I18N_LANGS>
+   <T100T>
+    <T100T>
+     <SPRSL>W</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <STEXT>Модел на организационно управление</STEXT>
+    </T100T>
+    <T100T>
+     <SPRSL>d</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <STEXT>Model na organizaciski menadzment</STEXT>
+    </T100T>
+   </T100T>
+   <T100_TEXTS>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>Fehler während Datenermittlung im Organisationmodell aufgetreten</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Kein(e) &amp;1 für Personalnummer &amp;2 in Infotyp 0105 (Kommunikation) gepflegt</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>SAP-Benutzer-Id &amp;1 kann nicht in Infotyp 0105 gefunden werden</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Fehler während Datenermittlung aufgetreten. Details siehe Feld &quot;ERR_MSG&quot;</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Keine Personalnummer zu &amp;1 &amp;2 gefunden oder ist ungültig am &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Kein Stelleninhaber zu Planvariante &amp;1 / Org.typ &amp;2 / Org.einheit &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Keine gültigen Daten zu Personalnummer(n) gefunden</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>Zu wenig Daten zur Ermittlung von Organisationsinformationen</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Keinen gültigen Vorgesetzten zur Org.einheit &amp;1 &amp;2 gefunden</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>SAP-Benutzer-Id &amp;1 ist zeitlich begrenzt und derzeit ungültig</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Fehler bei Ermittlung von Mitarbeiterdetails aus Org.management</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>Възникна грешка по време на задаване на данни в организационния модел</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>№ &amp;1 се поддържа за персонален номер &amp;2 в инфотип 0105</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Няма наличен SAP потребителски идентификатор &amp;1 в инфотип 0105</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Възникна грешка при задаване на данни. За детайли вижте поле „ERR_MSG“</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Не е намерен персонален номер за &amp;1 &amp;2 или не е валиден за &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Няма присъед. на позиц. за план. версия &amp;1 / орг. тип &amp;2 / орг.единица &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Няма открити валидни данни за персоналния номер</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>Твърде малко данни за определяне на организационна информация</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Не е намерен валиден ръководител на орг. единица &amp;1 &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>SAP потребителски идентификатор &amp;1 е врем. ограничен и в мом. е невалиден</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Грешка при определяне на подробности за служител от орг. управление</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>№ &amp;1 се поддържа за персонален номер &amp;2 в инфотип 0105</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>Не е намерен персонален номер за потребителски идентификатор &amp;1</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>Изключение по време на определяне на орг. Управление</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>014</MSGNR>
+     <TEXT>Тип обект &apos;&amp;1&apos; не е разрешен &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>015</MSGNR>
+     <TEXT>Идент. на SAP потребител &apos;&amp;1&apos; не се подд. в инф. за перс. или не същест.</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>Se pojavi greska pri odreduvanje podatoci vo organizaciskiot model</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Ne e azuriran &amp;1 za broj na vraboten &amp;2 vo info tip 0105</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Nema SAP korisnicki Id &amp;1 dostapen vo  infotip 0105</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Greska pri determiniranje na podatoci.Za detali videte vo &quot;ERR_MSG&quot;</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Ne e pronajden broj na vraboten za &amp;1 &amp;2 ili ne validen vo &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Nema lice da planira verzija &amp;1 / org. tip &amp;2 / org.edinica &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Ne se pronajdeni podatoci za brojot na vraboten</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>Premalku podatoci za utvrduvanje na organizaciski informacii</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Ne e pronajden pretpostaven za org.edinica &amp;1 &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>Korisnickiot SAP Id &amp;1e vremeno razgranicen i momentalno nevazecki</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Greska pri odreduvanje podatoci za vraboteni od org. menadzment</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>Ne e azuriran &amp;1 za broj na vraboten &amp;2 vo info tip 0105</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>Ne e pronajden Id broj na vraboten za &amp;1</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>Isklucok za vreme na org.odreduvanje na menadzment</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>014</MSGNR>
+     <TEXT>Tip na predmet &apos;&amp;1&apos; ne e dozvolen za &amp;2</TEXT>
+    </item>
+   </T100_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
