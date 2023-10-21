@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_WF_EXEC_MACROS</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX Workflow: Execution of workflow/BO macros</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>NDF</KEY>
+     <ENTRY>No description found</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+   </TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CALL_METHOD</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Execute BO method</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CREATE_BO</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create BO object reference</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_ELEMENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get value to element in container</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get BO instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_KEY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get BO key unstructured</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_PROPERTY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get BO property</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_DESCR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Business object short descriptions</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object instance key for macro execution</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_LPOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Business object type and key</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>REFRESH</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Refresh instance</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CALL_METHOD</CMPNAME>
+     <SCONAME>CT_CONTAINER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Container with export AND import parameter</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CALL_METHOD</CMPNAME>
+     <SCONAME>IV_METHOD</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Method name</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CALL_METHOD</CMPNAME>
+     <SCONAME>ZCX_CA_WF_EXEC_MACROS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common WF exception: Macro execution errors</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IS_LPOR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Business object type and key</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>ZCX_CA_WF_EXEC_MACROS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common WF exception: Macro execution errors</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BO</CMPNAME>
+     <SCONAME>ZCX_CA_WF_EXEC_MACROS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common WF exception: Macro execution errors</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ELEMENT</CMPNAME>
+     <SCONAME>CT_CONTAINER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Container with export AND import parameter</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ELEMENT</CMPNAME>
+     <SCONAME>EV_VALUE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Data value to element</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ELEMENT</CMPNAME>
+     <SCONAME>IV_ELEM_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Element name</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ELEMENT</CMPNAME>
+     <SCONAME>ZCX_CA_WF_EXEC_MACROS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common WF exception: Macro execution errors</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>RS_INSTANCE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object instance key for macro execution</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>ZCX_CA_WF_EXEC_MACROS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common WF exception: Macro execution errors</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_KEY</CMPNAME>
+     <SCONAME>RV_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Business object key</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_KEY</CMPNAME>
+     <SCONAME>ZCX_CA_WF_EXEC_MACROS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common WF exception: Macro execution errors</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PROPERTY</CMPNAME>
+     <SCONAME>ET_TABLE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table value to property</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PROPERTY</CMPNAME>
+     <SCONAME>EV_VALUE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Data value to property</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PROPERTY</CMPNAME>
+     <SCONAME>IV_ATTR_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Attribute name</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PROPERTY</CMPNAME>
+     <SCONAME>IV_IS_BO</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>1 = Property is a business object</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PROPERTY</CMPNAME>
+     <SCONAME>IV_IS_TABLE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>1 = Property is a table type</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PROPERTY</CMPNAME>
+     <SCONAME>ZCX_CA_WF_EXEC_MACROS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common WF exception: Macro execution errors</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>REFRESH</CMPNAME>
+     <SCONAME>ZCX_CA_WF_EXEC_MACROS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common WF exception: Macro execution errors</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

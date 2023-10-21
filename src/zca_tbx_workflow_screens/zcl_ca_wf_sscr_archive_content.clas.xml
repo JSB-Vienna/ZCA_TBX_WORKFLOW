@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_WF_SSCR_ARCHIVE_CONTENT</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX: Workflow: SSCR 0905 + 0906 - Archive content</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>ARC</KEY>
+     <ENTRY>Archived content</ENTRY>
+     <LENGTH>70</LENGTH>
+    </item>
+   </TPOOL>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>D</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>ARC</KEY>
+       <ENTRY>Archivierte Dokumente</ENTRY>
+       <LENGTH>70</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>W</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>ARC</KEY>
+       <ENTRY>Archived content</ENTRY>
+       <LENGTH>70</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>d</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>ARC</KEY>
+       <ENTRY>Archived content</ENTRY>
+       <LENGTH>70</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+   </I18N_TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CS_SCREEN_ID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Screens</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>C_CCONT_NAME_ARCHIVE_VIEWER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of custom container that contains the editor control</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>C_FRAME_PROG_SCREENS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Frame program for screens</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>C_MY_VIEW_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>My view name</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_ARCHIVE_CONTENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>ArchiveLink + DMS content of a business object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_CUST_CONTAINER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Custom container for embedding viewer</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_BUTTONS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Visible toolbar buttons</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_DOCS_DISPLAY_AT_LAST</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Displayed docs after last refresh to add only the new docs</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_EXTERNAL_DISPLAY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X=Open Doc. viewer in ext. screen; &apos; &apos;=in this subscreen</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_HIDE_VIEWER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Hide archive viewer, this prevent the external display</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_NO_GOS_TOOLBAR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Hide GOS toolbar</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_NO_TOOLBAR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Hide toolbar</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>ON_NEW_DOCUMENT_STORED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Handle event: Switch to archive viewer and/or refresh view</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SWITCH_2_ARCHIVE_VIEWER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Switch to archive viewer</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SWITCH_2_EXTERNAL_VIEWER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Switch to external viewer</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IO_ARCHIVE_CONTENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>ArchiveLink + DMS content of a business object</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IO_LOG</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow specific Business Application Logging (BAL)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IT_BUTTONS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Visible toolbar buttons (see comment to this method)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_EXTERNAL_DISPLAY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = External display, only an empty subscreen is displayed</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_FRAME_LABEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Frame label</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_HIDE_VIEWER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Hide archive viewer, this prevent the external display</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_NO_GOS_TOOLBAR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Hide GOS toolbar</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_NO_TOOLBAR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Hide toolbar</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>ZCX_CA_ARCHIVE_CONTENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Error while handling Archive content</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_DISPLAY_CHANGE_DOCS</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX: Display change documents as popup or inplace</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>CHI</KEY>
+     <ENTRY>Chg. ind.</ENTRY>
+     <LENGTH>10</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>LTI</KEY>
+     <ENTRY>Change documents</ENTRY>
+     <LENGTH>70</LENGTH>
+    </item>
+   </TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CREATE_KEY_FIELD</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create key field from technical description</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Display change documents for object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_TABLE_FIELDS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get fields with technical details of a table</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_POPUP_CORNERS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Definition of the popup corner points</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_CHANGE_DOCS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determined and prepared change documents</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_CHANGE_DOCS_RAW</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Description</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_OPEN_AS_POPUP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Open as popup</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>PREPARE_CHANGE_DOC_KEY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Convert key string of the change doc. into defined portions</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>PREPARE_RESULT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Prepare change document entries for display</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SET_USERS_FULL_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine and set users full name</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IO_CONTAINER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Container instance, if ALV is used inplace with controls</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IS_POPUP_CORNERS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Definition of the popup corner points</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_CNT_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of the ALV control/container</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_LAYOUT_HANDLE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>ID to differ between different ALV calls in one program</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_LIST_TITLE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Short description (is set as ALV header and as 2nd title)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_PRG_VARIANTS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Program name for saving layout variants</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_KEY_FIELD</CMPNAME>
+     <SCONAME>IR_TABLE_FIELD</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Technical table field description</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_KEY_FIELD</CMPNAME>
+     <SCONAME>RR_KEY_FIELD</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Reference of key field</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_KEY_FIELD</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>IRA_OBJECT_IDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Multiple object keys (concatenated incl. client!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>IRA_TRANSACTION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Transactions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>IV_DATE_OF_CHANGE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creation date from</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>IV_DATE_UNTIL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creation date to</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>IV_OBJECT_CLASS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>IV_OBJECT_ID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Single object key (concatenated incl. client!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>IV_TIME_OF_CHANGE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creation time from</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>IV_TIME_UNTIL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creation time to</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISPLAY_FOR_OBJECT</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TABLE_FIELDS</CMPNAME>
+     <SCONAME>IV_TABLE_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table name</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TABLE_FIELDS</CMPNAME>
+     <SCONAME>RT_TABLE_FIELDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Fields of the table with technical details</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TABLE_FIELDS</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_CHANGE_DOC_KEY</CMPNAME>
+     <SCONAME>IT_TABLE_FIELDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Fields of the table with technical details</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_CHANGE_DOC_KEY</CMPNAME>
+     <SCONAME>IV_CD_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Change document key as string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_CHANGE_DOC_KEY</CMPNAME>
+     <SCONAME>RV_CD_KEY_PREP</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Prepare change document key</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_CHANGE_DOC_KEY</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_RESULT</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_USERS_FULL_NAME</CMPNAME>
+     <SCONAME>IV_SAP_USER_ID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>SAP user Id</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_USERS_FULL_NAME</CMPNAME>
+     <SCONAME>RV_FULL_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Users full name</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

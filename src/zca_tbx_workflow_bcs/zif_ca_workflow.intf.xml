@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_CA_WORKFLOW</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX Workflow: Extentd. SAP standard interface IF_WORKFLOW</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CHECK_EXISTENCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Check existence of object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_TASK_DESCR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Assemble task short text</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_LOG</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow specific Business Application Logging (BAL)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_DEFAULT_ATTR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Default attribute with prepared object key</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>RAISE_EVENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raise an instance event</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CHECK_EXISTENCE</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CHECK_EXISTENCE</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TASK_DESCR</CMPNAME>
+     <SCONAME>IV_TASK_DESC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Complementing description/action/function</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TASK_DESCR</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Completed task short description</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>RAISE_EVENT</CMPNAME>
+     <SCONAME>IO_EVT_CNT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of event container</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>RAISE_EVENT</CMPNAME>
+     <SCONAME>IV_DO_COMMIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Do commit here</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>RAISE_EVENT</CMPNAME>
+     <SCONAME>IV_EVENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Event name</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>RAISE_EVENT</CMPNAME>
+     <SCONAME>IV_EVT_CREATOR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Event creator (user that triggered the event)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>RAISE_EVENT</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

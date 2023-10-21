@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_WF_LOG</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX: Workflow specific Business Application Logging (BAL)</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>TID</KEY>
+     <ENTRY>Task Id</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>WDS</KEY>
+     <ENTRY>Work item short description</ENTRY>
+     <LENGTH>90</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>WID</KEY>
+     <ENTRY>Work item Id</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+   </TPOOL>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>D</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>TID</KEY>
+       <ENTRY>Aufgabenkennung</ENTRY>
+       <LENGTH>17</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>WDS</KEY>
+       <ENTRY>Aufgabenkurzbeschreibung</ENTRY>
+       <LENGTH>42</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>WID</KEY>
+       <ENTRY>Workitemkennung</ENTRY>
+       <LENGTH>22</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>W</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>TID</KEY>
+       <ENTRY>Task Id</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>WDS</KEY>
+       <ENTRY>Work item short description</ENTRY>
+       <LENGTH>90</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>WID</KEY>
+       <ENTRY>Work item Id</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>d</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>TID</KEY>
+       <ENTRY>Task Id</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>WDS</KEY>
+       <ENTRY>Work item short description</ENTRY>
+       <LENGTH>90</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>WID</KEY>
+       <ENTRY>Work item Id</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+   </I18N_TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>ADJUST_PROFILE_FOR_WF_APPS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Adjust profile for workflow application logs</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>C_MY_TYPEID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>My own type</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INSTANCE_FOR_ACTIVE_WI</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get instance for the active work item id</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SAVE_FOR_WORKFLOW</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Save message with specific settings for workflow</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IS_LPOR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Business object/class key - relevant for buffering</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_ADD_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Additional key (for several logs to one business object)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_DEF_MSGID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Default message class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_DEF_PROBCLASS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Default problem class (use const. C_PROBCLAS_*)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_DEL_BEFORE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Application Log: Keep log until expiry</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_DEL_DATE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Application Log: Expiration Date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_EXTNUMBER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Application Log: External ID</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_MODE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Application Log: Operating mode  (use const. C_MODE_*)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_OBJECT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Application Log: Object Name (Application Code)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_REPID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>ABAP Program: Current Main Program</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_SUBOBJ</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Application Log: Subobject</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_TCODE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>ABAP System Field: Current Transaction Code</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_FOR_ACTIVE_WI</CMPNAME>
+     <SCONAME>IS_LPOR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Business object/class key - relevant for buffering</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_FOR_ACTIVE_WI</CMPNAME>
+     <SCONAME>IV_LOG_CLS_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of (inherited) application log class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_FOR_ACTIVE_WI</CMPNAME>
+     <SCONAME>IV_OBJECT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Application Log: Object Name (Application Code)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_FOR_ACTIVE_WI</CMPNAME>
+     <SCONAME>IV_SUBOBJ</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Application Log: Subobject</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_FOR_ACTIVE_WI</CMPNAME>
+     <SCONAME>IV_WF_TASK_ID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow definition Id (WS...) as optional filter</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_FOR_ACTIVE_WI</CMPNAME>
+     <SCONAME>RO_LOG</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow specific Business Application Logging (BAL)</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

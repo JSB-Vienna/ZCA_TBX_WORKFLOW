@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_MM_C_WF_BOS</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX Workflow: Constants with predefined MM BO types</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2009</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type BUS2009 - SAP MM purchase requisition item</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2012</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type BUS2012 - SAP MM purchase order</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2081</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type BUS2081 - SAP MM incoming invoice</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2105</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type BUS2105 - SAP MM purchase requisition (all items)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_LFA1</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type LFA1 - SAP vendor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_LFM1</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type LFM1 - SAP vendor MM / level purchasing org.</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

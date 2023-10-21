@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_CA_WF_LOG</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX: Workflow specific Business Application Logging (BAL)</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>ADD_N_SAVE_EXCEPTION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Add and save exception without closing log</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>ADD_N_SAVE_MESSAGE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Add and save message without closing log</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>ADD_N_SAVE_MSG_TASK_CANCELLED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Add and save message workflow task was cancelled by user</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>ADD_N_SAVE_MSG_TASK_COMPLETED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Add and save message workflow task is completed successfully</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>ADD_N_SAVE_MSG_WF_CANCELLED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Add and save message workflow was cancelled by user</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD_N_SAVE_EXCEPTION</CMPNAME>
+     <SCONAME>IV_CLASS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of executed class (addition to IV_METHOD)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD_N_SAVE_EXCEPTION</CMPNAME>
+     <SCONAME>IV_METHOD</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of executed method (addition to IV_CLASS)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD_N_SAVE_EXCEPTION</CMPNAME>
+     <SCONAME>IX_CATCHED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Catched exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD_N_SAVE_EXCEPTION</CMPNAME>
+     <SCONAME>RX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Converted exception to further use</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD_N_SAVE_MESSAGE</CMPNAME>
+     <SCONAME>IS_MESSAGE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Message details</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD_N_SAVE_MSG_TASK_COMPLETED</CMPNAME>
+     <SCONAME>IV_TASK_DESCR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Short description of task (case sensitive)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD_N_SAVE_MSG_WF_CANCELLED</CMPNAME>
+     <SCONAME>IS_LPOR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Process key</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>
