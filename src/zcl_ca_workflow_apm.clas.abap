@@ -20,7 +20,6 @@ ENDCLASS.
 
 CLASS ZCL_CA_WORKFLOW_APM IMPLEMENTATION.
 
-
   METHOD constructor.
     "-----------------------------------------------------------------*
     "   Constructor
@@ -34,9 +33,11 @@ CLASS ZCL_CA_WORKFLOW_APM IMPLEMENTATION.
             git_url         = 'https://github.com/JSB-Vienna/zca_workflow.git'
             dependencies    =
                   VALUE #(
-                        group_id       = 'itinere.at'
-                      ( artifact_id    = 'zca_base_toolbox'
-                        git_url        = 'https://github.com/JSB-Vienna/zca_base_toolbox.git'
+                      ( group_id       = 'itinere.at'
+                        artifact_id    = 'zca_toolbox'
+                        git_url        = 'https://github.com/JSB-Vienna/zca_toolbox.git'
+                        version        = '1.0.0'
                         target_package = 'zca_toolbox' ) ) ) ##no_text.
   ENDMETHOD.                    "constructor
+  
 ENDCLASS.
