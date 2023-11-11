@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_USER</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>CA-TBX Workflow: BC Extended user Id (master data)</DESCRIPT>
+    <DESCRIPT>CA-TBX: BC Extended user (master data)</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

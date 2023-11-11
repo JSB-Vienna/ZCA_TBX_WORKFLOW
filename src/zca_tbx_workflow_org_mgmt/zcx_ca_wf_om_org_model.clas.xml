@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCX_CA_WF_OM_ORG_MODEL</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    <DESCRIPT>CA-TBX exception: Org. model determination</DESCRIPT>
     <CATEGORY>40</CATEGORY>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>

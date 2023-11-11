@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_WAPI_UTILS</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>CA-TBX Workflow: Wrapped WAPI function modules</DESCRIPT>
+    <DESCRIPT>CA-TBX: Wrapped WAPI function modules</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

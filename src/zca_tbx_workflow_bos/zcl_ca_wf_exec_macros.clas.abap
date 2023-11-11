@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX Workflow: Execution of workflow/BO macros</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: Execution of workflow/BO macros</p>
 CLASS zcl_ca_wf_exec_macros DEFINITION PUBLIC
                                        CREATE PUBLIC.
 

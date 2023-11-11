@@ -7,7 +7,7 @@
     <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
     <LANGDEP>X</LANGDEP>
-    <DDTEXT>Employee details from HCM master data</DDTEXT>
+    <DDTEXT>CA-TBX: Employee details from HCM master data</DDTEXT>
     <MASTERLANG>E</MASTERLANG>
     <EXCLASS>4</EXCLASS>
    </DD02V>
@@ -95,7 +95,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>ZCA_WF_S_OM_OBJECT</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Details to organizational object</DDTEXT>
+     <DDTEXT>CA-TBX: Details to organizational object</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_POSITION</GROUPNAME>
     </DD03P>
@@ -104,7 +104,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>ZCA_WF_S_OM_OBJECT</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Details to organizational object</DDTEXT>
+     <DDTEXT>CA-TBX: Details to organizational object</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_ORG_UNIT</GROUPNAME>
     </DD03P>

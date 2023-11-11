@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: Workflow: Base controller class for subscreens</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: Base controller class for workflow subscreens</p>
 "!
 "! <p>Use this class for any sub screen in your workflow applications to be able to log any messages
 "! during runtime.</p>

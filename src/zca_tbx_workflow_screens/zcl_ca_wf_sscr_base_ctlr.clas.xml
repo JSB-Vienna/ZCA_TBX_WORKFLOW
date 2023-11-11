@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_SSCR_BASE_CTLR</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>CA-TBX: Workflow: Base controller class for subscreens</DESCRIPT>
+    <DESCRIPT>CA-TBX: Base controller class for workflow subscreens</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

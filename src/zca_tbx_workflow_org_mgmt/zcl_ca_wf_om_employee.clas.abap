@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">WF-OM: BC Employee in Org. management (workflow-capable)</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: BC Employee in org. management</p>
 CLASS zcl_ca_wf_om_employee DEFINITION PUBLIC
                                        CREATE PROTECTED.
 
@@ -460,14 +460,7 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
     "-----------------------------------------------------------------*
     "   Refresh instance
     "-----------------------------------------------------------------*
-    TRY.
-        zif_ca_workflow~check_existence( ).
 
-      CATCH zcx_ca_error INTO DATA(lx_catched).
-        "As long as no exceptions are declared for this method, this is
-        "currently the best solution.
-        MESSAGE lx_catched TYPE c_msgty_s DISPLAY LIKE lx_catched->mv_msgty.
-    ENDTRY.
   ENDMETHOD.                    "bi_persistent~refresh
 
 

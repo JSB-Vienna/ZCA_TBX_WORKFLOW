@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">WF-OM: Organisation model determinations</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: Organisation model determinations</p>
 CLASS zcl_ca_wf_om_org_model DEFINITION PUBLIC
                                         CREATE PUBLIC.
 * P U B L I C   S E C T I O N

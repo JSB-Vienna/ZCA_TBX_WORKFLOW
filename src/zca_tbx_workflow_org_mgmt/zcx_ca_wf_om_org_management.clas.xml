@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCX_CA_WF_OM_ORG_MANAGEMENT</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>WF-OM: Org. management exception</DESCRIPT>
+    <DESCRIPT>CA-TBX exception: Org. management determination</DESCRIPT>
     <CATEGORY>40</CATEGORY>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>

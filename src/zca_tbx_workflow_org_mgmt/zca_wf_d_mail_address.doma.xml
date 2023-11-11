@@ -8,7 +8,7 @@
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000241</LENG>
     <OUTPUTLEN>000050</OUTPUTLEN>
-    <DDTEXT>eMail address (like AD_SMTPADR, but output length 50)</DDTEXT>
+    <DDTEXT>CA-TBX: eMail address (like AD_SMTPADR, but output len. 50)</DDTEXT>
     <DOMMASTER>E</DOMMASTER>
    </DD01V>
   </asx:values>

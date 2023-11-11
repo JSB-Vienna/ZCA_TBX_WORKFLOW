@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX Workflow exception: Macro execution errors</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX exception: Macro execution errors</p>
 class ZCX_CA_WF_EXEC_MACROS definition
   public
   inheriting from ZCX_CA_PARAM

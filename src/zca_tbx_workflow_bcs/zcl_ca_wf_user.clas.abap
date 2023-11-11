@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX Workflow: BC Extended user Id (master data)</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: BC Extended user (master data)</p>
 CLASS zcl_ca_wf_user DEFINITION PUBLIC
                                 CREATE PROTECTED.
 
@@ -262,14 +262,7 @@ CLASS zcl_ca_wf_user IMPLEMENTATION.
     "-----------------------------------------------------------------*
     "   Refresh instance
     "-----------------------------------------------------------------*
-    TRY.
-        check_existence( ).
 
-      CATCH zcx_ca_error INTO DATA(lx_catched).
-        "As long as no exceptions are declared for this method, this is
-        "currently the best solution.
-        MESSAGE lx_catched TYPE c_msgty_s DISPLAY LIKE lx_catched->mv_msgty.
-    ENDTRY.
   ENDMETHOD.                    "bi_persistent~refresh
 
 
@@ -487,7 +480,7 @@ CLASS zcl_ca_wf_user IMPLEMENTATION.
     CALL FUNCTION 'BAPI_USER_GET_DETAIL'
       EXPORTING
         username      = mv_key
-        cache_results = abap_false
+        cache_results = abap_true
       IMPORTING
         address       = ms_address
         logondata     = ms_logon_data
