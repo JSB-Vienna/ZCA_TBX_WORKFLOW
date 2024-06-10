@@ -11,7 +11,7 @@
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>20</SCRLEN2>
     <SCRLEN3>40</SCRLEN3>
-    <DDTEXT>CA-TBX: Mail address (like AD_SMTPADR, but output length 50)</DDTEXT>
+    <DDTEXT>CA-WF: Mail address (like AD_SMTPADR, but output length 50)</DDTEXT>
     <REPTEXT>Mail address</REPTEXT>
     <SCRTEXT_S>Mail addr.</SCRTEXT_S>
     <SCRTEXT_M>Mail address</SCRTEXT_M>

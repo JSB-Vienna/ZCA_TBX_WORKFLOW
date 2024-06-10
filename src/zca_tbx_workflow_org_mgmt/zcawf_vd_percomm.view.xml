@@ -8,7 +8,7 @@
     <DDLANGUAGE>E</DDLANGUAGE>
     <AGGTYPE>V</AGGTYPE>
     <ROOTTAB>PA0000</ROOTTAB>
-    <DDTEXT>CA-TBX: Active personnel number, name and communication data</DDTEXT>
+    <DDTEXT>CA-WF: Active personnel number, name and communication data</DDTEXT>
     <VIEWCLASS>D</VIEWCLASS>
     <VIEWGRANT>R</VIEWGRANT>
    </DD25V>

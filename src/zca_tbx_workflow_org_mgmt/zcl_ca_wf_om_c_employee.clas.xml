@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_OM_C_EMPLOYEE</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>CA-TBX: Constants and value checks for org. object Employee</DESCRIPT>
+    <DESCRIPT>WF-OM: Constants and value checks for org. object Employee</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

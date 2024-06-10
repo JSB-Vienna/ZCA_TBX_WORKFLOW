@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: Organisation model determinations</p>
+"! <p class="shorttext synchronized" lang="en">WF-OM: Organisation model determinations</p>
 CLASS zcl_ca_wf_om_org_model DEFINITION PUBLIC
                                         CREATE PUBLIC.
 * P U B L I C   S E C T I O N
@@ -101,7 +101,7 @@ CLASS zcl_ca_wf_om_org_model DEFINITION PUBLIC
         IMPORTING
           iv_scope          TYPE char1    DEFAULT zcl_ca_wf_om_org_model=>cs_scope-manager
           iv_search_upwards TYPE abap_boolean DEFAULT abap_false
-          iv_auth_check     TYPE hr_authy DEFAULT abap_true
+          iv_auth_check     TYPE hr_authy DEFAULT abap_false
         RETURNING
           VALUE(result)     TYPE zca_wf_t_om_objects_lookup
         RAISING
@@ -116,7 +116,7 @@ CLASS zcl_ca_wf_om_org_model DEFINITION PUBLIC
       get_manager
         IMPORTING
           iv_search_upwards TYPE abap_boolean DEFAULT abap_false
-          iv_auth_check     TYPE hr_authy DEFAULT abap_true
+          iv_auth_check     TYPE hr_authy DEFAULT abap_false
         RETURNING
           VALUE(result)     TYPE zca_wf_s_om_object_lookup
         RAISING
@@ -136,7 +136,7 @@ CLASS zcl_ca_wf_om_org_model DEFINITION PUBLIC
       get_org_model_data
         IMPORTING
           iv_eval_path  TYPE wegid
-          iv_auth_check TYPE hr_authy   DEFAULT abap_true
+          iv_auth_check TYPE hr_authy   DEFAULT abap_false
           iv_plvar      TYPE plvar      DEFAULT zcl_ca_wf_om_org_model=>mv_plvar
           iv_tdepth     TYPE tdepth     DEFAULT 0
           iv_vflag      TYPE hr_vflag   DEFAULT abap_true
@@ -434,11 +434,10 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
 
           WHEN swfco_org_position.
             ms_my_position = get_text_of_org_object( ).       "Get my own description
-            DATA(lt_higher_org_objects) = get_org_model_data( iv_eval_path  = cs_eval_path-person_position_orgunit
-                                                              iv_auth_check = abap_false ).
+            DATA(lt_higher_org_objects) = get_org_model_data( iv_eval_path = cs_eval_path-person_position_orgunit ).
             ms_my_org_unit = CORRESPONDING #( lt_higher_org_objects[ otype = swfco_org_orgunit ]
-                                                                          MAPPING short_name = short
-                                                                                  name       = stext ).
+                                                                            MAPPING short_name = short
+                                                                                    name       = stext ).
 
           WHEN swfco_org_orgunit.
             ms_my_org_unit = get_text_of_org_object( ).       "Get my own description

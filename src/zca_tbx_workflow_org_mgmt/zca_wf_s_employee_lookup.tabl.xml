@@ -7,7 +7,7 @@
     <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
     <LANGDEP>X</LANGDEP>
-    <DDTEXT>CA-TBX: Employee details from HCM master data</DDTEXT>
+    <DDTEXT>Employee details from HCM master data</DDTEXT>
     <MASTERLANG>E</MASTERLANG>
     <EXCLASS>4</EXCLASS>
    </DD02V>
@@ -63,7 +63,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>ZCA_WF_S_OM_ERROR</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>CA-TBX: Error information (instead exception)</DDTEXT>
+     <DDTEXT>Error information (instead exception)</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_ERROR</GROUPNAME>
     </DD03P>

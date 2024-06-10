@@ -5,7 +5,7 @@
    <T100A>
     <ARBGB>ZCA_WF_OM</ARBGB>
     <MASTERLANG>E</MASTERLANG>
-    <STEXT>CA-TBX: Org. management model</STEXT>
+    <STEXT>Org. management model</STEXT>
    </T100A>
    <T100>
     <T100>
@@ -60,7 +60,7 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>008</MSGNR>
-     <TEXT>No valid superior found to org. unit &amp;1 &amp;2</TEXT>
+     <TEXT>No valid leader or superior found to org. unit &amp;1 &amp;2</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>
@@ -115,6 +115,24 @@
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>017</MSGNR>
      <TEXT>No people found to &amp;1 &amp;2 to scope &amp;3</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>018</MSGNR>
+     <TEXT>Central Person: Please maintain the lowest personnel number (&amp;1) instead!</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>019</MSGNR>
+     <TEXT>No valid central person found to personnel number &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>020</MSGNR>
+     <TEXT>No valid personnel numbers found to central person &amp;1</TEXT>
     </T100>
    </T100>
    <I18N_LANGS>

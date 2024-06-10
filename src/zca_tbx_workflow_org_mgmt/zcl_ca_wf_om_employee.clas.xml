@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_OM_EMPLOYEE</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>CA-TBX: BC Employee in org. management</DESCRIPT>
+    <DESCRIPT>WF-OM: BC Employee in Org. management (workflow-capable)</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -29,6 +29,12 @@
      <KEY>NID</KEY>
      <ENTRY>NT-/Windows Id</ENTRY>
      <LENGTH>24</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>PER</KEY>
+     <ENTRY>Personnel Number</ENTRY>
+     <LENGTH>26</LENGTH>
     </item>
     <item>
      <ID>I</ID>
@@ -112,6 +118,11 @@
      <CMPNAME>GET_INSTANCE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Create instance by LPOR or by personnel number</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INSTANCE_BY_LOWEST_PERNR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create instance by lowest Personnell Number</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>GET_INSTANCE_BY_SAP_USER_ID</CMPNAME>
@@ -398,6 +409,42 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_LOWEST_PERNR</CMPNAME>
+     <SCONAME>IV_PERNR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Personnell number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_LOWEST_PERNR</CMPNAME>
+     <SCONAME>IV_USER_CLS_NAME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of (inherited) user / employee class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_LOWEST_PERNR</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validity date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_LOWEST_PERNR</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Created instance or found in buffer</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_LOWEST_PERNR</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Common exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE_BY_LOWEST_PERNR</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>

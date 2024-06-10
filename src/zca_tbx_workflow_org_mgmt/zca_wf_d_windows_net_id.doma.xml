@@ -8,7 +8,7 @@
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000014</LENG>
     <OUTPUTLEN>000014</OUTPUTLEN>
-    <DDTEXT>CA-TBX: Windows user Id</DDTEXT>
+    <DDTEXT>Windows user Id</DDTEXT>
     <DOMMASTER>E</DOMMASTER>
    </DD01V>
   </asx:values>

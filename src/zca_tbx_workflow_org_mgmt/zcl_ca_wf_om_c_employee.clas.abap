@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: Constants and value checks for org. object Employee</p>
+"! <p class="shorttext synchronized" lang="en">WF-OM: Constants and value checks for org. object Employee</p>
 CLASS zcl_ca_wf_om_c_employee DEFINITION PUBLIC
                                          FINAL
                                          CREATE PRIVATE.

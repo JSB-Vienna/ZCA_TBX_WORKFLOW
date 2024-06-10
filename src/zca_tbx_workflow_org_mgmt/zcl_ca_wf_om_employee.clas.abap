@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: BC Employee in org. management</p>
+"! <p class="shorttext synchronized" lang="en">WF-OM: BC Employee in Org. management (workflow-capable)</p>
 CLASS zcl_ca_wf_om_employee DEFINITION PUBLIC
                                        CREATE PROTECTED.
 
@@ -117,7 +117,27 @@ CLASS zcl_ca_wf_om_employee DEFINITION PUBLIC
           VALUE(result)    TYPE REF TO zcl_ca_wf_om_employee
         RAISING
           zcx_ca_param
+          zcx_ca_dbacc,
+
+      "! <p class="shorttext synchronized" lang="en">Create instance by lowest Personnell Number</p>
+      "!
+      "! @parameter iv_pernr         | <p class="shorttext synchronized" lang="en">Personnell number</p>
+      "! @parameter iv_valid_on      | <p class="shorttext synchronized" lang="en">Validity date</p>
+      "! @parameter iv_user_cls_name | <p class="shorttext synchronized" lang="en">Name of (inherited) user / employee class</p>
+      "! @parameter result           | <p class="shorttext synchronized" lang="en">Created instance or found in buffer</p>
+      "! @raising   zcx_ca_param     | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_dbacc     | <p class="shorttext synchronized" lang="en">Common exception: Database access</p>
+      get_instance_by_lowest_pernr
+        IMPORTING
+          iv_pernr         TYPE pernr_d
+          iv_valid_on      TYPE hr_date DEFAULT sy-datlo
+          iv_user_cls_name TYPE seoclsname DEFAULT 'ZCL_CA_WF_OM_EMPLOYEE' ##no_text
+        RETURNING
+          VALUE(result)    TYPE REF TO zcl_ca_wf_om_employee
+        RAISING
+          zcx_ca_param
           zcx_ca_dbacc.
+
 
 *   i n s t a n c e   m e t h o d s
     METHODS:
@@ -402,6 +422,7 @@ ENDCLASS.
 
 CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
 
+
   METHOD bi_object~default_attribute_value.
     "-----------------------------------------------------------------*
     "   Returns a description and/or prepared key of the object.
@@ -583,8 +604,8 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
         RAISE EXCEPTION TYPE zcx_ca_wf_om_employee
           EXPORTING
             textid   = zcx_ca_wf_om_employee=>pernr_not_found
-            mv_msgv1 = 'SAP user Id'(sap)
             mv_msgty = c_msgty_e
+            mv_msgv1 = 'SAP user Id'(sap)
             mv_msgv2 = CONV #( iv_sap_user_id )
             mv_msgv3 = CONV #( |{ iv_valid_on DATE = ENVIRONMENT }| ).
     ENDTRY.
@@ -598,9 +619,10 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
     SELECT FROM pa0002
          FIELDS pernr
           WHERE pernr EQ @mv_key
-                ORDER BY endda DESCENDING
+            AND endda GE @mv_valid_on
+            AND begda LE @mv_valid_on
            INTO @ms_data-pernr
-                         UP TO 1 ROWS.
+                UP TO 1 ROWS.
 
     ENDSELECT.
     IF ms_data-pernr IS INITIAL.
@@ -686,14 +708,14 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
     TRY.
         "Get single values to the person, like title, surname and name
         SELECT FROM pa0002 AS p2
-                    LEFT OUTER JOIN t522t AS t5 "#EC CI_BUFFJOIN
+                    LEFT OUTER JOIN t522t AS t5        "#EC CI_BUFFJOIN
                           ON t5~sprsl EQ @sy-langu AND
                              t5~anred EQ p2~anred
-             fields p2~anred,  t5~atext,  p2~titel,  p2~titl2,
+             FIELDS p2~anred,  t5~atext,  p2~titel,  p2~titl2,
                     p2~vorna,  p2~midnm,  p2~nachn
               WHERE p2~pernr EQ @mv_key
                 AND p2~endda GE @mv_valid_on
-                AND p2~begda LE @mv_valid_on "#EC CI_NOORDER
+                AND p2~begda LE @mv_valid_on
                INTO CORRESPONDING FIELDS OF @ms_data
                     UP TO 1 ROWS.
         ENDSELECT.
@@ -814,7 +836,7 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
     mv_agent          = |{ swfco_org_person WIDTH = 2 }{ mv_key }|.
     ms_data-pernr     = mv_key.
     ms_data-mail_addr = get_email_addr_via_pernr( ).
-    ms_data-net_id    = get_windows_net_id_via_pernr( ).
+*    ms_data-net_id    = get_windows_net_id_via_pernr( ).
     ms_data-bname     = get_sap_user_id_via_pernr( ).
 
     get_assigned_om_objects( ).
@@ -844,7 +866,8 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
          FIELDS sprps AS lock_indicator,
                 stat2 AS status
           WHERE pernr EQ @mv_key
-                ORDER BY endda DESCENDING
+            AND endda GE @mv_valid_on
+            AND begda LE @mv_valid_on
            INTO CORRESPONDING FIELDS OF @ms_master_record
                          UP TO 1 ROWS.
 
@@ -1003,18 +1026,25 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
     DATA(lt_where) = VALUE se16n_where(
                             ( VALUE se16n_where_line( line = |{ lv_column_name } EQ @IV_COMM_VALUE| ) ) ) ##no_text.
 
-    SELECT pernr INTO  @result
-                 FROM  pa0105
-                       UP TO 1 ROWS
-                 WHERE usrty EQ @iv_comm_type
-                   AND endda GE @iv_valid_on
-                   AND begda LE @iv_valid_on
-                   AND (lt_where).                      "#EC CI_NOORDER
-    ENDSELECT.
+    " POET_20240226 - adaptions HCM Central Person lowest active personnel number shall be taken
+    SELECT 0105~pernr FROM pa0105 AS 0105
+                  INNER JOIN pa0000 AS 0000            "#EC CI_BUFFJOIN
+                          ON 0000~pernr EQ 0105~pernr
+                WHERE 0105~usrty EQ @iv_comm_type
+                  AND 0105~endda GE @iv_valid_on
+                  AND 0105~begda LE @iv_valid_on
+                  AND 0000~endda GE @iv_valid_on
+                  AND 0000~begda LE @iv_valid_on
+                  AND 0000~stat2 EQ @cs_employment_status-is_active
+                  AND (lt_where)
+             ORDER BY 0105~pernr ASCENDING
+           INTO TABLE @DATA(lt_pa0105).
 
-    IF result IS INITIAL.
+    IF lt_pa0105 IS INITIAL.
       RAISE EXCEPTION TYPE zcx_ca_wf_om_employee.
     ENDIF.
+
+    result = lt_pa0105[ 1 ].
   ENDMETHOD.                    "get_pers_nbr_by_comm_type_value
 
 
@@ -1143,5 +1173,67 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
           mv_msgv1 = CONV #( |{ ms_data-bname }| ).
     ENDIF.
   ENDMETHOD.                    "is_sap_user_available
+
+
+  METHOD get_instance_by_lowest_pernr.
+    "-----------------------------------------------------------------*
+    "   Create instance by Lowest Personnell Number
+    "-----------------------------------------------------------------*
+    "Get central person, if applicable
+    SELECT FROM hrp1001
+         FIELDS sobid
+          WHERE otype EQ @swfco_org_person        "P
+            AND objid EQ @iv_pernr
+            AND begda LE @iv_valid_on
+            AND endda GE @iv_valid_on
+            AND sclas EQ 'CP'
+           INTO @DATA(lv_central_person)
+                UP TO 1 ROWS.
+    ENDSELECT.
+    IF sy-subrc NE 0.
+      "No valid central person found to personnel number &1
+      RAISE EXCEPTION NEW zcx_ca_wf_om_employee( textid   = zcx_ca_wf_om_employee=>central_pernr_not_found
+                                                 mv_msgty = zcx_ca_wf_om_employee=>c_msgty_e
+                                                 mv_msgv1 = CONV #( |{ iv_pernr ALPHA = OUT }| ) ).
+    ENDIF.
+
+    "Select all related personnel numbers
+    SELECT FROM hrp1001 AS 1001
+                LEFT OUTER JOIN pa0000 AS 0000         "#EC CI_BUFFJOIN
+                             ON 0000~pernr EQ 1001~sobid
+         FIELDS 1001~sobid
+          WHERE 1001~otype EQ 'CP'
+            AND 1001~objid EQ @lv_central_person
+            AND 1001~endda GE @iv_valid_on
+            AND 1001~begda LE @iv_valid_on
+            AND 1001~sclas EQ @swfco_org_person                 "P
+            AND 0000~endda GE @iv_valid_on
+            AND 0000~begda LE @iv_valid_on
+            AND 0000~stat2 EQ @cs_employment_status-is_active
+                ORDER BY 1001~sobid ASCENDING
+           INTO TABLE @DATA(lt_pers_ids_2_central_person).
+    IF sy-subrc NE 0.
+      "No valid personnel numbers found to central person &1
+      RAISE EXCEPTION NEW zcx_ca_wf_om_employee( textid   = zcx_ca_wf_om_employee=>no_pers_ids_2_central_pernr
+                                                 mv_msgty = zcx_ca_wf_om_employee=>c_msgty_e
+                                                 mv_msgv1 = CONV #( |{ lv_central_person ALPHA = OUT }| ) ).
+    ENDIF.
+
+    DATA(lv_lowest_pernr) = VALUE pernr_d( lt_pers_ids_2_central_person[ 1 ]-sobid OPTIONAL ).
+
+    IF iv_pernr NE lv_lowest_pernr.
+      "Central Person: Please maintain lowest personnel number (&1) instead!
+      RAISE EXCEPTION TYPE zcx_ca_wf_om_employee
+        EXPORTING
+          textid   = zcx_ca_wf_om_employee=>lowest_pernr
+          mv_msgty = c_msgty_e
+          mv_msgv1 = CONV #( |{ lv_lowest_pernr ALPHA = OUT }| ).
+    ENDIF.
+
+    result = zcl_ca_wf_om_employee=>get_instance( is_lpor = VALUE #( instid = CONV #( iv_pernr )
+                                                                     typeid = CONV #( iv_user_cls_name )
+                                                                     catid  = swfco_objtype_cl )
+                                                  iv_valid_on = iv_valid_on ).
+  ENDMETHOD.                    "get_instance_by_lowest_pernr
 
 ENDCLASS.
