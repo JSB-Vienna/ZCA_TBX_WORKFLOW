@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: Wrapped WAPI function modules</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX Workflow: Wrapped WAPI function modules</p>
 CLASS zcl_ca_wf_wapi_utils DEFINITION PUBLIC
                                       CREATE PUBLIC.
 

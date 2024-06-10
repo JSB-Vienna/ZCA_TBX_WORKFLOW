@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_SSCR_BASE_CTLR</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>CA-TBX: Base controller class for workflow subscreens</DESCRIPT>
+    <DESCRIPT>CA-TBX: Workflow: Base controller class for subscreens</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -21,6 +21,11 @@
      <CMPNAME>MO_LOG</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Workflow specific Business Application Logging (BAL)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SET_FOR_DISPLAY_ONLY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Set mode to display in specific cases</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>

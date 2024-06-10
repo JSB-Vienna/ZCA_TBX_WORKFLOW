@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: Constants with predefined MM BO types</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX Workflow: Constants with predefined MM BO types</p>
 INTERFACE zif_mm_c_wf_bos PUBLIC.
 * c o n s t a n t s
   CONSTANTS:

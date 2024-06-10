@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX exception: Service method error</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX Workflow exception: Service method error</p>
 class ZCX_CA_WF_UTILS definition
   public
   inheriting from ZCX_CA_PARAM

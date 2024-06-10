@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: Extented SAP standard interface IF_WORKFLOW</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX Workflow: Extentd. SAP standard interface IF_WORKFLOW</p>
 INTERFACE zif_ca_workflow PUBLIC.
 *   i n t e r f a c e s
   INTERFACES:

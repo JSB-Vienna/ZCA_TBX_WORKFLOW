@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: SSCR 0900 - Notes editor</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: Workflow: SSCR 0900 - Notes editor</p>
 CLASS zcl_ca_wf_sscr_note_editor DEFINITION PUBLIC
                                             INHERITING FROM zcl_ca_wf_sscr_base_ctlr
                                             CREATE PUBLIC.

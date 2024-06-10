@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: BC Extended user (master data)</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX Workflow: BC Extended user Id (master data)</p>
 CLASS zcl_ca_wf_user DEFINITION PUBLIC
                                 CREATE PROTECTED.
 

@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: Base controller class for workflow dialogs</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: Workflow: Base controller class for dialogs</p>
 CLASS zcl_ca_wf_dia_base_ctlr DEFINITION PUBLIC
                                          INHERITING FROM zcl_ca_scr_fw_window_ctlr
                                          CREATE PUBLIC.

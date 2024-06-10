@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: SSCR 0905 + 0906 - Archive content</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: Workflow: SSCR 0905 + 0906 - Archive content</p>
 CLASS zcl_ca_wf_sscr_archive_content DEFINITION PUBLIC
                                                 INHERITING FROM zcl_ca_wf_sscr_base_ctlr
                                                 CREATE PUBLIC.

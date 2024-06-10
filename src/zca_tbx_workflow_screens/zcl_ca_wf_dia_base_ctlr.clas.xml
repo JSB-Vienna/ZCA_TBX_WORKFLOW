@@ -5,7 +5,7 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_DIA_BASE_CTLR</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>CA-TBX: Base controller class for workflow dialogs</DESCRIPT>
+    <DESCRIPT>CA-TBX: Workflow: Base controller class for dialogs</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

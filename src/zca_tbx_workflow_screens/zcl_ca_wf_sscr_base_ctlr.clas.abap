@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">CA-TBX: Base controller class for workflow subscreens</p>
+"! <p class="shorttext synchronized" lang="en">CA-TBX: Workflow: Base controller class for subscreens</p>
 "!
 "! <p>Use this class for any sub screen in your workflow applications to be able to log any messages
 "! during runtime.</p>
@@ -33,7 +33,10 @@ CLASS zcl_ca_wf_sscr_base_ctlr DEFINITION PUBLIC
     METHODS:
       handle_pbo REDEFINITION,
 
-      on_closed REDEFINITION.
+      on_closed REDEFINITION,
+
+      "! <p class="shorttext synchronized" lang="en">Set mode to display in specific cases</p>
+      set_for_display_only.
 
 
 * P R I V A T E   S E C T I O N
@@ -78,5 +81,13 @@ CLASS zcl_ca_wf_sscr_base_ctlr IMPLEMENTATION.
     super->on_closed( ).
     FREE mo_log.
   ENDMETHOD.                    "on_closed
+
+
+  METHOD set_for_display_only.
+    "-----------------------------------------------------------------*
+    "   Set mode to display in specific cases
+    "-----------------------------------------------------------------*
+    "R e d e f i n e   i f   n e c e s s a r y  -  typically called in HANDLE_PBO -> ADJUST_SCREEN
+  ENDMETHOD.                    "set_for_display_only
 
 ENDCLASS.
