@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_WF_OM_CVC</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>WF-OM: Constants and value checks for org. management</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Constants and value checks for org. management</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>EVALUATION_PATH</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluation path</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_SCOPE_VALID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid scope passed?</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of the class itself</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SCOPE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Scope of determination</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INSTANCE</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Class instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SCOPE_VALID</CMPNAME>
+     <SCONAME>IV_SCOPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Scope</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SCOPE_VALID</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Scope is valid</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SCOPE_VALID</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,20 +1,42 @@
-"! <p class="shorttext synchronized" lang="en">WF-OM: Organisation model determinations</p>
+"! <p class="shorttext synchronized" lang="en">WF-OM: BC Org. unit determinations</p>
 CLASS zcl_ca_wf_om_org_model DEFINITION PUBLIC
-                                        CREATE PUBLIC.
+                                        CREATE PROTECTED
+                                        GLOBAL FRIENDS zif_ca_wf_om_org_model.
 * P U B L I C   S E C T I O N
   PUBLIC SECTION.
 *   i n t e r f a c e s
     INTERFACES:
+      zif_ca_workflow,            " !!! Includes IF_WORKFLOW = BI_OBJECT + BI_PERSISTENT
+      zif_ca_wf_om_org_model,
       if_xo_const_message.
 
-*   c o n s t a n t s
-    CONSTANTS:
-      "! <p class="shorttext synchronized" lang="en">Scope of determination</p>
-      BEGIN OF cs_scope,
-        manager      TYPE char1 VALUE '1' ##no_text,
-        members_only TYPE char1 VALUE '2' ##no_text,
-        all          TYPE char1 VALUE '3' ##no_text,
-      END OF cs_scope.
+*   a l i a s e s
+    ALIASES:
+*     BI_OBJECT methods
+      default_attr_value FOR bi_object~default_attribute_value,
+      execute_def_method FOR bi_object~execute_default_method,
+      release            FOR bi_object~release,
+*     BI_PERSISTENT methods
+      find_by_lpor       FOR bi_persistent~find_by_lpor,
+      lpor               FOR bi_persistent~lpor,
+      refresh            FOR bi_persistent~refresh,
+*     ZIF_CA_WORKFLOW methods
+      check_existence    FOR zif_ca_workflow~check_existence,
+      get_task_descr     FOR zif_ca_workflow~get_task_descr,
+      raise_event        FOR zif_ca_workflow~raise_event,
+      mo_log             FOR zif_ca_workflow~mo_log,
+      mv_default_attr    FOR zif_ca_workflow~mv_default_attr,
+*     ZIF_CA_WF_OM_ORG_MODEL methods
+      get_all_managers           FOR zif_ca_wf_om_org_model~get_all_managers,
+      get_employees_2_org_object FOR zif_ca_wf_om_org_model~get_employees_2_org_object,
+      get_manager                FOR zif_ca_wf_om_org_model~get_manager,
+      get_org_model_data         FOR zif_ca_wf_om_org_model~get_org_model_data,
+      get_text_of_org_object     FOR zif_ca_wf_om_org_model~get_text_of_org_object,
+*     ZIF_CA_WF_OM_ORG_MODEL attributes
+      mo_cvc_om                  FOR zif_ca_wf_om_org_model~mo_cvc_om,
+      ms_data                    FOR zif_ca_wf_om_org_model~ms_data,
+      mv_search_active           FOR zif_ca_wf_om_org_model~mv_search_active,
+      mv_valid_on                FOR zif_ca_wf_om_org_model~mv_valid_on.
 
 *   s t a t i c   a t t r i b u t e s
     CLASS-DATA:
@@ -25,134 +47,44 @@ CLASS zcl_ca_wf_om_org_model DEFINITION PUBLIC
 *   i n s t a n c e   a t t r i b u t e s
     DATA:
 *     s t r u c t u r e s
-      "! <p class="shorttext synchronized" lang="en">Type and Id of organizational object</p>
-      ms_org_object TYPE swhactor READ-ONLY,
-
-*     s i n g l e   v a l u e s
-      "! <p class="shorttext synchronized" lang="en">Object is valid on</p>
-      mv_valid_on   TYPE hr_date READ-ONLY.
+      "! <p class="shorttext synchronized" lang="en">Instance key - Type and Id of organizational object</p>
+      ms_key          TYPE swhactor READ-ONLY.
 
 *   s t a t i c   m e t h o d s
     CLASS-METHODS:
       "! <p class="shorttext synchronized" lang="en">Class constructor</p>
       class_constructor,
 
-      "! <p class="shorttext synchronized" lang="en">Find employees by different, normally unique, keys</p>
+      "! <p class="shorttext synchronized" lang="en">Create instance by LPOR or org. unit Id</p>
       "!
-      "! @parameter it_employees   | <p class="shorttext synchronized" lang="en">List of keys to determine employees</p>
-      "! @parameter iv_raise_excep | <p class="shorttext synchronized" lang="en">X = Raise an exception; ' ' = Return message</p>
-      "! @parameter rt_employees   | <p class="shorttext synchronized" lang="en">List of completed employees</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">Org. model determination exception</p>
-      find_employees
+      "! @parameter is_lpor          | <p class="shorttext synchronized" lang="en">Workflow instance key</p>
+      "! @parameter is_key           | <p class="shorttext synchronized" lang="en">Org. unit key (type + Id)</p>
+      "! @parameter iv_valid_on      | <p class="shorttext synchronized" lang="en">Validity date</p>
+      "! @parameter iv_search_active | <p class="shorttext synchronized" lang="en">X = Search for an active person; ' ' = any state</p>
+      "! @parameter result           | <p class="shorttext synchronized" lang="en">Created instance or found in buffer</p>
+      "! @raising   zcx_ca_param     | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_dbacc     | <p class="shorttext synchronized" lang="en">CA-TBX exception: Database access</p>
+      get_instance
         IMPORTING
-          it_employees        TYPE zca_wf_t_employees_lookup
-          iv_raise_excep      TYPE abap_boolean DEFAULT abap_true
+          is_lpor          TYPE sibflpor OPTIONAL
+          is_key           TYPE swhactor  OPTIONAL
+          iv_valid_on      TYPE hr_date  DEFAULT sy-datlo
+          iv_search_active TYPE abap_boolean DEFAULT abap_true
         RETURNING
-          VALUE(rt_employees) TYPE zca_wf_t_employees_lookup
+          VALUE(result)    TYPE REF TO zif_ca_wf_om_org_model
         RAISING
-          zcx_ca_wf_om_org_model,
+          zcx_ca_param
+          zcx_ca_dbacc,
 
-      "! <p class="shorttext synchronized" lang="en">Transfer determined employees into agent rule result</p>
+      "! <p class="shorttext synchronized" lang="en">Set different plan version</p>
       "!
-      "! <p>The user of this method has to ensure by himself that the receiver in parameter IT_EMPLOYEES are valid.</p>
+      "! <p>Use this method to change the plan version of the org. management. This value is base for many
+      "! functions of this class.</p>
       "!
-      "! @parameter it_employees | <p class="shorttext synchronized" lang="en">List of keys to determine employees</p>
-      "! @parameter rt_actors    | <p class="shorttext synchronized" lang="en">Valid employees in agent rule format</p>
-      transf_employees_2_rule_result
+      "! @parameter iv_plvar | <p class="shorttext synchronized" lang="en">Plan version</p>
+      set_different_plan_version
         IMPORTING
-          it_employees     TYPE zca_wf_t_employees_lookup
-        RETURNING
-          VALUE(rt_actors) TYPE swfuagents,
-
-      "! <p class="shorttext synchronized" lang="en">Transfer agent rule result into format of employee data</p>
-      "!
-      "! @parameter it_actors    | <p class="shorttext synchronized" lang="en">Valid employees in agent rule format</p>
-      "! @parameter iv_valid_on  | <p class="shorttext synchronized" lang="en">Object is valid on</p>
-      "! @parameter rt_employees | <p class="shorttext synchronized" lang="en">List of keys to determine employees</p>
-      transf_rule_result_2_employees
-        IMPORTING
-          it_actors           TYPE swfuagents
-          iv_valid_on         TYPE hr_date DEFAULT sy-datlo
-        RETURNING
-          VALUE(rt_employees) TYPE zca_wf_t_employees_lookup.
-
-*   i n s t a n c e   m e t h o d s
-    METHODS:
-      "! <p class="shorttext synchronized" lang="en">Constructor</p>
-      "!
-      "! @parameter is_org_object | <p class="shorttext synchronized" lang="en">Type and Id of org. object (use SWFCO_ORG_* for type)</p>
-      "! @parameter iv_valid_on   | <p class="shorttext synchronized" lang="en">Object is valid on</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">Org. model determination exception</p>
-      constructor
-        IMPORTING
-          is_org_object TYPE swhactor
-          iv_valid_on   TYPE hr_date  DEFAULT sy-datlo
-        RAISING
-          zcx_ca_wf_om_org_model,
-
-      "! <p class="shorttext synchronized" lang="en">Get employees to the current org. object</p>
-      "!
-      "! @parameter iv_scope          | <p class="shorttext synchronized" lang="en">Scope (only relevant for pos. + org. unit) -&gt; use CS_SCOPE-*</p>
-      "! @parameter iv_search_upwards | <p class="shorttext synchronized" lang="en">X = Search in higher levels if no manager is found</p>
-      "! @parameter iv_auth_check     | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
-      "! @parameter result            | <p class="shorttext synchronized" lang="en">Determined employees</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">Org. model determination exception</p>
-      get_employees_2_org_object
-        IMPORTING
-          iv_scope          TYPE char1    DEFAULT zcl_ca_wf_om_org_model=>cs_scope-manager
-          iv_search_upwards TYPE abap_boolean DEFAULT abap_false
-          iv_auth_check     TYPE hr_authy DEFAULT abap_false
-        RETURNING
-          VALUE(result)     TYPE zca_wf_t_om_objects_lookup
-        RAISING
-          zcx_ca_wf_om_org_model,
-
-      "! <p class="shorttext synchronized" lang="en">Determine manager to organizational object</p>
-      "!
-      "! @parameter iv_search_upwards | <p class="shorttext synchronized" lang="en">X = Search in higher levels if no manager is found</p>
-      "! @parameter iv_auth_check     | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
-      "! @parameter result            | <p class="shorttext synchronized" lang="en">Manager to current org. object</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">Org. model determination exception</p>
-      get_manager
-        IMPORTING
-          iv_search_upwards TYPE abap_boolean DEFAULT abap_false
-          iv_auth_check     TYPE hr_authy DEFAULT abap_false
-        RETURNING
-          VALUE(result)     TYPE zca_wf_s_om_object_lookup
-        RAISING
-          zcx_ca_wf_om_org_model,
-
-      "! <p class="shorttext synchronized" lang="en">Determine (depending) org. unit data (using RH_STRUC_GET)</p>
-      "!
-      "! @parameter iv_eval_path  | <p class="shorttext synchronized" lang="en">Evaluation path</p>
-      "! @parameter iv_auth_check | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
-      "! @parameter iv_plvar      | <p class="shorttext synchronized" lang="en">Plan version</p>
-      "! @parameter iv_tdepth     | <p class="shorttext synchronized" lang="en">Technical depth of structure</p>
-      "! @parameter iv_tflag      | <p class="shorttext synchronized" lang="en">X = Supply texts</p>
-      "! @parameter iv_vflag      | <p class="shorttext synchronized" lang="en">X = Supply relationship information</p>
-      "! @parameter iv_int_flag   | <p class="shorttext synchronized" lang="en">X = Read evaluation path in internal table</p>
-      "! @parameter result        | <p class="shorttext synchronized" lang="en">Merged result of FM RH_STRUC_GET</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">Org. model determination exception</p>
-      get_org_model_data
-        IMPORTING
-          iv_eval_path  TYPE wegid
-          iv_auth_check TYPE hr_authy   DEFAULT abap_false
-          iv_plvar      TYPE plvar      DEFAULT zcl_ca_wf_om_org_model=>mv_plvar
-          iv_tdepth     TYPE tdepth     DEFAULT 0
-          iv_vflag      TYPE hr_vflag   DEFAULT abap_true
-          iv_tflag      TYPE hr_tflag   DEFAULT abap_true
-          iv_int_flag   TYPE hr_77awint DEFAULT abap_false
-        RETURNING
-          VALUE(result) TYPE zca_wf_t_org_model_data
-        RAISING
-          zcx_ca_wf_om_org_model,
-
-      "! <p class="shorttext synchronized" lang="en">Get short description of organizational unit</p>
-      "!
-      "! @parameter result | <p class="shorttext synchronized" lang="en">Short description of org. object</p>
-      get_text_of_org_object
-        RETURNING
-          VALUE(result) TYPE zca_wf_s_om_object.
+          iv_plvar TYPE plvar.
 
 
 * P R O T E C T E D   S E C T I O N
@@ -167,179 +99,315 @@ CLASS zcl_ca_wf_om_org_model DEFINITION PUBLIC
 
 *   t y p e   d e f i n i t i o n s
     TYPES:
-      "! <p class="shorttext synchronized" lang="en">Position owner</p>
-      ty_t_pos_owner   TYPE STANDARD TABLE OF hrpe_prozt.
+      "! <p class="shorttext synchronized" lang="en">Short object details</p>
+      BEGIN OF ty_s_object_details.
+        INCLUDE TYPE swhactor AS s_om_obj_key.
+    TYPES:
+        name         TYPE pcn_orgtx,
+        short_name   TYPE short_d,
+        o_org_object TYPE REF TO zcl_ca_wf_om_org_model,
+      END   OF ty_s_object_details,
 
-*   c o n s t a n t s
-    CONSTANTS:
-      "! <p class="shorttext synchronized" lang="en">Evaluation path</p>
-      BEGIN OF cs_eval_path,
-        manager_2_orgunit       TYPE wegid VALUE 'BOSSONLY' ##no_text,
-        orgunit_2_orgunit       TYPE wegid VALUE 'O-O' ##no_text,
-        person_position_orgunit TYPE wegid VALUE 'P-S-O' ##no_text,
-        staff_2_orgunit         TYPE wegid VALUE 'SBES' ##no_text,
-      END OF cs_eval_path.
+      "! <p class="shorttext synchronized" lang="en">Position owner</p>
+      ty_t_pos_owner TYPE STANDARD TABLE OF hrpe_prozt.
+
+*   s t a t i c   a t t r i b u t e s
+    CLASS-DATA:
+*     s i n g l e   v a l u e s
+      "! <p class="shorttext synchronized" lang="en">0 = Search NOT higher; > 0 = search up to x levels above</p>
+      mv_search_upwards      TYPE hi_ebene.
 
 *   i n s t a n c e   a t t r i b u t e s
     DATA:
 *     t a b l e s
-      "! <p class="shorttext synchronized" lang="en">Leaders to be excluded for a scope of 'members only'</p>
-      mt_excl_leaders          TYPE zca_wf_t_org_model_data,
+      "! <p class="shorttext synchronized" lang="en">Managers of the current org. unit in MS_MY_ORG_UNIT</p>
+      mt_managers            TYPE zca_wf_t_org_model_data,
+      "! <p class="shorttext synchronized" lang="en">Superior org. unit to the current org unit in MS_MY_ORG_UNIT</p>
+      mt_superior_org_units  TYPE zca_wf_t_org_model_data,
 
 *     s t r u c t u r e s
-      "! <p class="shorttext synchronized" lang="en">Type and Id of organizational object for search</p>
-      ms_org_object_for_search TYPE swhactor,
-      "! <p class="shorttext synchronized" lang="en">Details to the position of the requested object</p>
-      ms_my_position           TYPE zca_wf_s_om_object,
-      "! <p class="shorttext synchronized" lang="en">Details to the org. unit of the requested object</p>
-      ms_my_org_unit           TYPE zca_wf_s_om_object,
-
-*     s i n g l e   v a l u e s
-      "! <p class="shorttext synchronized" lang="en">Requested scope</p>
-      mv_scope                 TYPE char1.
+      "! <p class="shorttext synchronized" lang="en">Workflow object instance key</p>
+      ms_lpor                TYPE sibflpor,
+      "! <p class="shorttext synchronized" lang="en">Type and Id of organizational object to be searched</p>
+      ms_search_4_org_object TYPE swhactor,
+      "! <p class="shorttext synchronized" lang="en">Details to the position the object in MS_KEY is assigned to</p>
+      ms_my_position         TYPE ty_s_object_details,
+      "! <p class="shorttext synchronized" lang="en">Details to the org. unit the object in MS_KEY is assigned to</p>
+      ms_my_org_unit         TYPE ty_s_object_details.
 
 *   i n s t a n c e   m e t h o d s
     METHODS:
-      "! <p class="shorttext synchronized" lang="en">Find personnel number to SAP user Id</p>
+      "! <p class="shorttext synchronized" lang="en">Am I a manager of this org. unit (of obj in MS_MY_ORG_UNIT)?</p>
       "!
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">Org. model determination exception</p>
-      find_dependent_org_objects
+      "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+      "! @parameter result                 | <p class="shorttext synchronized" lang="en">X = Result of search contains at least one person</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: WF-OM: Org. model determination exceptionss</p>
+      am_i_a_manager_of_the_org_unit
+        IMPORTING
+          iv_auth_check TYPE hr_authy
+        RETURNING
+          VALUE(result) TYPE abap_boolean
+        RAISING
+          zcx_ca_wf_om_org_model,
+
+      "! <p class="shorttext synchronized" lang="en">Constructor</p>
+      "!
+      "! @parameter is_key                 | <p class="shorttext synchronized" lang="en">Type and Id of org. object (use SWFCO_ORG_* for type)</p>
+      "! @parameter iv_valid_on            | <p class="shorttext synchronized" lang="en">Object is valid on</p>
+      "! @parameter iv_search_active       | <p class="shorttext synchronized" lang="en">X = Search for an active person; ' ' = any state</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+      constructor
+        IMPORTING
+          is_key           TYPE swhactor
+          iv_valid_on      TYPE hr_date      DEFAULT sy-datlo
+          iv_search_active TYPE abap_boolean DEFAULT abap_true
+        RAISING
+          zcx_ca_wf_om_org_model,
+
+      "! <p class="shorttext synchronized" lang="en">Create an instance to an org. object</p>
+      "!
+      "! @parameter is_org_object_key      | <p class="shorttext synchronized" lang="en">Key of the required org. object</p>
+      "! @parameter result                 | <p class="shorttext synchronized" lang="en">WF-OM: BC Org. unit determinations</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: WF-OM: Org. model determination exceptionss</p>
+      create_instance_2_org_object
+        IMPORTING
+          is_org_object_key TYPE swhactor
+        RETURNING
+          VALUE(result)     TYPE REF TO zcl_ca_wf_om_org_model
+        RAISING
+          zcx_ca_wf_om_org_model,
+
+      "! <p class="shorttext synchronized" lang="en">Determine depending org. objects + a instance of them</p>
+      "!
+      "! <p>Determines e. g. the position and org. unit to a person. Fills the structures {@link .data:MS_MY_POSITION}
+      "! and {@link .data:MS_MY_ORG_UNIT}.</p>
+      "!
+      "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+      determine_dependent_org_obj
+        IMPORTING
+          iv_auth_check TYPE hr_authy
         RAISING
           zcx_ca_wf_om_org_model,
 
       "! <p class="shorttext synchronized" lang="en">Find manager to org. unit, search upwards if requested</p>
       "!
-      "! @parameter iv_search_upwards | <p class="shorttext synchronized" lang="en">X = Search in higher levels if no manager is found</p>
-      "! @parameter iv_auth_check     | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
-      "! @parameter result            | <p class="shorttext synchronized" lang="en">Determined manager</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">Org. model determination exception</p>
+      "! @parameter iv_search_upwards      | <p class="shorttext synchronized" lang="en">0 = Search NOT higher; > 0 = search up to x levels above</p>
+      "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+      "! @parameter iv_search_active       | <p class="shorttext synchronized" lang="en">X = Search for an active person; ' ' = any state/p>
+      "! @parameter result                 | <p class="shorttext synchronized" lang="en">Determined manager</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
       find_manager_2_org_unit
         IMPORTING
-          iv_search_upwards TYPE abap_boolean
+          iv_search_upwards TYPE hi_ebene
+          iv_search_active  TYPE abap_boolean DEFAULT abap_true
           iv_auth_check     TYPE hr_authy
         RETURNING
           VALUE(result)     TYPE zca_wf_t_org_model_data
         RAISING
           zcx_ca_wf_om_org_model,
 
-      "! <p class="shorttext synchronized" lang="en">Get leaders to the org. object in case of 'members only'</p>
+      "! <p class="shorttext synchronized" lang="en">Get managers to the current org. unit</p>
       "!
-      "! @parameter iv_search_upwards | <p class="shorttext synchronized" lang="en">X = Search in higher levels if no manager is found</p>
-      "! @parameter iv_auth_check     | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
-      "! @parameter result            | <p class="shorttext synchronized" lang="en">Merged result of FM RH_STRUC_GET</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
-      get_managers_2b_excluded
+      "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: WF-OM: Org. model determination exceptions</p>
+      get_managers_2_my_org_unit
         IMPORTING
-          iv_search_upwards TYPE abap_boolean
-          iv_auth_check     TYPE hr_authy
-        RETURNING
-          VALUE(result)     TYPE zca_wf_t_org_model_data
+          iv_auth_check TYPE hr_authy
         RAISING
           zcx_ca_wf_om_org_model,
 
       "! <p class="shorttext synchronized" lang="en">Get members to the current org. object respecting the scope</p>
       "!
-      "! @parameter iv_search_upwards | <p class="shorttext synchronized" lang="en">X = Search in higher levels if no manager is found</p>
-      "! @parameter iv_auth_check     | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
-      "! @parameter result            | <p class="shorttext synchronized" lang="en">Merged result of FM RH_STRUC_GET</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+      "! @parameter iv_scope               | <p class="shorttext synchronized" lang="en">Scope (only types S + O) -&gt; use ZCL_CA_WF_OM_CVC=>SCOPE-*</p>
+      "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+      "! @parameter result                 | <p class="shorttext synchronized" lang="en">Merged result of FM RH_STRUC_GET</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: WF-OM: Org. model determination exceptions</p>
       get_members_2_org_object
         IMPORTING
-          iv_search_upwards TYPE abap_boolean
-          iv_auth_check     TYPE hr_authy
+          iv_scope      TYPE char1    DEFAULT zcl_ca_wf_om_cvc=>scope-manager
+          iv_auth_check TYPE hr_authy
         RETURNING
-          VALUE(result)     TYPE zca_wf_t_org_model_data
+          VALUE(result) TYPE zca_wf_t_org_model_data
+        RAISING
+          zcx_ca_wf_om_org_model,
+
+      "! <p class="shorttext synchronized" lang="en">Get all superior org. unit above </p>
+      "!
+      "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: WF-OM: Org. model determination exceptions</p>
+      get_my_superior_org_units
+        IMPORTING
+          iv_auth_check TYPE hr_authy
         RAISING
           zcx_ca_wf_om_org_model,
 
       "! <p class="shorttext synchronized" lang="en">Get next upper org. unit from result of org. unit search</p>
       "!
-      "! @parameter it_superior_org_units  | <p class="shorttext synchronized" lang="en">Superior org. units to this org. unit</p>
-      "! @parameter result                 | <p class="shorttext synchronized" lang="en">Id of superior org. unit</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
-      get_superior_org_unit
+      "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+      "! @parameter result                 | <p class="shorttext synchronized" lang="en">Superior org. unit</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: BC Org. unit determinations</p>
+      get_next_higher_org_unit_2_me
         IMPORTING
-          it_superior_org_units TYPE zca_wf_t_org_model_data
+          iv_auth_check TYPE hr_authy
         RETURNING
-          VALUE(result)         TYPE swhactor
+          VALUE(result) TYPE REF TO zcl_ca_wf_om_org_model
         RAISING
           zcx_ca_wf_om_org_model,
 
       "! <p class="shorttext synchronized" lang="en">Check whether a person is found to the requested org. unit</p>
       "!
-      "! @parameter it_org_unit_result     | <p class="shorttext synchronized" lang="en">Result of last org. model search</p>
-      "! @parameter io_org_object          | <p class="shorttext synchronized" lang="en">Instanz to object of last org. model search</p>
+      "! @parameter it_manager             | <p class="shorttext synchronized" lang="en">Manager of org. unit</p>
       "! @parameter result                 | <p class="shorttext synchronized" lang="en">X = Result of search contains at least one person</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: WF-OM: Org. model determination exceptions</p>
       is_any_person_assigned_2_ounit
         IMPORTING
-          it_org_unit_result TYPE zca_wf_t_org_model_data
-          io_org_object      TYPE REF TO zcl_ca_wf_om_org_model
+          it_manager    TYPE zca_wf_t_org_model_data
         RETURNING
-          VALUE(result)      TYPE abap_boolean
+          VALUE(result) TYPE abap_boolean
         RAISING
           zcx_ca_wf_om_org_model,
 
-      "! <p class="shorttext synchronized" lang="en">Check if the personnel Id is a leader of the org. object</p>
+      "! <p class="shorttext synchronized" lang="en">Check whether the passed member is manager of this org. unit</p>
       "!
-      "! @parameter is_personnel_id | <p class="shorttext synchronized" lang="en">Personnel Id</p>
-      "! @parameter result          | <p class="shorttext synchronized" lang="en">X = Value for scope is valid</p>
-      is_member_a_leader
+      "! @parameter is_member_key          | <p class="shorttext synchronized" lang="en">Key of a member of the org. unit</p>
+      "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+      "! @parameter result                 | <p class="shorttext synchronized" lang="en">X = Member is a manager of the org. unit</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: WF-OM: Org. model determination exceptions</p>
+      is_member_a_manager_of_the_ou
         IMPORTING
-          is_personnel_id TYPE swhactor
+          is_member_key TYPE swhactor
+          iv_auth_check TYPE hr_authy
         RETURNING
-          VALUE(result)   TYPE abap_boolean,
+          VALUE(result) TYPE abap_boolean
+        RAISING
+          zcx_ca_wf_om_org_model,
 
       "! <p class="shorttext synchronized" lang="en">Check whether it is an org. object for multiple people</p>
       "!
-      "! @parameter iv_scope | <p class="shorttext synchronized" lang="en">Scope (only for position + org. unit) -&gt; use CS_SCOPE-*</p>
-      "! @parameter result   | <p class="shorttext synchronized" lang="en">X = Org. object is a position or an org. unit</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+      "! @parameter result                 | <p class="shorttext synchronized" lang="en">X = Org. object is a position or an org. unit</p>
+      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: WF-OM: Org. model determination exceptions</p>
       is_org_obj_4_multiple_people
-        IMPORTING
-          iv_scope      TYPE char1
         RETURNING
           VALUE(result) TYPE abap_boolean
-        RAISING
-          zcx_ca_wf_om_org_model,
-
-      "! <p class="shorttext synchronized" lang="en">Check if the passed scope is valid</p>
-      "!
-      "! @parameter iv_scope | <p class="shorttext synchronized" lang="en">Scope (only for position + org. unit) -&gt; use CS_SCOPE-*</p>
-      "! @parameter result   | <p class="shorttext synchronized" lang="en">X = Value for scope is valid</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
-      is_scope_valid
-        IMPORTING
-          iv_scope      TYPE char1
-        RETURNING
-          VALUE(result) TYPE abap_boolean
-        RAISING
-          zcx_ca_wf_om_org_model,
-
-      "! <p class="shorttext synchronized" lang="en">Search upwards in org. structure for superior org. unit</p>
-      "!
-      "! @parameter io_org_object | <p class="shorttext synchronized" lang="en">Current org. unit during drill up org. structure</p>
-      "! @parameter result        | <p class="shorttext synchronized" lang="en">Next upper / superior org. unit to input org. unit</p>
-      "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">Org. model determination exception</p>
-      search_upwards_4_org_unit
-        IMPORTING
-          io_org_object TYPE REF TO zcl_ca_wf_om_org_model
-          iv_auth_check TYPE hr_authy
-        RETURNING
-          VALUE(result) TYPE REF TO zcl_ca_wf_om_org_model
         RAISING
           zcx_ca_wf_om_org_model.
 
 
 * P R I V A T E   S E C T I O N
   PRIVATE SECTION.
+*   l o c a l   t y p e   d e f i n i t i o n
+    TYPES:
+      "! <p class="shorttext synchronized" lang="en">Buffered instance</p>
+      BEGIN OF ty_s_buffer.
+        INCLUDE TYPE sibflpor AS s_lpor.
+    TYPES:
+        o_persistent TYPE REF TO zif_ca_workflow,
+      END   OF ty_s_buffer,
+      "! <p class="shorttext synchronized" lang="en">Instance buffer</p>
+      ty_t_buffer TYPE HASHED TABLE OF ty_s_buffer
+                                       WITH UNIQUE KEY primary_key COMPONENTS s_lpor.
 
+*   c o n s t a n t s
+    CONSTANTS:
+      "! <p class="shorttext synchronized" lang="en">My type Id</p>
+      c_my_typeid TYPE sibftypeid VALUE 'ZCL_CA_WF_OM_ORG_MODEL'  ##no_text.
+
+*   s t a t i c   a t t r i b u t e s
+    CLASS-DATA:
+*     t a b l e s
+      "! <p class="shorttext synchronized" lang="en">Instance buffer</p>
+      mt_buffer     TYPE ty_t_buffer.
 
 ENDCLASS.
 
 
 
 CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
+
+  METHOD am_i_a_manager_of_the_org_unit.
+    "-----------------------------------------------------------------*
+    "   Am I a manager of this org. unit (of obj in MS_MY_ORG_UNIT)?
+    "-----------------------------------------------------------------*
+    get_managers_2_my_org_unit( iv_auth_check ).
+
+    result = xsdbool( line_exists( mt_managers[ otype = ms_key-otype
+                                                objid = ms_key-objid ] ) ).
+    IF result EQ abap_false  AND
+       result IS NOT SUPPLIED.
+      "&1 does not have a manager
+      RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
+        EXPORTING
+          textid   = zcx_ca_wf_om_org_model=>org_unit_has_no_manager
+          mv_msgty = zcx_ca_wf_om_org_model=>c_msgty_e
+          mv_msgv1 = CONV #( zcl_ca_utils=>compose_name_n_techn_id( iv_descr    = ms_my_org_unit-name
+                                                                    iv_techn_id = ms_my_org_unit-objid ) ).
+    ENDIF.
+  ENDMETHOD.                    "am_i_a_manager_of_the_org_unit
+
+
+  METHOD bi_object~default_attribute_value.
+    "-----------------------------------------------------------------*
+    "   Returns a description and/or prepared key of the object.
+    "-----------------------------------------------------------------*
+    "Example ==> replace the next 3 lines (comment and key preparation) as needed for your purpose
+    "TEXT-DAV = Org. object xxxxxxxxxx (t nnnnnn)
+    DATA(lv_techn_id) = condense( |{ ms_key-otype } { ms_key-objid ALPHA = OUT }| ).
+    mv_default_attr = |{ TEXT-dav } { zcl_ca_utils=>compose_name_n_techn_id( iv_techn_id = lv_techn_id
+                                                                             iv_descr    = ms_data-name ) }|.
+
+    result = REF #( mv_default_attr ).
+  ENDMETHOD.                    "bi_object~default_attribute_value
+
+
+  METHOD bi_object~execute_default_method ##needed.
+    "-----------------------------------------------------------------*
+    "   Execute default method
+    "-----------------------------------------------------------------*
+*    SET PARAMETER ID 'ppp' FIELD mv_user_id.
+*    CALL TRANSACTION 'ttttt' WITH AUTHORITY-CHECK
+*                              AND SKIP FIRST SCREEN.
+  ENDMETHOD.                    "bi_object~execute_default_method
+
+
+  METHOD bi_object~release.
+    "-----------------------------------------------------------------*
+    "   Release instance
+    "-----------------------------------------------------------------*
+    DELETE TABLE mt_buffer WITH TABLE KEY primary_key COMPONENTS s_lpor = ms_lpor.
+  ENDMETHOD.                    "bi_object~release
+
+
+  METHOD bi_persistent~find_by_lpor.
+    "-----------------------------------------------------------------*
+    "   Create business class instance
+    "-----------------------------------------------------------------*
+    TRY.
+        result ?= zcl_ca_wf_om_org_model=>get_instance( is_lpor = lpor ).
+
+      CATCH zcx_ca_error INTO DATA(lx_catched).
+        "As long as no exceptions are declared for this method, this is
+        "currently the best solution.
+        MESSAGE lx_catched TYPE c_msgty_s DISPLAY LIKE lx_catched->mv_msgty.
+    ENDTRY.
+  ENDMETHOD.                    "bi_persistent~find_by_lpor
+
+
+  METHOD bi_persistent~lpor.
+    "-----------------------------------------------------------------*
+    "   Return instance key
+    "-----------------------------------------------------------------*
+    result = ms_lpor.
+  ENDMETHOD.                    "bi_persistent~lpor
+
+
+  METHOD bi_persistent~refresh.
+    "-----------------------------------------------------------------*
+    "   Refresh instance
+    "-----------------------------------------------------------------*
+
+  ENDMETHOD.                    "bi_persistent~refresh
+
 
   METHOD class_constructor.
     "-----------------------------------------------------------------*
@@ -355,11 +423,10 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
         no_active_plvar  = 1
         OTHERS           = 2.
     IF sy-subrc NE 0.
-      DATA(lx_error) = CAST zcx_ca_wf_om_org_model(
-                                    zcx_ca_error=>create_exception(
-                                                    iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
-                                                    iv_function = 'RH_GET_ACTIVE_WF_PLVAR'
-                                                    iv_subrc     = sy-subrc ) ) ##no_text.
+      DATA(lx_error) = CAST zcx_ca_wf_om_org_model( zcx_ca_error=>create_exception(
+                                                        iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
+                                                        iv_function = 'RH_GET_ACTIVE_WF_PLVAR'
+                                                        iv_subrc     = sy-subrc ) ) ##no_text.
       IF lx_error IS BOUND.
         RAISE EXCEPTION lx_error.
       ENDIF.
@@ -371,76 +438,99 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
     "-----------------------------------------------------------------*
     "   Constructor
     "-----------------------------------------------------------------*
-    "Add leading zeros for numeric object Ids = all, except user Ids
-    DATA(ls_org_object) = VALUE swhactor( otype = is_org_object-otype
-                                          objid = COND #( WHEN is_org_object-otype NE swfco_org_user
-                                                            THEN |{ is_org_object-objid WIDTH = 8
-                                                                                        ALPHA = IN }|
-                                                            ELSE is_org_object-objid ) ).
-    "Check if org. unit exist
-    CALL FUNCTION 'RH_CHECK_ORG_OBJECT_EXISTS'
-      EXPORTING
-        act_object_ext       = CONV hrobjec_14( ls_org_object )
-        act_plvar            = mv_plvar
-        authority_check      = abap_false
-        act_begda            = iv_valid_on
-        act_endda            = iv_valid_on
-      EXCEPTIONS
-        no_org_object        = 1
-        org_object_not_found = 2
-        no_active_plvar      = 3
-        OTHERS               = 4.
-    IF sy-subrc NE 0.
-      DATA(lx_error) = CAST zcx_ca_wf_om_org_model(
-                                zcx_ca_error=>create_exception(
-                                                iv_excp_cls  = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
-                                                iv_function   = 'RH_CHECK_ORG_OBJECT_EXISTS'
-                                                iv_subrc      = sy-subrc ) ) ##no_text.
-      IF lx_error IS BOUND.
-        RAISE EXCEPTION lx_error.
-      ENDIF.
+    ms_lpor-typeid = to_upper( c_my_typeid ).
+    ms_lpor-catid  = swfco_objtype_cl.
+
+    IF is_key IS INITIAL.
+      RETURN.
     ENDIF.
 
-    ms_org_object = ms_org_object_for_search = ls_org_object.
-    mv_valid_on   = iv_valid_on.
+    "Set initial validity date and prepare constants and its validations
+    mv_valid_on      = iv_valid_on.
+    mv_search_active = iv_search_active.
+    mo_cvc_om        = zcl_ca_wf_om_cvc=>get_instance( ).
+*    mo_cvc_employee  = zcl_ca_wf_om_cvc_employee=>get_instance( ).
+
+    "Complete and keep several attributes
+    "Add leading zeros for numeric object Ids (= all object types, except SAP user Ids)
+    ms_key = VALUE swhactor( otype = is_key-otype
+                             objid = COND #( WHEN is_key-otype NE swfco_org_user
+                                               THEN |{ is_key-objid WIDTH = 8  ALPHA = IN }|
+                                               ELSE is_key-objid ) ).
+    ms_lpor-instid = ms_search_4_org_object = ms_key.
+*    mbo_BO_PERNR-instid = CONV #( ms_key ).
   ENDMETHOD.                    "constructor
 
 
-  METHOD find_dependent_org_objects.
+  METHOD create_instance_2_org_object.
     "-----------------------------------------------------------------*
-    "   Find dependent org. object to requested org. object
-    "   For a SAP user Id it is necessary to find the corresponding
-    "   person (personnel Id) to be able to find higher org. objects
+    "   Create an instance to an org. object
+    "-----------------------------------------------------------------*
+    TRY.
+        result ?= zcl_ca_wf_om_org_model=>get_instance( is_key           = is_org_object_key
+                                                        iv_valid_on      = mv_valid_on
+                                                        iv_search_active = mv_search_active ).
+
+      CATCH zcx_ca_param
+            zcx_ca_dbacc INTO DATA(lx_catched).
+        DATA(lx_error) = CAST zcx_ca_wf_om_org_model( zcx_ca_error=>create_exception(
+                                                         iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
+                                                         iv_class    = 'ZCL_CA_WF_OM_ORG_MODEL'
+                                                         iv_method   = 'CREATE_INSTANCE_2_ORG_OBJECT'
+                                                         ix_error    = lx_catched ) ) ##no_text.
+        IF lx_error IS BOUND.
+          RAISE EXCEPTION lx_error.
+        ENDIF.
+    ENDTRY.
+  ENDMETHOD.                    "create_instance_2_org_object
+
+
+  METHOD determine_dependent_org_obj.
+    "-----------------------------------------------------------------*
+    "   Determine depending org. objects + a instance of them
     "-----------------------------------------------------------------*
     "Local data definitions
     DATA:
-      lo_employee          TYPE REF TO zcl_ca_wf_om_employee.
+      lo_employee          TYPE REF TO zif_ca_wf_om_employee.
 
     TRY.
-        CASE ms_org_object-otype.
+        IF ms_my_org_unit IS NOT INITIAL.
+          RETURN.
+        ENDIF.
+
+        CASE ms_key-otype.
           WHEN swfco_org_user.
-            lo_employee = zcl_ca_wf_om_employee=>get_instance_by_sap_user_id( iv_sap_user_id = ms_org_object-objid
-                                                                              iv_valid_on    = mv_valid_on ).
-            ms_org_object_for_search = VALUE #( otype = swfco_org_person
-                                                objid = lo_employee->ms_data-pernr ).
-            ms_my_position = lo_employee->ms_data-s_position.
-            ms_my_org_unit = lo_employee->ms_data-s_org_unit.
+            "Create an employee instance ...
+            lo_employee = zcl_ca_wf_om_employee=>get_instance_by_sap_user_id( iv_sap_user_id   = ms_key-objid
+                                                                              iv_valid_on      = mv_valid_on
+                                                                              iv_search_active = mv_search_active ).
+            "... to overwrite the search term (originally provided in the CONSTRUCTOR) by the personnel Id and ...
+            ms_search_4_org_object = VALUE #( otype = swfco_org_person
+                                              objid = lo_employee->ms_data-pernr ).
+            "... to provide the org. assignments
+            ms_my_position = CORRESPONDING #( lo_employee->ms_data-s_position ).
+            ms_my_org_unit = CORRESPONDING #( lo_employee->ms_data-s_org_unit ).
 
           WHEN swfco_org_person.
-            lo_employee = zcl_ca_wf_om_employee=>get_instance( iv_key      = CONV #( ms_org_object-objid )
-                                                               iv_valid_on = mv_valid_on ).
-            ms_my_position = lo_employee->ms_data-s_position.
-            ms_my_org_unit = lo_employee->ms_data-s_org_unit.
+            "Create an employee instance ...
+            lo_employee = zcl_ca_wf_om_employee=>get_instance( iv_key           = CONV #( ms_key-objid )
+                                                               iv_valid_on      = mv_valid_on
+                                                               iv_search_active = mv_search_active ).
+            "... to provide the org. assignments of the employee
+            ms_my_position = CORRESPONDING #( lo_employee->ms_data-s_position ).
+            ms_my_org_unit = CORRESPONDING #( lo_employee->ms_data-s_org_unit ).
 
           WHEN swfco_org_position.
-            ms_my_position = get_text_of_org_object( ).       "Get my own description
-            DATA(lt_higher_org_objects) = get_org_model_data( iv_eval_path = cs_eval_path-person_position_orgunit ).
+            ms_my_position = CORRESPONDING #( get_text_of_org_object( ) ).       "Get my own description
+            DATA(lt_higher_org_objects) = zif_ca_wf_om_org_model~get_org_model_data(
+                                                     iv_eval_path  = mo_cvc_om->evaluation_path-person_2_orgunit
+                                                     iv_auth_check = iv_auth_check ).
             ms_my_org_unit = CORRESPONDING #( lt_higher_org_objects[ otype = swfco_org_orgunit ]
-                                                                            MAPPING short_name = short
-                                                                                    name       = stext ).
+                                                                                MAPPING short_name = short
+                                                                                        name       = stext ).
 
           WHEN swfco_org_orgunit.
-            ms_my_org_unit = get_text_of_org_object( ).       "Get my own description
+            ms_my_org_unit = CORRESPONDING #( get_text_of_org_object( ) ).       "Get my own description
         ENDCASE.
 
       CATCH zcx_ca_param
@@ -448,94 +538,358 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
         DATA(lx_error) = CAST zcx_ca_wf_om_org_model( zcx_ca_error=>create_exception(
                                                          iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
                                                          iv_class    = 'ZCL_CA_WF_OM_ORG_MODEL'
-                                                         iv_method   = 'FIND_DEPENDENT_ORG_OBJECTS'
+                                                         iv_method   = 'DETERMINE_DEPENDENT_ORG_OBJ'
                                                          ix_error    = lx_catched ) ) ##no_text.
         IF lx_error IS BOUND.
           RAISE EXCEPTION lx_error.
         ENDIF.
     ENDTRY.
-  ENDMETHOD.                    "find_dependent_org_objects
+
+    "Create instances to avoid redundant instantiation
+    ms_my_org_unit-o_org_object = create_instance_2_org_object( ms_my_org_unit-s_om_obj_key ).
+
+    IF ms_my_position IS NOT INITIAL.
+      ms_my_position-o_org_object = create_instance_2_org_object( ms_my_position-s_om_obj_key ).
+    ENDIF.
+  ENDMETHOD.                    "determine_dependent_org_obj
 
 
-  METHOD find_employees.
+  METHOD find_manager_2_org_unit.
     "-----------------------------------------------------------------*
-    "   Find employees by different, normally unique, keys
+    "   Find manager to current org. unit, search upwards if requested
     "-----------------------------------------------------------------*
-    LOOP AT it_employees INTO DATA(ls_employee).
-      TRY.
-          IF ls_employee-pernr IS NOT INITIAL.
-            ls_employee-o_employee = zcl_ca_wf_om_employee=>get_instance(
-                                               is_lpor     = VALUE #( instid = CONV #( ls_employee-pernr )
-                                                                      typeid = CONV #( ls_employee-class_name ) )
-                                               iv_valid_on = ls_employee-valid_on ).
+    TRY.
+        mv_search_upwards = iv_search_upwards.
 
-          ELSEIF ls_employee-bname IS NOT INITIAL.
-            ls_employee-o_employee = zcl_ca_wf_om_employee=>get_instance_by_sap_user_id(
-                                                                   iv_sap_user_id   = ls_employee-bname
-                                                                   iv_user_cls_name = ls_employee-class_name
-                                                                   iv_valid_on      = ls_employee-valid_on ).
+        DATA(lo_org_unit) = SWITCH #( am_i_a_manager_of_the_org_unit( iv_auth_check )
+                              WHEN abap_false THEN ms_my_org_unit-o_org_object
+                              WHEN abap_true  THEN get_next_higher_org_unit_2_me( iv_auth_check ) ).
 
-          ELSEIF ls_employee-net_id IS NOT INITIAL.
-            ls_employee-o_employee = zcl_ca_wf_om_employee=>get_instance_by_windows_net_id(
-                                                                   iv_windows_net_id = ls_employee-net_id
-                                                                   iv_user_cls_name  = ls_employee-class_name
-                                                                   iv_valid_on       = ls_employee-valid_on ).
+        "The following TRY ... CATCH works like DO-loop because of the RETRY near the ENDTRY. The starting
+        "instance is ME and will be replaced by the next superior org. unit if no manager was found. This
+        "definition must be outside of the TRY ... CATCH to be able to work.
+        TRY.
+            result = lo_org_unit->get_org_model_data( iv_eval_path  = mo_cvc_om->evaluation_path-manager_2_orgunit
+                                                      iv_auth_check = iv_auth_check ) ##no_text.
 
-          ELSE.
-            "Too less data for determination of organizational informations
-            RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
-              EXPORTING
-                textid = zcx_ca_wf_om_org_model=>too_less_data.
-          ENDIF.
+            is_any_person_assigned_2_ounit( it_manager = result ).
 
-          ls_employee-bname     = ls_employee-o_employee->ms_data-bname.
-          ls_employee-pernr     = ls_employee-o_employee->ms_data-pernr.
-          ls_employee-net_id    = ls_employee-o_employee->ms_data-net_id.
-          ls_employee-mail_addr = ls_employee-o_employee->ms_data-mail_addr.
-          ls_employee-error     = abap_false.
-          CLEAR: ls_employee-err_msg,
-                 ls_employee-o_error.
-          APPEND ls_employee TO rt_employees.
+          CATCH zcx_ca_wf_om_org_model INTO DATA(lx_catched).
+            "If exception is different to 'Nothing found' forward the exception to caller
+            IF   mv_search_upwards                         EQ 0      OR
+                 "Message = 'Structure PLVAR OTYPE OBJID WEGID: No agent found.'
+               ( lx_catched->if_t100_message~t100key-msgid NE '5W'  AND
+                 lx_catched->if_t100_message~t100key-msgno NE '170' ) ##no_text.
+              RAISE EXCEPTION lx_catched.
 
-        CATCH zcx_ca_error INTO DATA(lx_catched).
-          ls_employee-error   = abap_true.
-          ls_employee-err_msg = lx_catched->get_text( ).
-          ls_employee-o_error = lx_catched.
-          APPEND ls_employee TO rt_employees.
-      ENDTRY.
-    ENDLOOP.
+            ELSE.
+              "No manager found -> search for next superior org. unit
+              lo_org_unit = lo_org_unit->get_next_higher_org_unit_2_me( iv_auth_check ).
+              mv_search_upwards -= 1.
+              RETRY.       "ATTENTION: This makes this TRY ... CATCH to a DO loop
+            ENDIF.
+        ENDTRY.
 
-    IF iv_raise_excep EQ abap_true AND
-       lx_catched     IS BOUND.
-      "Error occurred during data determination. For details see field "ERR_MSG".
+      CATCH zcx_ca_error INTO DATA(lx_not_found).
+        DATA(lx_error) = CAST zcx_ca_wf_om_org_model( zcx_ca_error=>create_exception(
+                                               iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
+                                               ix_error    = lx_not_found ) ) ##no_text.
+        IF lx_error IS BOUND.
+          RAISE EXCEPTION lx_error.
+        ENDIF.
+    ENDTRY.
+  ENDMETHOD.                    "find_manager_2_org_unit
+
+
+  METHOD get_instance.
+    "-----------------------------------------------------------------*
+    "   Get instance
+    "-----------------------------------------------------------------*
+    "Local data definitions
+    DATA:
+      ls_lpor TYPE sibflpor,
+      ls_key  TYPE swhactor.
+
+    IF is_lpor IS NOT INITIAL.
+      ls_lpor       = is_lpor.
+      ls_lpor-catid = swfco_objtype_cl.
+
+      "Set key into structured definition
+      IF ls_lpor-instid IS NOT INITIAL.  "Avoid destruction of type conform initial values
+        ls_key = CONV #( ls_lpor-instid ).
+      ENDIF.
+
+      "Set these values in any case, e. g. to create/get an instance only with the key string
+      IF ls_lpor-typeid IS INITIAL.
+        ls_lpor-typeid = to_upper( zcl_ca_wf_om_org_model=>c_my_typeid ).
+      ENDIF.
+
+    ELSEIF is_key IS NOT INITIAL.
+      ls_key = is_key.
+      ls_lpor = VALUE #( instid = CONV #( is_key )
+                         typeid = to_upper( COND #( WHEN is_lpor-typeid IS NOT INITIAL
+                                                      THEN is_lpor-typeid
+                                                      ELSE zcl_ca_wf_om_org_model=>c_my_typeid ) )
+                         catid  = swfco_objtype_cl ).
+
+    ELSE.
+      "At least one of the following parameters must be passed: &1 &2 &3 &4
+      RAISE EXCEPTION TYPE zcx_ca_param
+        EXPORTING
+          textid   = zcx_ca_param=>at_least_one
+          mv_msgty = c_msgty_e
+          mv_msgv1 = 'IS_LPOR'
+          mv_msgv2 = 'IS_KEY'
+          mv_msgv3 = space
+          mv_msgv4 = space ##no_text.
+    ENDIF.
+
+    "If the key is still not available create no instance
+    IF ls_key IS INITIAL.
+      RETURN.
+    ENDIF.
+
+    TRY.
+        "Is an instance already created?
+        DATA(ls_buffer) = zcl_ca_wf_om_org_model=>mt_buffer[ KEY primary_key
+                                                                 s_lpor = ls_lpor ].
+        ls_buffer-o_persistent->refresh( ).
+
+      CATCH cx_sy_itab_line_not_found.
+        "Create instance of payment approval object
+        CREATE OBJECT ls_buffer-o_persistent TYPE (ls_lpor-typeid)
+          EXPORTING
+            is_key           = ls_key
+            iv_valid_on      = iv_valid_on
+            iv_search_active = iv_search_active.
+
+        "Checks existence of object and creates default attribute = readable key with text
+        ls_buffer-o_persistent->check_existence( ).
+        ls_buffer-o_persistent->default_attribute_value( ).
+
+        ls_buffer-s_lpor             = ls_buffer-o_persistent->lpor( ).
+        INSERT ls_buffer INTO TABLE zcl_ca_wf_om_org_model=>mt_buffer.
+    ENDTRY.
+
+    result ?= ls_buffer-o_persistent.
+  ENDMETHOD.                    "get_instance
+
+
+  METHOD get_managers_2_my_org_unit.
+    "-----------------------------------------------------------------*
+    "   Get managers to the current org. unit
+    "-----------------------------------------------------------------*
+    IF mt_managers IS NOT INITIAL.
+      RETURN.
+    ENDIF.
+
+    determine_dependent_org_obj( iv_auth_check ).
+
+    mt_managers = ms_my_org_unit-o_org_object->get_org_model_data(
+                                                iv_eval_path  = mo_cvc_om->evaluation_path-manager_2_orgunit
+                                                iv_auth_check = iv_auth_check ).
+
+    "Keep personnel Ids AND positions as both is relevant for manager
+    DELETE mt_managers WHERE otype NE swfco_org_person
+                         AND otype NE swfco_org_position.
+
+    "Sort after the percentage of engagement also by the OBJID (= Personnel no.) for a consistent result
+    SORT mt_managers BY otype  vpriox  vprozt DESCENDING  objid.
+  ENDMETHOD.                    "get_managers_2_my_org_unit
+
+
+  METHOD get_members_2_org_object.
+    "-----------------------------------------------------------------*
+    "   Get members to the current org. object respecting the scope
+    "-----------------------------------------------------------------*
+    determine_dependent_org_obj( iv_auth_check ).
+
+    "The evaluation path should always return an assignment to a personnel number. Using the
+    "attribute MS_ORG_OBJECT_FOR_SEARCH there can only be the object types P, S and O -> see
+    "methods CONSTRUCTOR + FIND_PERSONNEL_NUMBER_TO_USER.
+    result = ms_my_org_unit-o_org_object->get_org_model_data(
+                 iv_auth_check = iv_auth_check
+                 iv_eval_path  = SWITCH wegid( ms_my_org_unit-otype
+                                   WHEN swfco_org_person   THEN mo_cvc_om->evaluation_path-person_2_orgunit
+                                   WHEN swfco_org_position OR   "STAFF_2_O... = for scope all + members only
+                                        swfco_org_orgunit  THEN mo_cvc_om->evaluation_path-staff_2_orgunit ) ) ##no_text.
+  ENDMETHOD.                    "get_members_2_org_object
+
+
+  METHOD get_my_superior_org_units.
+    "-----------------------------------------------------------------*
+    "   Get next upper org. unit from result of superior org. unit search
+    "-----------------------------------------------------------------*
+    IF mt_superior_org_units IS NOT INITIAL.
+      RETURN.
+    ENDIF.
+
+    determine_dependent_org_obj( iv_auth_check ).
+    mt_superior_org_units = ms_my_org_unit-o_org_object->get_org_model_data(
+                                               iv_eval_path  = mo_cvc_om->evaluation_path-orgunit_2_orgunit
+                                               iv_auth_check = iv_auth_check ).
+  ENDMETHOD.                    "get_my_superior_org_units
+
+
+  METHOD get_next_higher_org_unit_2_me.
+    "-----------------------------------------------------------------*
+    "   Get next upper org. unit from result of superior org. unit search
+    "-----------------------------------------------------------------*
+    TRY.
+        get_my_superior_org_units( iv_auth_check ).
+
+*       Example of a result in table MT_SUPERIOR_ORG_UNITS of the method above => important here = PUP
+*       OT OBJID     STEXT            SEQNR LEVEL PDOWN VCOUNT PNEXT PUP
+*       O  00000037  Academy            1     1     2     1      0    0    <== starting point
+*       O  00000038  HCM department     2     2     3     1      0    1    <== next level = target
+*       O  00000047  Management board   3     3     4     1      0    2
+*       O  00000003  Company            4     4     5     1      0    3
+*       O  00000002  Entire group       5     5     0     0      0    4
+
+        DATA(ls_superior_org_unit) = CORRESPONDING swhactor( mt_superior_org_units[ otype = swfco_org_orgunit
+                                                                                    pup   = 1 ] ).
+
+        result = create_instance_2_org_object( ls_superior_org_unit ).
+
+      CATCH cx_sy_itab_line_not_found.
+        "Structure PLVAR OTYPE OBJID WEGID: No agent found.
+        RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
+          MESSAGE ID '5W' TYPE 'E' NUMBER '170'
+          WITH zcl_ca_wf_om_org_model=>mv_plvar     ms_key-otype
+              |{ ms_key-objid ALPHA = OUT }| mo_cvc_om->evaluation_path-orgunit_2_orgunit.
+    ENDTRY.
+  ENDMETHOD.                    "get_next_higher_org_unit_2_me
+
+
+  METHOD is_any_person_assigned_2_ounit.
+    "-----------------------------------------------------------------*
+    "   Check whether a person is found to the requested org. unit
+    "-----------------------------------------------------------------*
+    result = xsdbool( line_exists( it_manager[ otype = swfco_org_person ] ) ).
+
+    IF result IS NOT SUPPLIED AND
+       result EQ abap_false.
+      "Structure PLVAR OTYPE OBJID WEGID: No agent found.
+      RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
+        MESSAGE ID '5W' TYPE 'E' NUMBER '170'
+        WITH zcl_ca_wf_om_org_model=>mv_plvar     ms_key-otype
+            |{ ms_key-objid ALPHA = OUT }| mo_cvc_om->evaluation_path-manager_2_orgunit.
+    ENDIF.
+  ENDMETHOD.                    "is_any_person_assigned_2_ounit
+
+
+  METHOD is_org_obj_4_multiple_people.
+    "-----------------------------------------------------------------*
+    "   Check whether it is an org. object for multiple people
+    "-----------------------------------------------------------------*
+    result = xsdbool( ms_key-otype EQ swfco_org_orgunit  OR
+                      ms_key-otype EQ swfco_org_position ).
+
+    IF result EQ abap_false   AND
+       result IS NOT SUPPLIED.
+      "Search members to a person/SAP user (&1) is not supported
       RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
         EXPORTING
-          textid = zcx_ca_wf_om_org_model=>error_occurred.
+          textid   = zcx_ca_wf_om_org_model=>a_person_can_t_have_members
+          mv_msgty = zcx_ca_wf_om_org_model=>c_msgty_e
+          mv_msgv1 = CONV #( condense( |{ ms_key-otype } { ms_key-objid ALPHA = OUT }| ) ).
     ENDIF.
-  ENDMETHOD.                    "find_employees
+  ENDMETHOD.                    "is_org_obj_4_multiple_people
 
 
-  METHOD get_employees_2_org_object.
+  METHOD set_different_plan_version.
+    "-----------------------------------------------------------------*
+    "   Set different plan version
+    "-----------------------------------------------------------------*
+    mv_plvar = iv_plvar.
+  ENDMETHOD.                    "set_different_plan_version
+
+
+  METHOD is_member_a_manager_of_the_ou.
+    "-----------------------------------------------------------------*
+    "   Check whether the passed member is a manager of this org. unit
+    "-----------------------------------------------------------------*
+    get_managers_2_my_org_unit( iv_auth_check ).
+
+    result = xsdbool( line_exists( mt_managers[ otype = is_member_key-otype
+                                                objid = is_member_key-objid ] ) ).
+
+    IF result EQ abap_false AND
+       result IS NOT SUPPLIED.
+      "This is only to make the name available for error message
+      DATA(lo_employee) = zcl_ca_wf_om_employee=>get_instance( iv_key           = CONV #( is_member_key-objid )
+                                                               iv_search_active = abap_false
+                                                               iv_valid_on      = mv_valid_on ).
+      "&1 is not a leader of the org. unit &2
+      RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
+        EXPORTING
+          textid   = zcx_ca_wf_om_org_model=>is_not_a_leader_of_this_ou
+          mv_msgty = zcx_ca_wf_om_org_model=>c_msgty_e
+          mv_msgv1 = CONV #( lo_employee->ms_data-full_name_w_id )
+          mv_msgv2 = CONV #( ms_my_org_unit-o_org_object->mv_default_attr ).
+    ENDIF.
+  ENDMETHOD.                    "is_member_a_manager_of_the_ou
+
+
+  METHOD zif_ca_wf_om_org_model~get_all_managers.
+    "-----------------------------------------------------------------*
+    "   Determine all managers to a organizational object
+    "-----------------------------------------------------------------*
+    DATA(lt_manager) = find_manager_2_org_unit( iv_search_upwards = iv_search_upwards
+                                                iv_search_active  = mv_search_active
+                                                iv_auth_check     = iv_auth_check ).
+
+    "Sort after the percentage of engagement also by the OBJID (= Personnel no.) for a consistent result
+    SORT lt_manager BY otype  vpriox  vprozt DESCENDING  objid.
+
+    LOOP AT lt_manager INTO DATA(ls_manager)
+                       WHERE otype EQ swfco_org_person.
+      TRY.
+          APPEND INITIAL LINE TO result REFERENCE INTO DATA(lr_manager).
+          lr_manager->otype      = ls_manager-otype.
+          lr_manager->objid      = ls_manager-objid.
+          lr_manager->name       = ls_manager-stext.
+          lr_manager->short_name = ls_manager-short.
+          lr_manager->o_owner    = zcl_ca_wf_om_employee=>get_instance( iv_key           = ls_manager-objid
+                                                                        iv_search_active = mv_search_active
+                                                                        iv_valid_on      = mv_valid_on ).
+
+        CATCH zcx_ca_error INTO DATA(lx_catched).
+          DATA(lx_error) = CAST zcx_ca_wf_om_org_model( zcx_ca_error=>create_exception(
+                                                 iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
+                                                 iv_class    = 'ZCL_CA_WF_OM_ORG_MODEL'
+                                                 iv_method   = 'GET_ALL_MANAGERS'
+                                                 ix_error    = lx_catched ) ) ##no_text.
+          IF lx_error IS BOUND.
+            RAISE EXCEPTION lx_error.
+          ENDIF.
+      ENDTRY.
+    ENDLOOP.
+  ENDMETHOD.                    "zif_ca_wf_om_org_model~get_all_managers
+
+
+  METHOD zif_ca_wf_om_org_model~get_employees_2_org_object.
     "-----------------------------------------------------------------*
     "   Get SAP user to the current org. object (org. unit leader)
     "-----------------------------------------------------------------*
-    is_scope_valid( iv_scope ).
+    mo_cvc_om->is_scope_valid( iv_scope ).
 
-    is_org_obj_4_multiple_people( iv_scope ).
+    is_org_obj_4_multiple_people( ).
 
-    find_dependent_org_objects( ).
-
-    DATA(lt_members) = get_members_2_org_object( iv_search_upwards = iv_search_upwards
-                                                 iv_auth_check     = iv_auth_check ).
-    mt_excl_leaders  = get_managers_2b_excluded( iv_search_upwards = iv_search_upwards
-                                                 iv_auth_check     = iv_auth_check ).
+    DATA(lt_members) = get_members_2_org_object( iv_auth_check ).
 
     LOOP AT lt_members REFERENCE INTO DATA(lr_member)
                        WHERE otype EQ swfco_org_person.
       TRY.
-          IF is_member_a_leader( VALUE #( otype = lr_member->otype
-                                          objid = lr_member->objid ) ).
-            CONTINUE.
+          IF iv_scope NE mo_cvc_om->scope-all.
+            DATA(lv_is_manager) = is_member_a_manager_of_the_ou( iv_auth_check = iv_auth_check
+                                                                 is_member_key = CORRESPONDING #( lr_member->* ) ).
+            IF ( iv_scope      EQ mo_cvc_om->scope-members_only AND
+                 lv_is_manager EQ abap_true ) OR
+               ( iv_scope      EQ mo_cvc_om->scope-manager AND
+                 lv_is_manager EQ abap_false ).
+              CONTINUE.
+            ENDIF.
           ENDIF.
 
           APPEND INITIAL LINE TO result REFERENCE INTO DATA(lr_result).
@@ -543,16 +897,19 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
           lr_result->objid      = lr_member->objid.
           lr_result->name       = lr_member->stext.
           lr_result->short_name = lr_member->short.
-          lr_result->o_owner    = zcl_ca_wf_om_employee=>get_instance( iv_key = lr_member->objid ).
+          lr_result->o_owner    = zcl_ca_wf_om_employee=>get_instance( iv_key           = lr_member->objid
+                                                                       iv_search_active = mv_search_active
+                                                                       iv_valid_on      = mv_valid_on ).
 
-          IF iv_scope EQ cs_scope-manager.
+          IF iv_scope        EQ mo_cvc_om->scope-manager AND
+             iv_all_managers EQ abap_false.
             RETURN.   "If the leader is requested only the first entry is relevant
           ENDIF.
 
         CATCH zcx_ca_error INTO DATA(lx_catched).
-          lr_result->error    = abap_true.
-          lr_result->o_error ?= lx_catched.
-          lr_result->err_msg  = lx_catched->get_text( ).
+          lr_result->error   = abap_true.
+          lr_result->err_msg = lx_catched->get_text( ).
+          lr_result->o_error = lx_catched.
       ENDTRY.
     ENDLOOP.
 
@@ -562,67 +919,24 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
         EXPORTING
           textid   = zcx_ca_wf_om_org_model=>no_people_found_to_scope
           mv_msgty = zcx_ca_wf_om_org_model=>c_msgty_e
-          mv_msgv1 = CONV #( ms_org_object-otype )
-          mv_msgv2 = CONV #( |{ ms_org_object-objid ALPHA = OUT }| )
-          mv_msgv3 = CONV #( condense( |{ iv_scope } ({ SWITCH string( iv_scope
-                                                          WHEN cs_scope-manager      THEN TEXT-man
-                                                          WHEN cs_scope-members_only THEN TEXT-mem
-                                                          WHEN cs_scope-all          THEN TEXT-all ) })| ) ).
+          mv_msgv1 = CONV #( ms_key-otype )
+          mv_msgv2 = CONV #( |{ ms_key-objid ALPHA = OUT }| )
+          mv_msgv3 = CONV #( zcl_ca_utils=>compose_name_n_techn_id(
+                                             iv_techn_id = iv_scope
+                                             iv_descr    = SWITCH string( iv_scope
+                                                             WHEN mo_cvc_om->scope-manager      THEN TEXT-man
+                                                             WHEN mo_cvc_om->scope-members_only THEN TEXT-mem
+                                                             WHEN mo_cvc_om->scope-all          THEN TEXT-all ) ) ).
     ENDIF.
-  ENDMETHOD.                    "get_employees_2_org_object
+  ENDMETHOD.                    "zif_ca_wf_om_org_model~get_employees_2_org_object
 
 
-  METHOD find_manager_2_org_unit.
+  METHOD zif_ca_wf_om_org_model~get_manager.
     "-----------------------------------------------------------------*
-    "   Find manager to current org. unit, search upwards if requested
+    "   Determine manager to a organizational object
     "-----------------------------------------------------------------*
-    "Local data definitions
-    DATA:
-      lo_org_object        TYPE REF TO zcl_ca_wf_om_org_model.
-
-    "Prepare the local instance for iterative search upwards
-    IF ms_org_object_for_search-otype EQ swfco_org_orgunit.
-      lo_org_object = me.
-    ELSE.
-      lo_org_object = NEW #( is_org_object = ms_my_org_unit-s_om_obj_key
-                             iv_valid_on   = mv_valid_on ).
-    ENDIF.
-
-    "The following TRY ... CATCH works like DO-loop because of the RETRY near the ENDTRY. The starting
-    "instance is ME and will be replaced by the next superior org. unit if no manager was found. This
-    "definition must be outside of the TRY ... CATCH to be able to work.
-    TRY.
-        result = lo_org_object->get_org_model_data( iv_eval_path  = cs_eval_path-manager_2_orgunit
-                                                    iv_auth_check = iv_auth_check ) ##no_text.
-
-        is_any_person_assigned_2_ounit( it_org_unit_result = result
-                                        io_org_object      = lo_org_object ).
-
-      CATCH zcx_ca_wf_om_org_model INTO DATA(lx_catched).
-        "If exception is different to 'Nothing found' forward the exception to caller
-        IF   iv_search_upwards                         EQ abap_false  OR
-             "Message = 'Structure PLVAR OTYPE OBJID WEGID: No agent found.'
-           ( lx_catched->if_t100_message~t100key-msgid NE '5W'       AND
-             lx_catched->if_t100_message~t100key-msgno NE '170' ) ##no_text.
-          RAISE EXCEPTION lx_catched.
-
-        ELSE.
-          "No manager found -> search for next superior org. unit
-          lo_org_object = search_upwards_4_org_unit( io_org_object = lo_org_object
-                                                     iv_auth_check = iv_auth_check ).
-          RETRY.       "ATTENTION: This makes this TRY ... CATCH to a DO loop
-        ENDIF.
-    ENDTRY.
-  ENDMETHOD.                    "find_manager_2_org_unit
-
-
-  METHOD get_manager.
-    "-----------------------------------------------------------------*
-    "   Determine manager to organizational object
-    "-----------------------------------------------------------------*
-    find_dependent_org_objects( ).
-
     DATA(lt_manager) = find_manager_2_org_unit( iv_search_upwards = iv_search_upwards
+                                                iv_search_active  = mv_search_active
                                                 iv_auth_check     = iv_auth_check ).
 
     "Sort after the percentage of engagement also by the OBJID (= Personnel no.) for a consistent result
@@ -635,66 +949,27 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
           result-objid      = lr_manager->objid.
           result-name       = lr_manager->stext.
           result-short_name = lr_manager->short.
-          result-o_owner    = zcl_ca_wf_om_employee=>get_instance( iv_key = lr_manager->objid ).
+          result-o_owner    = zcl_ca_wf_om_employee=>get_instance( iv_key           = lr_manager->objid
+                                                                   iv_search_active = mv_search_active
+                                                                   iv_valid_on      = mv_valid_on ).
 
           RETURN.   "As leader is only the first entry relevant
 
         CATCH zcx_ca_error INTO DATA(lx_catched).
-          "Raise an exception since it can only be one leader (common and general rule in EVN workflows)
-          DATA(lx_error) = CAST zcx_ca_wf_om_org_model(
-                                    zcx_ca_error=>create_exception(
-                                                   iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
-                                                   iv_class    = 'ZCL_CA_WF_OM_ORG_MODEL'
-                                                   iv_method   = 'GET_MANAGER'
-                                                   ix_error    = lx_catched ) ) ##no_text.
+          DATA(lx_error) = CAST zcx_ca_wf_om_org_model( zcx_ca_error=>create_exception(
+                                                 iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
+                                                 iv_class    = 'ZCL_CA_WF_OM_ORG_MODEL'
+                                                 iv_method   = 'GET_MANAGER'
+                                                 ix_error    = lx_catched ) ) ##no_text.
           IF lx_error IS BOUND.
             RAISE EXCEPTION lx_error.
           ENDIF.
       ENDTRY.
     ENDLOOP.
-  ENDMETHOD.                    "get_manager
+  ENDMETHOD.                    "zif_ca_wf_om_org_model~get_manager
 
 
-  METHOD get_managers_2b_excluded.
-    "-----------------------------------------------------------------*
-    "   Get leaders to the current org. object in case of 'members only'
-    "-----------------------------------------------------------------*
-    IF mv_scope            EQ cs_scope-members_only AND
-       ms_org_object-otype EQ swfco_org_orgunit.
-      "Get leaders to exclude them for a 'members only'-result
-      result = find_manager_2_org_unit( iv_search_upwards = iv_search_upwards
-                                        iv_auth_check     = iv_auth_check ).
-    ENDIF.
-  ENDMETHOD.                    "get_managers_2b_excluded
-
-
-  METHOD get_members_2_org_object.
-    "-----------------------------------------------------------------*
-    "   Get members to the current org. object respecting the scope
-    "-----------------------------------------------------------------*
-    IF mv_scope EQ cs_scope-manager.
-      result = find_manager_2_org_unit( iv_search_upwards = iv_search_upwards
-                                        iv_auth_check     = iv_auth_check ).
-
-    ELSE.
-      "The evaluation path should always return an assignment to a personnel number. Using the
-      "attribute MS_ORG_OBJECT_FOR_SEARCH there can only be the object types P, S and O -> see
-      "methods CONSTRUCTOR + FIND_PERSONNEL_NUMBER_TO_USER.
-      result = get_org_model_data( iv_auth_check = iv_auth_check
-                                   iv_eval_path  = SWITCH wegid( ms_org_object_for_search-otype
-                                                     WHEN swfco_org_person   THEN cs_eval_path-person_position_orgunit
-                                                     WHEN swfco_org_position OR   "STAFF_2_O... = for scope all + members only
-                                                          swfco_org_orgunit  THEN cs_eval_path-staff_2_orgunit ) ) ##no_text.
-    ENDIF.
-
-    IF mv_scope EQ cs_scope-manager.
-      "Sort after the percentage of engagement also by the OBJID (= Personnel no.) for a consistent result
-      SORT result BY otype  vpriox  vprozt DESCENDING  objid.
-    ENDIF.
-  ENDMETHOD.                    "get_members_2_org_object
-
-
-  METHOD get_org_model_data.
+  METHOD zif_ca_wf_om_org_model~get_org_model_data.
     "-----------------------------------------------------------------*
     "   Determine (depending) org. unit data (using RH_STRUC_GET)
     "-----------------------------------------------------------------*
@@ -722,8 +997,8 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
     "Determine depending objects
     CALL FUNCTION 'RH_STRUC_GET'
       EXPORTING
-        act_otype        = ms_org_object_for_search-otype
-        act_objid        = ms_org_object_for_search-objid
+        act_otype        = ms_search_4_org_object-otype
+        act_objid        = ms_search_4_org_object-objid
         act_wegid        = iv_eval_path
         act_begda        = mv_valid_on
         act_endda        = mv_valid_on
@@ -743,12 +1018,10 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
         no_plvar_found   = 2
         OTHERS           = 3.
     IF sy-subrc NE 0.
-      DATA(lx_error) =
-           CAST zcx_ca_wf_om_org_model(
-                  zcx_ca_error=>create_exception(
-                           iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
-                           iv_function = 'RH_STRUC_GET'
-                           iv_subrc    = sy-subrc ) ) ##no_text.
+      DATA(lx_error) = CAST zcx_ca_wf_om_org_model( zcx_ca_error=>create_exception(
+                                             iv_excp_cls = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
+                                             iv_function = 'RH_STRUC_GET'
+                                             iv_subrc    = sy-subrc ) ) ##no_text.
       IF lx_error IS BOUND.
         RAISE EXCEPTION lx_error.
       ENDIF.
@@ -759,28 +1032,10 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
     result = CORRESPONDING #( result FROM  lt_objec
                                      USING KEY ky_object otype = otype
                                                          objid = objid ).
-  ENDMETHOD.                    "get_org_data
+  ENDMETHOD.                    "zif_ca_wf_om_org_model~get_org_model_data
 
 
-  METHOD get_superior_org_unit.
-    "-----------------------------------------------------------------*
-    "   Get next upper org. unit from result of superior org. unit search
-    "-----------------------------------------------------------------*
-    TRY.
-        result = CORRESPONDING #( it_superior_org_units[ otype = swfco_org_orgunit
-                                                         pup   = 1 ] ).
-
-      CATCH cx_sy_itab_line_not_found.
-        "Structure PLVAR OTYPE OBJID WEGID: No agent found.
-        RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
-          MESSAGE ID '5W' TYPE 'E' NUMBER '170'
-          WITH zcl_ca_wf_om_org_model=>mv_plvar ms_org_object-otype
-              |{ ms_org_object-objid ALPHA = OUT }| cs_eval_path-orgunit_2_orgunit.
-    ENDTRY.
-  ENDMETHOD.                    "get_superior_org_unit
-
-
-  METHOD get_text_of_org_object.
+  METHOD zif_ca_wf_om_org_model~get_text_of_org_object.
     "-----------------------------------------------------------------*
     "   Get short description of organizational unit
     "-----------------------------------------------------------------*
@@ -791,15 +1046,15 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
                     FROM  hrp1000
                           UP TO 1 ROWS
                     WHERE plvar  EQ @zcl_ca_wf_om_org_model=>mv_plvar
-                      AND otype  EQ @ms_org_object-otype
-                      AND objid  EQ @ms_org_object-objid
+                      AND otype  EQ @ms_key-otype
+                      AND objid  EQ @ms_key-objid
                       AND istat  EQ '1'
                       AND begda  LE @mv_valid_on
                       AND endda  GE @mv_valid_on
                       AND langu  EQ @sy-langu.          "#EC CI_NOORDER
     ENDSELECT.
     IF sy-subrc NE 0 AND
-       sy-langu EQ 'E' ##no_text.
+       sy-langu EQ 'D' ##no_text.
       result-name = 'No descriptive text found!'(tx1).
 
     ELSE.
@@ -810,146 +1065,82 @@ CLASS zcl_ca_wf_om_org_model IMPLEMENTATION.
                       FROM  hrp1000
                             UP TO 1 ROWS
                       WHERE plvar  EQ @zcl_ca_wf_om_org_model=>mv_plvar
-                        AND otype  EQ @ms_org_object-otype
-                        AND objid  EQ @ms_org_object-objid
+                        AND otype  EQ @ms_key-otype
+                        AND objid  EQ @ms_key-objid
                         AND istat  EQ '1'
                         AND begda  LE @mv_valid_on
                         AND endda  GE @mv_valid_on
-                        AND langu  EQ 'E'.              "#EC CI_NOORDER
+                        AND langu  EQ 'D'.              "#EC CI_NOORDER
       ENDSELECT.
       IF sy-subrc NE 0.
         result-name = 'No descriptive text found!'(tx1).
       ENDIF.
     ENDIF.
-  ENDMETHOD.                    "get_text_of_org_object
+  ENDMETHOD.                    "zif_ca_wf_om_org_model~get_text_of_org_object
 
 
-  METHOD is_any_person_assigned_2_ounit.
+  METHOD zif_ca_workflow~check_existence.
     "-----------------------------------------------------------------*
-    "   Check whether a person is found to the requested org. unit
+    "   Check existence of object
     "-----------------------------------------------------------------*
-    result = xsdbool( line_exists( it_org_unit_result[ otype = swfco_org_person ] ) ).
-
-    IF result IS NOT SUPPLIED AND
-       result EQ abap_false.
-      "Structure PLVAR OTYPE OBJID WEGID: No agent found.
-      RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
-        MESSAGE ID '5W' TYPE 'E' NUMBER '170'
-        WITH zcl_ca_wf_om_org_model=>mv_plvar ms_org_object-otype
-            |{ ms_org_object-objid ALPHA = OUT }| cs_eval_path-manager_2_orgunit.
-    ENDIF.
-  ENDMETHOD.                    "is_any_person_assigned_2_ounit
-
-
-  METHOD is_member_a_leader.
-    "-----------------------------------------------------------------*
-    "   Check if the personnel Id is a leader of the org. object
-    "-----------------------------------------------------------------*
-    result = abap_false.
-    IF mv_scope EQ cs_scope-members_only AND
-       line_exists( mt_excl_leaders[ otype = is_personnel_id-otype
-                                     objid = is_personnel_id-objid ] ).
-      result = abap_true.
-    ENDIF.
-  ENDMETHOD.                    "is_member_a_leader
-
-
-  METHOD is_org_obj_4_multiple_people.
-    "-----------------------------------------------------------------*
-    "   Check whether it is an org. object for multiple people
-    "-----------------------------------------------------------------*
-    result = abap_true.
-    IF   iv_scope            NE cs_scope-manager AND
-       ( ms_org_object-otype EQ swfco_org_user    OR
-         ms_org_object-otype EQ swfco_org_person ).
-      result = abap_false.
+    "Check if org. unit exist
+    CALL FUNCTION 'RH_CHECK_ORG_OBJECT_EXISTS'
+      EXPORTING
+        act_object_ext       = CONV hrobjec_14( ms_key )
+        act_plvar            = mv_plvar
+        authority_check      = abap_false
+        act_begda            = mv_valid_on
+        act_endda            = mv_valid_on
+      EXCEPTIONS
+        no_org_object        = 1
+        org_object_not_found = 2
+        no_active_plvar      = 3
+        OTHERS               = 4.
+    IF sy-subrc NE 0.
+      DATA(lx_error) = CAST zcx_ca_wf_om_org_model( zcx_ca_error=>create_exception(
+                                            iv_excp_cls  = zcx_ca_wf_om_org_model=>c_zcx_ca_wf_om_org_model
+                                            iv_function   = 'RH_CHECK_ORG_OBJECT_EXISTS'
+                                            iv_subrc      = sy-subrc ) ) ##no_text.
+      IF lx_error IS BOUND.
+        RAISE EXCEPTION lx_error.
+      ENDIF.
     ENDIF.
 
-    IF result IS NOT SUPPLIED AND
-       result EQ abap_false.
-      "Search members to a person/SAP user (&1) is not supported
-      RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
-        EXPORTING
-          textid   = zcx_ca_wf_om_org_model=>a_person_can_t_have_members
-          mv_msgty = zcx_ca_wf_om_org_model=>c_msgty_e
-          mv_msgv1 = CONV #( condense( |{ ms_org_object-otype } { ms_org_object-objid ALPHA = OUT }| ) ).
-    ENDIF.
-  ENDMETHOD.                    "is_org_obj_4_multiple_people
+    ms_data = get_text_of_org_object( ).
+  ENDMETHOD.                    "zif_ca_workflow~check_existence
 
 
-  METHOD is_scope_valid.
+  METHOD zif_ca_workflow~get_task_descr.
     "-----------------------------------------------------------------*
-    "   Check if the passed scope is valid
+    "   Assemble task short text
     "-----------------------------------------------------------------*
-    result = abap_false.
-    IF iv_scope CO '123' ##no_text.
-      mv_scope = iv_scope.
-      result   = abap_true.
-    ENDIF.
+    "Example ==> see also method BI_OBJECT~DEFAULT_ATTRIBUTE_VALUE
+    "TEXT-DAV = Org. object xxxxxxxxxx (t nnnnnn) - Description
+    result = |{ mv_default_attr } - { iv_task_desc }|.
 
-    IF result IS NOT SUPPLIED AND
-       result EQ abap_false.
-      "Parameter '&1' has invalid value '&2'
-      RAISE EXCEPTION TYPE zcx_ca_wf_om_org_model
-        EXPORTING
-          textid   = zcx_ca_wf_om_org_model=>param_invalid
-          mv_msgty = zcx_ca_wf_om_org_model=>c_msgty_e
-          mv_msgv1 = 'IV_SCOPE'
-          mv_msgv2 = CONV #( iv_scope ) ##no_text.
-    ENDIF.
-  ENDMETHOD.                    "is_scope_valid
+    "Use this statement in your task short description, here in this sample for a background step
+*    &_WI_OBJECT_ID.GET_TASK_DESCR(IV_TASK_DESC='Post document (BG)')&
+  ENDMETHOD.                    "zif_ca_workflow~get_task_descr
 
 
-  METHOD search_upwards_4_org_unit.
+  METHOD zif_ca_workflow~raise_event.
     "-----------------------------------------------------------------*
-    "   Search upwards in org. structure for superior org. unit
+    "   Raise event
     "-----------------------------------------------------------------*
-    "Get superior org. units to the one found in the CONSTRUCTOR of this org. object
-    DATA(lt_superior_org_units) =
-        NEW zcl_ca_wf_om_org_model( is_org_object = ms_my_org_unit-s_om_obj_key
-                                    iv_valid_on   = mv_valid_on
-                                           )->get_org_model_data( iv_eval_path  = cs_eval_path-orgunit_2_orgunit
-                                                                  iv_auth_check = iv_auth_check ) ##no_text.
+    TRY.
+        zcl_ca_wf_wapi_utils=>create_event_extended( is_lpor      = CORRESPONDING #( ms_lpor )
+                                                     iv_event     = iv_event
+                                                     io_evt_cnt   = io_evt_cnt
+                                                     iv_do_commit = abap_true ).
 
-    result = NEW #( is_org_object = get_superior_org_unit( lt_superior_org_units )
-                    iv_valid_on   = mv_valid_on ).
-  ENDMETHOD.                    "find_superior_org_unit
-
-
-  METHOD transf_employees_2_rule_result.
-    "-----------------------------------------------------------------*
-    "   Transfer determined employees into agent rule result
-    "-----------------------------------------------------------------*
-    rt_actors = VALUE #( FOR ls_employee IN it_employees
-                                            WHERE ( bname IS NOT INITIAL )
-                                     ( otype = swfco_org_user
-                                       objid = ls_employee-o_employee->ms_data-bname ) ).
-  ENDMETHOD.                    "transf_employees_2_rule_result
-
-
-  METHOD transf_rule_result_2_employees.
-    "-----------------------------------------------------------------*
-    "   Transfer agent rule result into format of employee data
-    "-----------------------------------------------------------------*
-    "Local data definitions
-    DATA:
-      ls_employee_lookup   TYPE zca_wf_s_employee_lookup.
-
-    LOOP AT it_actors REFERENCE INTO DATA(lr_actor).
-      CASE lr_actor->otype.
-        WHEN swfco_org_user.
-          ls_employee_lookup-bname = lr_actor->objid.
-
-        WHEN swfco_org_person.
-          ls_employee_lookup-pernr = lr_actor->objid.
-
-        WHEN OTHERS.
-          CONTINUE.
-      ENDCASE.
-
-      ls_employee_lookup-valid_on = iv_valid_on.
-      APPEND ls_employee_lookup TO rt_employees.
-    ENDLOOP.
-  ENDMETHOD.                    "transf_rule_result_2_employees
+      CATCH zcx_ca_error INTO DATA(lx_catched).
+        DATA(lx_error) = mo_log->add_n_save_exception( ix_catched = lx_catched
+                                                       iv_class   = CONV #( ms_lpor-typeid )
+                                                       iv_method  = 'RAISE_EVENT' ) ##no_text.
+        IF lx_error IS BOUND.
+          RAISE EXCEPTION lx_error.
+        ENDIF.
+    ENDTRY.
+  ENDMETHOD.                    "zif_ca_workflow~raise_event
 
 ENDCLASS.

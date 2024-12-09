@@ -157,13 +157,13 @@
      <CMPNAME>CONSTRUCTOR</CMPNAME>
      <SCONAME>ZCX_CA_DBACC</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Database access</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Database access</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CONSTRUCTOR</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE</CMPNAME>
@@ -181,19 +181,19 @@
      <CMPNAME>GET_INSTANCE</CMPNAME>
      <SCONAME>RESULT</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common WF object: Extended BO USR01 informations</DESCRIPT>
+     <DESCRIPT>CA-TBX Workflow: Extended BO USR01 informations</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE</CMPNAME>
      <SCONAME>ZCX_CA_DBACC</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Database access</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Database access</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE_FROM_WF_AGENT</CMPNAME>
@@ -205,19 +205,19 @@
      <CMPNAME>GET_INSTANCE_FROM_WF_AGENT</CMPNAME>
      <SCONAME>RESULT</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common WF object: BC extending BO USR01 + BO USER infos</DESCRIPT>
+     <DESCRIPT>CA-TBX Workflow: BC extending BO USR01 + BO USER infos</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE_FROM_WF_AGENT</CMPNAME>
      <SCONAME>ZCX_CA_DBACC</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Database access</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Database access</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE_FROM_WF_AGENT</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>IS_DIALOG_USER</CMPNAME>
@@ -229,7 +229,7 @@
      <CMPNAME>IS_DIALOG_USER</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>IS_LOCKED_LOCALLY_OR_GLOBALLY</CMPNAME>
@@ -241,7 +241,7 @@
      <CMPNAME>IS_LOCKED_LOCALLY_OR_GLOBALLY</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>IS_VALID</CMPNAME>
@@ -259,7 +259,7 @@
      <CMPNAME>IS_VALID</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>IS_VALID_AT_GIVEN_DATE</CMPNAME>
@@ -277,7 +277,7 @@
      <CMPNAME>IS_VALID_AT_GIVEN_DATE</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>SET_PERNR</CMPNAME>
