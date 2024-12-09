@@ -54,9 +54,9 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
       "!
       "! @parameter is_lpor      | <p class="shorttext synchronized" lang="en">Business object/class key</p>
       "! @parameter iv_key       | <p class="shorttext synchronized" lang="en">User Name in User Master Record</p>
-      "! @parameter result       | <p class="shorttext synchronized" lang="en">Common WF object: Extended BO USR01 informations</p>
-      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
-      "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">Common exception: Database access</p>
+      "! @parameter result       | <p class="shorttext synchronized" lang="en">CA-TBX Workflow: Extended BO USR01 informations</p>
+      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">CA-TBX exception: Database access</p>
       get_instance
         IMPORTING
           is_lpor       TYPE sibflpor OPTIONAL
@@ -70,9 +70,9 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
       "! <p class="shorttext synchronized" lang="en">Create instance for an workflow agent (type US only)</p>
       "!
       "! @parameter iv_wf_agent  | <p class="shorttext synchronized" lang="en">Workflow agent (type + user id)</p>
-      "! @parameter result       | <p class="shorttext synchronized" lang="en">Common WF object: BC extending BO USR01 + BO USER infos</p>
-      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
-      "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">Common exception: Database access</p>
+      "! @parameter result       | <p class="shorttext synchronized" lang="en">CA-TBX Workflow: BC extending BO USR01 + BO USER infos</p>
+      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">CA-TBX exception: Database access</p>
       get_instance_from_wf_agent
         IMPORTING
           iv_wf_agent   TYPE swp_agent
@@ -87,8 +87,8 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
       "! <p class="shorttext synchronized" lang="en">CONSTRUCTOR</p>
       "!
       "! @parameter iv_key       | <p class="shorttext synchronized" lang="en">User Name in User Master Record</p>
-      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
-      "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">Common exception: Database access</p>
+      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">CA-TBX exception: Database access</p>
       constructor
         IMPORTING
           iv_key TYPE xubname
@@ -99,7 +99,7 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
       "! <p class="shorttext synchronized" lang="en">Checks whether the user is a dialog user</p>
       "!
       "! @parameter result       | <p class="shorttext synchronized" lang="en">X = User is dialog user</p>
-      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
       is_dialog_user
         RETURNING
           VALUE(result) TYPE abap_boolean
@@ -109,7 +109,7 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
       "! <p class="shorttext synchronized" lang="en">Checks whether the user is locked locally and/or globally</p>
       "!
       "! @parameter result       | <p class="shorttext synchronized" lang="en">X = User is valid at passed date</p>
-      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
       is_locked_locally_or_globally
         RETURNING
           VALUE(result) TYPE abap_boolean
@@ -120,7 +120,7 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
       "!
       "! @parameter iv_date      | <p class="shorttext synchronized" lang="en">Date</p>
       "! @parameter result       | <p class="shorttext synchronized" lang="en">X = User is valid</p>
-      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
       is_valid
         IMPORTING
           iv_date       TYPE systdatlo DEFAULT sy-datlo
@@ -133,7 +133,7 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
       "!
       "! @parameter iv_date      | <p class="shorttext synchronized" lang="en">Date</p>
       "! @parameter result       | <p class="shorttext synchronized" lang="en">X = User is valid at passed date</p>
-      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
+      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
       is_valid_at_given_date
         IMPORTING
           iv_date       TYPE syst_datlo DEFAULT sy-datlo

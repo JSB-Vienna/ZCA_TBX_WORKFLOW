@@ -22,7 +22,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "!
       "! @parameter iv_icf_node_path | <p class="shorttext synchronized" lang="en">Use constants /UI2/IF_START_URL=&gt&CO_F*</p>
       "! @parameter result           | <p class="shorttext synchronized" lang="en">URL for branch into Fiori inbox</p>
-      "! @raising   zcx_ca_wf_utils  | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils  | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       assemble_base_url_launchpad
         IMPORTING
           iv_icf_node_path TYPE string DEFAULT /ui2/if_start_url=>co_flp
@@ -36,7 +36,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! @parameter iv_wi_id         | <p class="shorttext synchronized" lang="en">Workitem Id</p>
       "! @parameter iv_icf_node_path | <p class="shorttext synchronized" lang="en">Use constants /UI2/IF_START_URL=&gt&CO_F*</p>
       "! @parameter result           | <p class="shorttext synchronized" lang="en">URL for branch into Fiori inbox</p>
-      "! @raising   zcx_ca_wf_utils  | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils  | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       assemble_url_fiori_for_wi
         IMPORTING
           iv_wi_id         TYPE sww_wiid
@@ -50,7 +50,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "!
       "! @parameter iv_icf_node_path | <p class="shorttext synchronized" lang="en">Use constants /UI2/IF_START_URL=&gt&CO_F*</p>
       "! @parameter result           | <p class="shorttext synchronized" lang="en">URL for branch into Fiori inbox</p>
-      "! @raising   zcx_ca_wf_utils  | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils  | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       assemble_url_fiori_inbox_all
         IMPORTING
           iv_icf_node_path TYPE string DEFAULT /ui2/if_start_url=>co_flp
@@ -59,14 +59,18 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
         RAISING
           zcx_ca_wf_utils,
 
-      "! <p class="shorttext synchronized" lang="en">Assemble URL for Fiori My EVN inbox displaying work items of scenario ZMY_INBOX</p>
+      "! <p class="shorttext synchronized" lang="en">Assemble URL for a specific Fiori inbox scenario</p>
       "!
       "! @parameter iv_icf_node_path | <p class="shorttext synchronized" lang="en">Use constants /UI2/IF_START_URL=&gt&CO_F*</p>
+      "! @parameter iv_scenario_id   | <p class="shorttext synchronized" lang="en">Scenario Id</p>
+      "! <p>Define the scenario Id in transaction SPRO under path "ABAP Platform -> SAP Gateway Service Enablement
+      "! ->  Content -> Task Gateway -> Task Gateway Service -> Scenario Definition"</p>
       "! @parameter result           | <p class="shorttext synchronized" lang="en">URL for branch into Fiori inbox</p>
-      "! @raising   zcx_ca_wf_utils  | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
-      assemble_url_fiori_zmy_inbox
+      "! @raising   zcx_ca_wf_utils  | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
+      assemble_url_fiori_4_scenario
         IMPORTING
           iv_icf_node_path TYPE string DEFAULT /ui2/if_start_url=>co_flp
+          iv_scenario_id   TYPE /iwpgw/tgw_scn_id
         RETURNING
           VALUE(result)    TYPE string
         RAISING
@@ -92,7 +96,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! @parameter iv_okcode            | <p class="shorttext synchronized" lang="en">Function code to be executed; ONLI is report execution</p>
       "! @parameter iv_user              | <p class="shorttext synchronized" lang="en">User</p>
       "! @parameter iv_langu             | <p class="shorttext synchronized" lang="en">Language</p>
-      "! @raising   zcx_ca_wf_utils      | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils      | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       assemble_url_gui_tcode_call
         IMPORTING
           iv_sicf_service_path TYPE string
@@ -111,7 +115,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! @parameter iv_tcode         | <p class="shorttext synchronized" lang="en">Transaction code</p>
       "! @parameter iv_icf_node_path | <p class="shorttext synchronized" lang="en">Use constants /UI2/IF_START_URL=&gt&CO_F*</p>
       "! @parameter result           | <p class="shorttext synchronized" lang="en">URL for WebGUI </p>
-      "! @raising zcx_ca_wf_utils    | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising zcx_ca_wf_utils    | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       assemble_url_webgui_tcode_call
         IMPORTING
           iv_tcode         TYPE syst_tcode
@@ -173,6 +177,21 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
         RETURNING
           VALUE(result) TYPE sibflporb,
 
+      "! <p class="shorttext synchronized" lang="en">Create container for requested LPOR and event</p>
+      "!
+      "! @parameter is_lpor         | <p class="shorttext synchronized" lang="en">Object instance</p>
+      "! @parameter iv_event        | <p class="shorttext synchronized" lang="en">Event name</p>
+      "! @parameter result          | <p class="shorttext synchronized" lang="en">Container instance corresponding to the class event</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
+      create_event_container
+        IMPORTING
+          is_lpor       TYPE sibflporb
+          iv_event      TYPE sibfevent
+        RETURNING
+          VALUE(result) TYPE REF TO if_swf_cnt_container
+        RAISING
+          zcx_ca_wf_utils,
+
       "! <p class="shorttext synchronized" lang="en">Create a shortcut attachm. for TA or report call in SAP GUI</p>
       "!
       "! @parameter iv_title        | <p class="shorttext synchronized" lang="en">Name for attachment</p>
@@ -188,7 +207,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! @parameter iv_window_size  | <p class="shorttext synchronized" lang="en">Window size (maximized or normal)</p>
       "! @parameter iv_logon_id     | <p class="shorttext synchronized" lang="en">For RFC login</p>
       "! @parameter result          | <p class="shorttext synchronized" lang="en">Shortcut as attachment for a BCS mail</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       create_shortcut_as_mail_attchm
         IMPORTING
           iv_title       TYPE text80         DEFAULT 'Excute workitem'(ewi)
@@ -221,26 +240,30 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
 
       "! <p class="shorttext synchronized" lang="en">Find active workitem (single task) to a workflow id</p>
       "!
-      "! @parameter iv_wf_id        | <p class="shorttext synchronized" lang="en">Active WORKFLOWitem Id</p>
-      "! @parameter result          | <p class="shorttext synchronized" lang="en">Active workitem Id</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @parameter iv_wf_id               | <p class="shorttext synchronized" lang="en">Active WORKFLOWitem Id</p>
+      "! @parameter iv_ignore_status_error | <p class="shorttext synchronized" lang="en">X = Raise no exception if WI is in status ERROR</p>
+      "! @parameter result                 | <p class="shorttext synchronized" lang="en">Active workitem details</p>
+      "! @raising   zcx_ca_wf_utils        | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       find_active_wi_by_wf_id
         IMPORTING
-          iv_wf_id      TYPE sww_wfid
+          iv_wf_id               TYPE sww_wfid
+          iv_ignore_status_error TYPE abap_boolean DEFAULT abap_true
         RETURNING
-          VALUE(result) TYPE sww_wiid
+          VALUE(result)          TYPE cl_swf_utl_get_dependant_wis=>workitem_header
         RAISING
           zcx_ca_wf_utils,
 
       "! <p class="shorttext synchronized" lang="en">Get currently active workitem and its container</p>
       "!
       "! @parameter iv_raise_excep  | <p class="shorttext synchronized" lang="en">1=Raise exception if no WI was found; 0=Check result values</p>
+      "! @parameter iv_wf_id        | <p class="shorttext synchronized" lang="en">Active WORKFLOWitem Id</p>
       "! @parameter ev_wi_id        | <p class="shorttext synchronized" lang="en">Active workitem Id</p>
       "! @parameter eo_wi_cnt       | <p class="shorttext synchronized" lang="en">Container to active workitem</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       get_active_wi_n_container
         IMPORTING
           iv_raise_excep TYPE abap_bool DEFAULT abap_true
+          iv_wf_id       TYPE sww_wfid OPTIONAL
         EXPORTING
           ev_wi_id       TYPE sww_wiid
           eo_wi_cnt      TYPE REF TO if_swf_cnt_container
@@ -261,7 +284,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "!
       "! @parameter iv_workitem_id  | <p class="shorttext synchronized" lang="en">Active workitem Id</p>
       "! @parameter result          | <p class="shorttext synchronized" lang="en">X = Workflow administration is active for this workitem</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       is_wf_admin_function_active
         IMPORTING
           iv_workitem_id TYPE sww_wiid
@@ -320,7 +343,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! @parameter iv_value        | <p class="shorttext synchronized" lang="en">Unconverted parameter value</p>
       "! @parameter iv_curr_url     | <p class="shorttext synchronized" lang="en">Current URL, otherwise kept in class</p>
       "! @parameter result          | <p class="shorttext synchronized" lang="en">Completetd URL</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       add_param_to_fiori_url
         IMPORTING
           iv_name       TYPE string
@@ -336,7 +359,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! @parameter iv_ref_struct   | <p class="shorttext synchronized" lang="en">Reference structure name</p>
       "! @parameter iv_ref_field    | <p class="shorttext synchronized" lang="en">Reference field name</p>
       "! @parameter result          | <p class="shorttext synchronized" lang="en">Type conform field reference</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       create_type_conform_field
         IMPORTING
           iv_ref_struct TYPE swc_refstr
@@ -355,11 +378,24 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
         RETURNING
           VALUE(result) TYPE i,
 
+      "! <p class="shorttext synchronized" lang="en">Is the passed scenario Id is valid?</p>
+      "!
+      "! @parameter result          | <p class="shorttext synchronized" lang="en">X = Scenario Id is valid</p>
+      "! @parameter iv_scenario_id  | <p class="shorttext synchronized" lang="en">Scenario Id</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
+      is_scenario_id_valid
+        IMPORTING
+          iv_scenario_id TYPE /iwpgw/tgw_scn_id
+        RETURNING
+          VALUE(result)  TYPE abap_boolean
+        RAISING
+          zcx_ca_wf_utils,
+
       "! <p class="shorttext synchronized" lang="en">Prepare Business Object key for output</p>
       "!
       "! @parameter is_lpor         | <p class="shorttext synchronized" lang="en">Business Object key</p>
       "! @parameter result          | <p class="shorttext synchronized" lang="en">For output prepared key values</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       prepare_bo_key_for_output
         IMPORTING
           is_lpor       TYPE sibflporb
@@ -372,7 +408,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "!
       "! @parameter is_lpor         | <p class="shorttext synchronized" lang="en">Business Class key</p>
       "! @parameter result          | <p class="shorttext synchronized" lang="en">For output prepared key values</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       prepare_cl_key_for_output
         IMPORTING
           is_lpor       TYPE sibflporb
@@ -386,7 +422,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! @parameter iv_ref_struct   | <p class="shorttext synchronized" lang="en">Reference structure name</p>
       "! @parameter iv_key_string   | <p class="shorttext synchronized" lang="en">Business Class key as character string</p>
       "! @parameter result          | <p class="shorttext synchronized" lang="en">For output prepared key values</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">Common WF exception: Service method error</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       prepare_key_from_structure
         IMPORTING
           iv_ref_struct TYPE swc_refstr
@@ -400,7 +436,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_CA_WF_UTILS IMPLEMENTATION.
+CLASS zcl_ca_wf_utils IMPLEMENTATION.
 
 
   METHOD add_param_to_fiori_url.
@@ -557,6 +593,20 @@ CLASS ZCL_CA_WF_UTILS IMPLEMENTATION.
   ENDMETHOD.                    "assemble_url_fiori_inbox_all
 
 
+  METHOD assemble_url_fiori_4_scenario.
+    "-----------------------------------------------------------------*
+    "   Assemble URL for a specific Fiori inbox scenario (= filtered WIs)
+    "-----------------------------------------------------------------*
+    is_scenario_id_valid( iv_scenario_id ).
+
+    assemble_base_url_launchpad( iv_icf_node_path ).
+
+    add_param_to_fiori_url( iv_name  = `#WorkflowTask-displayInbox?&scenarioId`
+                            iv_value = iv_scenario_id ) ##no_text.
+    result = mv_url.
+  ENDMETHOD.                    "assemble_url_fiori_4_scenario
+
+
   METHOD assemble_url_gui_tcode_call.
     "-----------------------------------------------------------------*
     "   Assemble URL for transaction call in SAP GUI
@@ -663,6 +713,28 @@ CLASS ZCL_CA_WF_UTILS IMPLEMENTATION.
                       typeid = iv_type_id
                       instid = |{ iv_key_1 }{ iv_key_2 }{ iv_key_3 }{ iv_key_4 }{ iv_key_5 }{ iv_key_6 }| ).
   ENDMETHOD.                    "create_bor_inst_from_key_vals
+
+
+  METHOD create_event_container.
+    "-----------------------------------------------------------------*
+    "   Create container for requested LPOR and event
+    "-----------------------------------------------------------------*
+    TRY.
+        result = cl_swf_cnt_factory=>create_event_container( im_objcateg = is_lpor-catid
+                                                             im_objtype  = is_lpor-typeid
+                                                             im_event    = iv_event ).
+
+      CATCH cx_swf_utl_obj_create_failed INTO DATA(lx_catched).
+        DATA(lx_error) = CAST zcx_ca_wf_utils( zcx_ca_error=>create_exception(
+                                                           iv_excp_cls = zcx_ca_wf_utils=>c_zcx_ca_wf_utils
+                                                           iv_class    = 'CL_SWF_CNT_FACTORY'
+                                                           iv_method   = 'CREATE_EVENT_CONTAINER'
+                                                           ix_error    = lx_catched ) ) ##no_text.
+        IF lx_error IS BOUND.
+          RAISE EXCEPTION lx_error.
+        ENDIF.
+    ENDTRY.
+  ENDMETHOD.                    "create_event_container
 
 
   METHOD create_shortcut_as_mail_attchm.
@@ -848,7 +920,7 @@ CLASS ZCL_CA_WF_UTILS IMPLEMENTATION.
             mv_msgv1 = CONV #( |{ iv_wf_id ALPHA = OUT }| ).
 
       WHEN 1.
-        DATA(ls_act_wi) = lt_act_wis[ 1 ].
+        result = lt_act_wis[ 1 ].
 
       WHEN OTHERS.
         "No unique result for workflow Id 1&
@@ -859,14 +931,13 @@ CLASS ZCL_CA_WF_UTILS IMPLEMENTATION.
     ENDCASE.
 
     "Check status and raise exception if in status error
-    IF ls_act_wi-wi_stat EQ swfco_wi_status_error.
+    IF iv_ignore_status_error EQ abap_false AND
+       result-wi_stat         EQ swfco_wi_status_error.
       "Found active work item is in status 'ERROR'
       RAISE EXCEPTION TYPE zcx_ca_wf_utils
         EXPORTING
           textid = zcx_ca_wf_utils=>act_wi_in_stat_err.
     ENDIF.
-
-    result = ls_act_wi-wi_id.
   ENDMETHOD.                    "find_active_wi_by_wf_id
 
 
@@ -877,10 +948,16 @@ CLASS ZCL_CA_WF_UTILS IMPLEMENTATION.
     CLEAR: ev_wi_id,
            eo_wi_cnt.
 
-    cl_swf_evt_requester=>get_workitem(
-                                  IMPORTING
-                                    ex_workitem_id = DATA(lv_wi_id) ).
-    ev_wi_id = CONV #( lv_wi_id ).
+    IF iv_wf_id IS NOT INITIAL.
+      DATA(ls_wi_details) = find_active_wi_by_wf_id( iv_wf_id ).
+      ev_wi_id = ls_wi_details-wi_id.
+
+    ELSE.
+      cl_swf_evt_requester=>get_workitem(
+                                    IMPORTING
+                                      ex_workitem_id = DATA(lv_wi_id) ).
+      ev_wi_id = CONV #( lv_wi_id ).
+    ENDIF.
 
     "The value is also initial, if it is called in a side methods of a workflow step!!
     IF ev_wi_id IS INITIAL.
@@ -951,6 +1028,27 @@ CLASS ZCL_CA_WF_UTILS IMPLEMENTATION.
     "-----------------------------------------------------------------*
     result = lines( it_table ).
   ENDMETHOD.                    "get_num_of_lines
+
+
+  METHOD is_scenario_id_valid.
+    "-----------------------------------------------------------------*
+    "   Is the passed scenario Id is valid?
+    "-----------------------------------------------------------------*
+    SELECT SINGLE FROM /iwpgw/c_tgw_scn
+                FIELDS @abap_true
+                 WHERE scenario_id EQ @iv_scenario_id
+                  INTO @result.
+    IF result EQ abap_false AND
+       result IS NOT SUPPLIED.
+      "Parameter '&1' has invalid value '&2'
+      RAISE EXCEPTION TYPE zcx_ca_wf_utils
+        EXPORTING
+          textid   = zcx_ca_wf_utils=>param_invalid
+          mv_msgty = zcx_ca_wf_utils=>c_msgty_e
+          mv_msgv1 = 'IV_SCENARIO_ID'
+          mv_msgv2 = CONV #( iv_scenario_id ).
+    ENDIF.
+  ENDMETHOD.                    "is_scenario_id_valid
 
 
   METHOD is_wf_admin_function_active.
@@ -1199,15 +1297,4 @@ CLASS ZCL_CA_WF_UTILS IMPLEMENTATION.
     result = abap_true.
   ENDMETHOD.                    "wait_n_seconds
 
-
-  METHOD assemble_url_fiori_zmy_inbox.
-    "-----------------------------------------------------------------*
-    "   Assemble URL for Fiori inbox displaying all work items
-    "-----------------------------------------------------------------*
-    assemble_base_url_launchpad( iv_icf_node_path ).
-
-    add_param_to_fiori_url( iv_name  = `#WorkflowTask-displayInbox?&scenarioId`
-                            iv_value = `ZMY_INBOX` ) ##no_text.
-    result = mv_url.
-  ENDMETHOD.                    "assemble_url_fiori_my_evn_inbox
 ENDCLASS.
