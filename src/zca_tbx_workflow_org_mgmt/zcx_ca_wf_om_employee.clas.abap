@@ -46,7 +46,7 @@ CLASS zcx_ca_wf_om_employee DEFINITION
         msgid TYPE symsgid VALUE 'ZCA_WF_OM',
         msgno TYPE symsgno VALUE '020',
         attr1 TYPE scx_attrname VALUE 'MV_MSGV1',
-        attr2 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE 'MV_MSGV2',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
       END OF no_pers_ids_2_central_pernr .
@@ -64,10 +64,19 @@ CLASS zcx_ca_wf_om_employee DEFINITION
         msgid TYPE symsgid VALUE 'ZCA_WF_OM',
         msgno TYPE symsgno VALUE '018',
         attr1 TYPE scx_attrname VALUE 'MV_MSGV1',
-        attr2 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE 'MV_MSGV2',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
       END OF lowest_pernr .
+    CONSTANTS:
+      BEGIN OF is_not_a_leader_of_this_ou,
+        msgid TYPE symsgid VALUE 'ZCA_WF_OM',
+        msgno TYPE symsgno VALUE '021',
+        attr1 TYPE scx_attrname VALUE 'MV_MSGV1',
+        attr2 TYPE scx_attrname VALUE 'MV_MSGV2',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF is_not_a_leader_of_this_ou .
     CONSTANTS c_zcx_ca_wf_om_employee TYPE seoclsname VALUE 'ZCX_CA_WF_OM_EMPLOYEE' ##NO_TEXT.
 
     METHODS constructor

@@ -5,10 +5,10 @@
    <DD25V>
     <VIEWNAME>ZCAWF_VD_PERCOMM</VIEWNAME>
     <AS4LOCAL>A</AS4LOCAL>
-    <DDLANGUAGE>E</DDLANGUAGE>
+    <DDLANGUAGE>D</DDLANGUAGE>
     <AGGTYPE>V</AGGTYPE>
     <ROOTTAB>PA0000</ROOTTAB>
-    <DDTEXT>CA-WF: Active personnel number, name and communication data</DDTEXT>
+    <DDTEXT>CA-WF: Aktive Personalnummer, Name und Kommunikationsdaten</DDTEXT>
     <VIEWCLASS>D</VIEWCLASS>
     <VIEWGRANT>R</VIEWGRANT>
    </DD25V>
@@ -459,6 +459,15 @@
      <CONSTANTS>&apos;9001&apos;</CONSTANTS>
     </DD28V>
    </DD28V_TABLE>
+   <I18N_LANGS>
+    <LANGU>E</LANGU>
+   </I18N_LANGS>
+   <DD25_TEXTS>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>CA-WF: Active personnel number, name and communication data</DDTEXT>
+    </item>
+   </DD25_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

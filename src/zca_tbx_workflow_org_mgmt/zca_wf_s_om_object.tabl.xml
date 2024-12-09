@@ -4,7 +4,7 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZCA_WF_S_OM_OBJECT</TABNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
+    <DDLANGUAGE>D</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
     <LANGDEP>X</LANGDEP>
     <DDTEXT>Details to organizational object</DDTEXT>
@@ -17,7 +17,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>SWHACTOR</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Rule Resolution Result</DDTEXT>
+     <DDTEXT>Ergebnis der Regelauflösung</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_OM_OBJ_KEY</GROUPNAME>
     </DD03P>
@@ -35,14 +35,23 @@
     </DD03P>
     <DD03P>
      <FIELDNAME>O_OWNER</FIELDNAME>
-     <ROLLNAME>ZCL_CA_WF_OM_EMPLOYEE</ROLLNAME>
+     <ROLLNAME>ZIF_CA_WF_OM_EMPLOYEE</ROLLNAME>
      <ADMINFIELD>0</ADMINFIELD>
      <DATATYPE>REF</DATATYPE>
-     <MASK>  REF RC</MASK>
+     <MASK>  REF RI</MASK>
      <COMPTYPE>R</COMPTYPE>
-     <REFTYPE>C</REFTYPE>
+     <REFTYPE>I</REFTYPE>
     </DD03P>
    </DD03P_TABLE>
+   <I18N_LANGS>
+    <LANGU>E</LANGU>
+   </I18N_LANGS>
+   <DD02_TEXTS>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>Details to organizational object</DDTEXT>
+    </item>
+   </DD02_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

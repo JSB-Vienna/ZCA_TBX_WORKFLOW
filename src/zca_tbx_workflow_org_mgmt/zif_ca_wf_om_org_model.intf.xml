@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_CA_WF_OM_ORG_MODEL</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>WF-OM: BC Org. unit determinations</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS_INTERFACE>
+    <SEOCLASSTX>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Org. unit determinations</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_INTERFACE>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_ALL_MANAGERS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine all managers to a organizational object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get employees to the current org. object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine one manager to a organizational object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine (depending) org. unit data (using RH_STRUC_GET)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_TEXT_OF_ORG_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get short description of organizational unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_CVC_OM</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Constants and value checks for org. management</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MS_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Details to organizational object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_SEARCH_ACTIVE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Search for an active person; &apos; &apos; = any state</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_VALID_ON</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object is valid on</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ALL_MANAGERS</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ALL_MANAGERS</CMPNAME>
+     <SCONAME>IV_SEARCH_UPWARDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>0 = Search NOT higher; &gt; 0 = search up to x levels above</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ALL_MANAGERS</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Managers to the current org. object</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ALL_MANAGERS</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>IV_ALL_MANAGERS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Return all managers</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>IV_SCOPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Scope (only types S + O) -&gt; use ZCL_CA_WF_OM_CVC=&gt;SCOPE-*</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determined employees</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_EMPLOYEES_2_ORG_OBJECT</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <SCONAME>IV_SEARCH_UPWARDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>0 = Search NOT higher; &gt; 0 = search up to x levels above</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Manager to the current org. object</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MANAGER</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_AUTH_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Authority check is active</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_EVAL_PATH</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluation path</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_INT_FLAG</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Read evaluation path in internal table</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_TDEPTH</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Technical depth of structure</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_TFLAG</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Supply texts</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>IV_VFLAG</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Supply relationship information</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Merged result of FM RH_STRUC_GET</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ORG_MODEL_DATA</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Org. model determination exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TEXT_OF_ORG_OBJECT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Short description of org. object</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

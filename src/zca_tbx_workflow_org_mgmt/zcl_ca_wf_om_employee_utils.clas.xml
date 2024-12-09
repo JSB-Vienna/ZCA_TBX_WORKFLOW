@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_WF_OM_EMPLOYEE_UTILS</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>WF-OM: Conversion + helper utilities regarding employees</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: Conversion + helper utilities regarding employees</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Mass instantiation of employees by different keys</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TRANSF_EMPLOYEES_2_RULE_RESULT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Transfer determined employees into agent rule result</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TRANSF_RULE_RESULT_2_EMPLOYEES</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Transfer agent rule result into format of employee data</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>IT_EMPLOYEES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of keys to determine employees</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>IV_RAISE_EXCEP</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Raise an exception; &apos; &apos; = Return message</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>IV_SEARCH_ACTIVE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Search for an active person</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object is valid on</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>RT_EMPLOYEES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of completed employees</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>FIND_EMPLOYEES</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_ORG_MODEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Org. model determination exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_EMPLOYEES_2_RULE_RESULT</CMPNAME>
+     <SCONAME>IT_EMPLOYEES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of keys to determine employees</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_EMPLOYEES_2_RULE_RESULT</CMPNAME>
+     <SCONAME>RT_ACTORS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid employees in agent rule format</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_RULE_RESULT_2_EMPLOYEES</CMPNAME>
+     <SCONAME>IT_ACTORS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid employees in agent rule format</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_RULE_RESULT_2_EMPLOYEES</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object is valid on</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TRANSF_RULE_RESULT_2_EMPLOYEES</CMPNAME>
+     <SCONAME>RT_EMPLOYEES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of keys to determine employees</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

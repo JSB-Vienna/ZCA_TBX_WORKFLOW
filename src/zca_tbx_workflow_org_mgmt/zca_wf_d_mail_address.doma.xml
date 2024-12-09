@@ -4,7 +4,7 @@
   <asx:values>
    <DD01V>
     <DOMNAME>ZCA_WF_D_MAIL_ADDRESS</DOMNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
+    <DDLANGUAGE>D</DDLANGUAGE>
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000241</LENG>
     <OUTPUTLEN>000241</OUTPUTLEN>
@@ -13,6 +13,15 @@
     <DDTEXT>eMail address (like AD_SMTPADR, but output length 50)</DDTEXT>
     <DOMMASTER>E</DOMMASTER>
    </DD01V>
+   <I18N_LANGS>
+    <LANGU>E</LANGU>
+   </I18N_LANGS>
+   <DD01_TEXTS>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>eMail address (like AD_SMTPADR, but output length 50)</DDTEXT>
+    </item>
+   </DD01_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>
