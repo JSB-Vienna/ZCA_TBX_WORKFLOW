@@ -9,140 +9,146 @@
    </T100A>
    <T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>000</MSGNR>
-     <TEXT>Fehler während Datenermittlung im Organisationmodell aufgetreten</TEXT>
+     <TEXT>Error occurred during data determination in the organzational model</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>001</MSGNR>
-     <TEXT>Kein(e) &amp;1 für Personalnummer &amp;2 in Infotyp 0105 (Kommunikation) gepflegt</TEXT>
+     <TEXT>No &amp;1 maintained for personnel number &amp;2 in infotype 0105</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>002</MSGNR>
-     <TEXT>SAP-Benutzer-Id &amp;1 kann nicht in Infotyp 0105 gefunden werden</TEXT>
+     <TEXT>No SAP user Id &amp;1 available in infotype 0105</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>003</MSGNR>
-     <TEXT>Fehler während Datenermittlung aufgetreten. Details siehe Feld &quot;ERR_MSG&quot;</TEXT>
+     <TEXT>Error occurred during data determination. For details see fld. &quot;ERR_MSG&quot;</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>004</MSGNR>
-     <TEXT>Keine Personalnummer zu &amp;1 &amp;2 gefunden oder ist ungültig am &amp;3</TEXT>
+     <TEXT>No personnel number found to &amp;1 &amp;2 or is not valid on &amp;3</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>005</MSGNR>
-     <TEXT>Kein Stelleninhaber zu Planvariante &amp;1 / Org.typ &amp;2 / Org.einheit &amp;3</TEXT>
+     <TEXT>No position owner to plan version &amp;1 / org. type &amp;2 / org.unit &amp;3</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>006</MSGNR>
-     <TEXT>Keine gültigen Daten zu Personalnummer(n) gefunden</TEXT>
+     <TEXT>No valid data found to personnel number(s)</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>007</MSGNR>
-     <TEXT>Zu wenig Daten zur Ermittlung von Organisationsinformationen</TEXT>
+     <TEXT>Too less data for determination of organizational informations</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>008</MSGNR>
-     <TEXT>Keinen gültigen Vorgesetzten zur Org.einheit &amp;1 &amp;2 gefunden</TEXT>
+     <TEXT>No valid leader or superior found to org. unit &amp;1 &amp;2</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>009</MSGNR>
-     <TEXT>SAP-Benutzer-Id &amp;1 ist zeitlich begrenzt und derzeit ungültig</TEXT>
+     <TEXT>SAP user Id &amp;1 is timely delimited and currently invalid</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>010</MSGNR>
-     <TEXT>Fehler bei Ermittlung von Mitarbeiterdetails aus Org.management</TEXT>
+     <TEXT>Error when determine employee details from org. management</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>011</MSGNR>
-     <TEXT>Kein(e) &amp;1 für Personalnummer &amp;2 in Infotyp 0105 (Kommunikation) gepflegt</TEXT>
+     <TEXT>No &amp;1 maintained for personnel number &amp;2 in infotype 0105</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>012</MSGNR>
-     <TEXT>Keine Personalnummer zu Benutzer-Id &amp;1 gefunden</TEXT>
+     <TEXT>No personnel number found to user id &amp;1</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>013</MSGNR>
-     <TEXT>Ausnahme während Ermittlungen im Org.management</TEXT>
+     <TEXT>Exception during org. management determination</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>014</MSGNR>
-     <TEXT>Objekttyp &apos;&amp;1&apos; ist nicht erlaubt &amp;2</TEXT>
+     <TEXT>Object type &apos;&amp;1&apos; is not allowed &amp;2</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>015</MSGNR>
-     <TEXT>SAP-Benutzer-Id &apos;&amp;1&apos; zu keinem Pers.stamm gefunden oder existiert nicht</TEXT>
+     <TEXT>SAP user id &apos;&amp;1&apos; not maintained in personnel master or does not exist</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>016</MSGNR>
-     <TEXT>Die Suche nach Mitarb. zu Person/SAP-Benutzer (&amp;1) ist nicht unterstützt</TEXT>
+     <TEXT>Search members to a person/SAP user (&amp;1) is not supported</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>017</MSGNR>
-     <TEXT>Keine Personen zu &amp;1 &amp;2 im Bereich &amp;3 gefunden</TEXT>
+     <TEXT>No people found to &amp;1 &amp;2 to scope &amp;3</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>018</MSGNR>
-     <TEXT>Pers.nr &amp;1 ist inaktiv o. nicht die niedrigste. Durch Pers.nr &amp;2 ersetzen</TEXT>
+     <TEXT>Pers Id &amp;1 is inactive or not the lowest. Please replace it by Pers Id &amp;2</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>019</MSGNR>
-     <TEXT>Keine gültige zentrale Person zu Personalnr. &amp;1 gefunden</TEXT>
+     <TEXT>No valid central person found to personnel Id &amp;1</TEXT>
     </T100>
     <T100>
-     <SPRSL>D</SPRSL>
+     <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>020</MSGNR>
-     <TEXT>Personalnr. &amp;1 ist inaktiv. Keine aktiven Pers.nrn. via CP &amp;2 gefunden.</TEXT>
+     <TEXT>Personnel Id &amp;1 is inactive. No other active Ids found via CP &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>021</MSGNR>
+     <TEXT>&amp;1 is not a leader of the org. unit &amp;2</TEXT>
     </T100>
    </T100>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
     <LANGU>W</LANGU>
     <LANGU>d</LANGU>
    </I18N_LANGS>
    <T100T>
     <T100T>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <STEXT>Org. management model</STEXT>
     </T100T>
@@ -159,114 +165,109 @@
    </T100T>
    <T100_TEXTS>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>000</MSGNR>
-     <TEXT>Error occurred during data determination in the organzational model</TEXT>
+     <TEXT>Fehler während Datenermittlung im Organisationmodell aufgetreten</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>001</MSGNR>
-     <TEXT>No &amp;1 maintained for personnel number &amp;2 in infotype 0105</TEXT>
+     <TEXT>Kein(e) &amp;1 für Personalnummer &amp;2 in Infotyp 0105 (Kommunikation) gepflegt</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>002</MSGNR>
-     <TEXT>No SAP user Id &amp;1 available in infotype 0105</TEXT>
+     <TEXT>SAP-Benutzer-Id &amp;1 kann nicht in Infotyp 0105 gefunden werden</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>003</MSGNR>
-     <TEXT>Error occurred during data determination. For details see fld. &quot;ERR_MSG&quot;</TEXT>
+     <TEXT>Fehler während Datenermittlung aufgetreten. Details siehe Feld &quot;ERR_MSG&quot;</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>004</MSGNR>
-     <TEXT>No personnel number found to &amp;1 &amp;2 or is not valid on &amp;3</TEXT>
+     <TEXT>Keine Personalnummer zu &amp;1 &amp;2 gefunden oder ist ungültig am &amp;3</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>005</MSGNR>
-     <TEXT>No position owner to plan version &amp;1 / org. type &amp;2 / org.unit &amp;3</TEXT>
+     <TEXT>Kein Stelleninhaber zu Planvariante &amp;1 / Org.typ &amp;2 / Org.einheit &amp;3</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>006</MSGNR>
-     <TEXT>No valid data found to personnel number(s)</TEXT>
+     <TEXT>Keine gültigen Daten zu Personalnummer(n) gefunden</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>007</MSGNR>
-     <TEXT>Too less data for determination of organizational informations</TEXT>
+     <TEXT>Zu wenig Daten zur Ermittlung von Organisationsinformationen</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>008</MSGNR>
-     <TEXT>No valid leader or superior found to org. unit &amp;1 &amp;2</TEXT>
+     <TEXT>Keinen gültigen Vorgesetzten zur Org.einheit &amp;1 &amp;2 gefunden</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>009</MSGNR>
-     <TEXT>SAP user Id &amp;1 is timely delimited and currently invalid</TEXT>
+     <TEXT>SAP-Benutzer-Id &amp;1 ist zeitlich begrenzt und derzeit ungültig</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>010</MSGNR>
-     <TEXT>Error when determine employee details from org. management</TEXT>
+     <TEXT>Fehler bei Ermittlung von Mitarbeiterdetails aus Org.management</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>011</MSGNR>
-     <TEXT>No &amp;1 maintained for personnel number &amp;2 in infotype 0105</TEXT>
+     <TEXT>Kein(e) &amp;1 für Personalnummer &amp;2 in Infotyp 0105 (Kommunikation) gepflegt</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>012</MSGNR>
-     <TEXT>No personnel number found to user id &amp;1</TEXT>
+     <TEXT>Keine Personalnummer zu Benutzer-Id &amp;1 gefunden</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>013</MSGNR>
-     <TEXT>Exception during org. management determination</TEXT>
+     <TEXT>Ausnahme während Ermittlungen im Org.management</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>014</MSGNR>
-     <TEXT>Object type &apos;&amp;1&apos; is not allowed &amp;2</TEXT>
+     <TEXT>Objekttyp &apos;&amp;1&apos; ist nicht erlaubt &amp;2</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>015</MSGNR>
-     <TEXT>SAP user id &apos;&amp;1&apos; not maintained in personnel master or does not exist</TEXT>
+     <TEXT>SAP-Benutzer-Id &apos;&amp;1&apos; zu keinem Pers.stamm gefunden oder existiert nicht</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>016</MSGNR>
-     <TEXT>Search members to a person/SAP user (&amp;1) is not supported</TEXT>
+     <TEXT>Die Suche nach Mitarb. zu Person/SAP-Benutzer (&amp;1) ist nicht unterstützt</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>017</MSGNR>
-     <TEXT>No people found to &amp;1 &amp;2 to scope &amp;3</TEXT>
+     <TEXT>Keine Personen zu &amp;1 &amp;2 im Bereich &amp;3 gefunden</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>018</MSGNR>
-     <TEXT>Pers Id &amp;1 is inactive or not the lowest. Please replace it by Pers Id &amp;2</TEXT>
+     <TEXT>Pers.nr &amp;1 ist inaktiv o. nicht die niedrigste. Durch Pers.nr &amp;2 ersetzen</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>019</MSGNR>
-     <TEXT>No valid central person found to personnel Id &amp;1</TEXT>
+     <TEXT>Keine gültige zentrale Person zu Personalnr. &amp;1 gefunden</TEXT>
     </item>
     <item>
-     <SPRSL>E</SPRSL>
+     <SPRSL>D</SPRSL>
      <MSGNR>020</MSGNR>
-     <TEXT>Personnel Id &amp;1 is inactive. No other active Ids found via CP &amp;2.</TEXT>
-    </item>
-    <item>
-     <SPRSL>E</SPRSL>
-     <MSGNR>021</MSGNR>
-     <TEXT>&amp;1 is not a leader of the org. unit &amp;2</TEXT>
+     <TEXT>Personalnr. &amp;1 ist inaktiv. Keine aktiven Pers.nrn. via CP &amp;2 gefunden.</TEXT>
     </item>
     <item>
      <SPRSL>W</SPRSL>

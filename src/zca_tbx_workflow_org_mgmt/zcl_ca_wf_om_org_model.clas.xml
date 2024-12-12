@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_OM_ORG_MODEL</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>WF-OM: Organisation model determinations</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>WF-OM: BC Org. unit determinations</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -15,13 +15,19 @@
     <item>
      <ID>I</ID>
      <KEY>ALL</KEY>
-     <ENTRY>alle</ENTRY>
+     <ENTRY>all</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
+     <KEY>DAV</KEY>
+     <ENTRY>Org. object</ENTRY>
+     <LENGTH>25</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
      <KEY>E01</KEY>
-     <ENTRY>für SAP-Benutzerermittlung</ENTRY>
+     <ENTRY>for SAP user determination</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
@@ -33,30 +39,30 @@
     <item>
      <ID>I</ID>
      <KEY>MEM</KEY>
-     <ENTRY>Nur Mitarbeiter</ENTRY>
+     <ENTRY>Members only</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>TX1</KEY>
-     <ENTRY>Keine Kurzbeschreibung gefunden!</ENTRY>
+     <ENTRY>No descriptive text found!</ENTRY>
      <LENGTH>40</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>ALL</KEY>
-       <ENTRY>all</ENTRY>
+       <ENTRY>alle</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E01</KEY>
-       <ENTRY>for SAP user determination</ENTRY>
+       <ENTRY>für SAP-Benutzerermittlung</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
@@ -68,13 +74,13 @@
       <item>
        <ID>I</ID>
        <KEY>MEM</KEY>
-       <ENTRY>Members only</ENTRY>
+       <ENTRY>Nur Mitarbeiter</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>TX1</KEY>
-       <ENTRY>No descriptive text found!</ENTRY>
+       <ENTRY>Keine Kurzbeschreibung gefunden!</ENTRY>
        <LENGTH>40</LENGTH>
       </item>
      </TEXTPOOL>
@@ -152,8 +158,8 @@
    </I18N_TPOOL>
    <DESCRIPTIONS_CLASS>
     <SEOCLASSTX>
-     <LANGU>E</LANGU>
-     <DESCRIPT>WF-OM: BC Org. unit determinations</DESCRIPT>
+     <LANGU>D</LANGU>
+     <DESCRIPT>WF-OM: Organisation model determinations</DESCRIPT>
     </SEOCLASSTX>
    </DESCRIPTIONS_CLASS>
    <DESCRIPTIONS>

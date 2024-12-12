@@ -4,7 +4,7 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZCA_WF_S_EMPLOYEE</TABNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
     <LANGDEP>X</LANGDEP>
     <DDTEXT>Employee details from HCM master data</DDTEXT>
@@ -113,17 +113,17 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>PS0001</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Personal-Stammsatz Infotyp 0001 (Org. Zuordnung)</DDTEXT>
+     <DDTEXT>HR Master Record: Infotype 0001 (Org. Assignment)</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_ORG_ASSIGNM</GROUPNAME>
     </DD03P>
    </DD03P_TABLE>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD02_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDLANGUAGE>D</DDLANGUAGE>
      <DDTEXT>Employee details from HCM master data</DDTEXT>
     </item>
    </DD02_TEXTS>
