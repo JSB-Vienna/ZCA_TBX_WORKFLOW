@@ -28,6 +28,11 @@
      <DESCRIPT>Create a singleton instance of the factory</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>C_METHNAME_CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Methodname of Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>FIND_IN_BUFFER</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Find an instance to the workflow instance key in buffer</DESCRIPT>
@@ -53,14 +58,14 @@
      <DESCRIPT>Get technical description of the workflow class key</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>IS_A_SINGLE_KEY_FIELD_DEF</CMPNAME>
+     <CMPNAME>HAS_ONLY_ONE_KEY_FIELD_DEFINED</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Check whether the key is defined in a single data object</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>IS_BUSINESS_CLASS_TYPE_VALID</CMPNAME>
+     <CMPNAME>IS_OBJ_TYPE_A_BUSINESS_CLASS</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Check whether the passed BC type is valid and workflow class</DESCRIPT>
+     <DESCRIPT>Check whether the passed BC type is a workflow class</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>MO_SINGLETON</CMPNAME>
@@ -249,31 +254,31 @@
      <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>IS_A_SINGLE_KEY_FIELD_DEF</CMPNAME>
-     <SCONAME>IO_KEY_FLD_CONTAINER</SCONAME>
+     <CMPNAME>HAS_ONLY_ONE_KEY_FIELD_DEFINED</CMPNAME>
+     <SCONAME>IT_KEY_FIELDS</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Container with key fields</DESCRIPT>
+     <DESCRIPT>Key fields of object</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>IS_A_SINGLE_KEY_FIELD_DEF</CMPNAME>
+     <CMPNAME>HAS_ONLY_ONE_KEY_FIELD_DEFINED</CMPNAME>
      <SCONAME>IV_OBJECT_TYPE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Workflow instance type</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>IS_A_SINGLE_KEY_FIELD_DEF</CMPNAME>
+     <CMPNAME>HAS_ONLY_ONE_KEY_FIELD_DEFINED</CMPNAME>
      <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>IS_BUSINESS_CLASS_TYPE_VALID</CMPNAME>
+     <CMPNAME>IS_OBJ_TYPE_A_BUSINESS_CLASS</CMPNAME>
      <SCONAME>IO_CLASS_DESCR</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Techn. description of the workflow class type (= class name)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>IS_BUSINESS_CLASS_TYPE_VALID</CMPNAME>
+     <CMPNAME>IS_OBJ_TYPE_A_BUSINESS_CLASS</CMPNAME>
      <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>

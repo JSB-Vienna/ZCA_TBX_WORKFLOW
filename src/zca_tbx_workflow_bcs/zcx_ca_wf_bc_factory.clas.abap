@@ -28,7 +28,7 @@ CLASS zcx_ca_wf_bc_factory DEFINITION
       END OF is_no_workflow_class .
 
     "! <p class="shorttext synchronized" lang="en">My own name</p>
-    CONSTANTS c_zcx_ca_wf_bcs_factory TYPE seoclsname VALUE 'ZCX_CA_WF_BCS_FACTORY' ##NO_TEXT.
+    CONSTANTS c_zcx_ca_wf_bc_factory TYPE seoclsname VALUE 'ZCX_CA_WF_BC_FACTORY' ##NO_TEXT.
 
     "! <p class="shorttext synchronized" lang="en">CONSTRUCTOR</p>
     METHODS constructor

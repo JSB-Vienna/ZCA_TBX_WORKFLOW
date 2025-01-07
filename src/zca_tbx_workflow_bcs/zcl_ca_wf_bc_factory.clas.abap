@@ -12,7 +12,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
 *   i n t e r f a c e s
     INTERFACES:
       zif_ca_wf_bc_factory.
- 
+
 *   a l i a s e s
     ALIASES:
 *     Methods
@@ -20,7 +20,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
       create_by_lpor         FOR zif_ca_wf_bc_factory~create_by_lpor,
       extract_key_from_input FOR zif_ca_wf_bc_factory~extract_key_from_input,
       release_from_buffer    FOR zif_ca_wf_bc_factory~release_from_buffer.
- 
+
 *   s t a t i c   m e t h o d s
     CLASS-METHODS:
       "! <p class="shorttext synchronized" lang="en">Create a singleton instance of the factory</p>
@@ -29,8 +29,8 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
       create_singleton
         RETURNING
           VALUE(result) TYPE REF TO zif_ca_wf_bc_factory.
- 
- 
+
+
 * P R I V A T E   S E C T I O N
   PRIVATE SECTION.
 *   l o c a l   t y p e   d e f i n i t i o n
@@ -44,7 +44,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
       "! <p class="shorttext synchronized" lang="en">Instance buffer</p>
       ty_t_buffer TYPE HASHED TABLE OF ty_s_buffer
                                        WITH UNIQUE KEY primary_key COMPONENTS s_lpor,
- 
+
       "! <p class="shorttext synchronized" lang="en">Buffered instance</p>
       BEGIN OF ty_s_buffer_techn_descr,
         "! <p class="shorttext synchronized" lang="en">Object (= class) name</p>
@@ -57,24 +57,24 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
       "! <p class="shorttext synchronized" lang="en">Buffer with technical descriptions</p>
       ty_t_buffer_techn_descr TYPE HASHED TABLE OF ty_s_buffer_techn_descr
                                               WITH UNIQUE KEY primary_key COMPONENTS typeid.
- 
+
 *   c o n s t a n t s
     CONSTANTS:
       "! <p class="shorttext synchronized" lang="en">Methodname of Constructor</p>
       c_methname_constructor TYPE abap_methname VALUE 'CONSTRUCTOR' ##no_text.
- 
+
 *   s t a t i c   a t t r i b u t e s
     CLASS-DATA:
 *     o b j e c t   r e f e r e n c e s
       "! <p class="shorttext synchronized" lang="en">Singleton instance of the this factory</p>
       mo_singleton          TYPE REF TO zif_ca_wf_bc_factory,
- 
+
 *     t a b l e s
       "! <p class="shorttext synchronized" lang="en">Instance buffer</p>
       mt_buffer             TYPE ty_t_buffer,
       "! <p class="shorttext synchronized" lang="en">Buffer with technical descriptions</p>
       mt_buffer_techn_descr TYPE ty_t_buffer_techn_descr.
- 
+
 *   i n s t a n c e   m e t h o d s
     METHODS:
       "! <p class="shorttext synchronized" lang="en">Compose workflow instance key</p>
@@ -88,7 +88,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
           iv_type       TYPE sibftypeid
         RETURNING
           VALUE(result) TYPE sibflpor,
- 
+
       "! <p class="shorttext synchronized" lang="en">Create an instance of requested type</p>
       "!
       "! @parameter is_lpor      | <p class="shorttext synchronized" lang="en">Workflow instance key</p>
@@ -103,7 +103,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
         RAISING
           zcx_ca_dbacc
           zcx_ca_param,
- 
+
       "! <p class="shorttext synchronized" lang="en">Find an instance to the workflow instance key in buffer</p>
       "!
       "! @parameter is_lpor      | <p class="shorttext synchronized" lang="en">Workflow instance key</p>
@@ -118,7 +118,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
         RAISING
           zcx_ca_dbacc
           zcx_ca_param,
- 
+
       "! <p class="shorttext synchronized" lang="en">Get container with key fields of requested object</p>
       "!
       "! @parameter iv_object_type       | <p class="shorttext synchronized" lang="en">Workflow instance type</p>
@@ -131,7 +131,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
           VALUE(result)  TYPE REF TO if_swf_cnt_container
         RAISING
           zcx_ca_wf_bc_factory,
- 
+
       "! <p class="shorttext synchronized" lang="en">Get technical descriptors to workflow class</p>
       "!
       "! @parameter iv_object_type       | <p class="shorttext synchronized" lang="en">Workflow instance type</p>
@@ -144,7 +144,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
           VALUE(result)  TYPE REF TO ty_s_buffer_techn_descr
         RAISING
           zcx_ca_wf_bc_factory,
- 
+
       "! <p class="shorttext synchronized" lang="en">Prepare parameters for constr. call of the workflow class</p>
       "!
       "! @parameter ir_techn_descriptors | <p class="shorttext synchronized" lang="en">Technical descriptors to workflow class</p>
@@ -159,7 +159,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
           VALUE(result)        TYPE abap_parmbind_tab
         RAISING
           zcx_ca_wf_bc_factory,
- 
+
       "! <p class="shorttext synchronized" lang="en">Get technical description of the workflow class key</p>
       "!
       "! @parameter iv_object_type       | <p class="shorttext synchronized" lang="en">Workflow instance type</p>
@@ -172,7 +172,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
           VALUE(result)  TYPE REF TO cl_abap_datadescr
         RAISING
           zcx_ca_wf_bc_factory,
- 
+
       "! <p class="shorttext synchronized" lang="en">Get details of method CONSTRUCTOR of the workflow class</p>
       "!
       "! @parameter io_class_descr       | <p class="shorttext synchronized" lang="en">Techn. class descriptor of workflow object type</p>
@@ -185,7 +185,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
           VALUE(result)  TYPE REF TO abap_methdescr
         RAISING
           zcx_ca_wf_bc_factory,
- 
+
       "! <p class="shorttext synchronized" lang="en">Check whether the key is defined in a single data object</p>
       "!
       "! @parameter it_key_fields        | <p class="shorttext synchronized" lang="en">Key fields of object</p>
@@ -197,7 +197,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
           iv_object_type TYPE sibftypeid
         RAISING
           zcx_ca_wf_bc_factory,
- 
+
       "! <p class="shorttext synchronized" lang="en">Check whether the passed BC type is a workflow class</p>
       "!
       "! @parameter io_class_descr       | <p class="shorttext synchronized" lang="en">Techn. description of the workflow class type (= class name)</p>
@@ -207,13 +207,13 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
           io_class_descr TYPE REF TO cl_abap_classdescr
         RAISING
           zcx_ca_wf_bc_factory.
- 
+
 ENDCLASS.                     "zcl_ca_wf_bcs_factory  DEFINITION
- 
- 
- 
+
+
+
 CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
- 
+
   METHOD compose_lpor.
     "-----------------------------------------------------------------*
     "   Compose workflow instance key
@@ -222,8 +222,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
                       typeid = to_upper( iv_type )
                       catid  = swfco_objtype_cl ).
   ENDMETHOD.                    "compose_lpor
- 
- 
+
+
   METHOD create_instance.
     "-----------------------------------------------------------------*
     "   Create an instance of requested type
@@ -231,29 +231,29 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
     "Local data definitions
     DATA:
       lr_key_field  TYPE REF TO data.
- 
+
     DATA(lr_techn_descriptors) = get_techn_descriptors( is_lpor-typeid ).
     is_obj_type_a_business_class( lr_techn_descriptors->o_class ).
- 
+
     "Create a correct typed key value for the constructor execution
     CREATE DATA lr_key_field TYPE HANDLE lr_techn_descriptors->o_key_field.
     ASSIGN lr_key_field->* TO FIELD-SYMBOL(<lv_key_field>).
     ASSERT sy-subrc EQ 0.
     <lv_key_field> = is_lpor-instid.
- 
+
     DATA(lt_parameters) = prepare_params_4_constructor( ir_techn_descriptors = lr_techn_descriptors
                                                         ir_key_field         = lr_key_field ).
- 
+
     "Create instance of passed object type
     CREATE OBJECT result TYPE (is_lpor-typeid)
       PARAMETER-TABLE lt_parameters.
- 
+
     "Checks existence of object and create default attribute = readable key with text
     result->check_existence( ).
     result->default_attribute_value( ).
   ENDMETHOD.                    "create_instance
- 
- 
+
+
   METHOD create_singleton.
     "-----------------------------------------------------------------*
     "   Create a singleton instance of the factory
@@ -261,11 +261,11 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
     IF zcl_ca_wf_bc_factory=>mo_singleton IS NOT BOUND.
       zcl_ca_wf_bc_factory=>mo_singleton ?= NEW zcl_ca_wf_bc_factory( ).
     ENDIF.
- 
+
     result ?= zcl_ca_wf_bc_factory=>mo_singleton.
   ENDMETHOD.                    "create_singleton
- 
- 
+
+
   METHOD find_in_buffer.
     "-----------------------------------------------------------------*
     "   Find an instance to the workflow instance key in buffer
@@ -274,18 +274,18 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
         "Is an instance already created?
         DATA(ls_buffer) = zcl_ca_wf_bc_factory=>mt_buffer[ s_lpor = is_lpor ].
         ls_buffer-o_persistent->refresh( ).
- 
+
       CATCH cx_sy_itab_line_not_found.
         ls_buffer-o_persistent ?= create_instance( is_lpor ).
- 
+
         ls_buffer-s_lpor = ls_buffer-o_persistent->lpor( ).
         INSERT ls_buffer INTO TABLE zcl_ca_wf_bc_factory=>mt_buffer.
     ENDTRY.
- 
+
     result ?= ls_buffer-o_persistent.
   ENDMETHOD.                    "find_in_buffer
- 
- 
+
+
   METHOD get_container_with_key_fields.
     "-----------------------------------------------------------------*
     "   Get container with key fields of requested object
@@ -297,7 +297,7 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
                                               IMPORTING
                                                 ex_return    = DATA(ls_message)
                                                 ex_container = result ).
- 
+
     DATA(lx_error) = CAST zcx_ca_wf_bc_factory( zcx_ca_error=>create_exception(
                                                        iv_excp_cls = zcx_ca_wf_bc_factory=>c_zcx_ca_wf_bc_factory
                                                        iv_class    = 'CL_SWF_UTL_DEF_SERVICES'
@@ -314,8 +314,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
       RAISE EXCEPTION lx_error.
     ENDIF.
   ENDMETHOD.                    "get_container_with_key_fields
- 
- 
+
+
   METHOD get_details_of_constructor.
     "-----------------------------------------------------------------*
     "   Get details of method CONSTRUCTOR of the workflow class
@@ -329,8 +329,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
           mv_msgv1 = CONV #( c_methname_constructor ).
     ENDIF.
   ENDMETHOD.                    "get_details_of_constructor
- 
- 
+
+
   METHOD get_techn_descriptors.
     "-----------------------------------------------------------------*
     "   Get technical class descriptor
@@ -339,14 +339,14 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
     IF result IS BOUND.
       RETURN.
     ENDIF.
- 
+
     TRY.
         INSERT VALUE #(
             typeid  = iv_object_type
             o_class = CAST cl_abap_classdescr( NEW zcl_ca_ddic( iv_name = iv_object_type )->mo_type_desc )
             o_key_field = get_techn_descr_of_key_field( iv_object_type ) ) INTO TABLE mt_buffer_techn_descr
                                                                            REFERENCE INTO result.
- 
+
       CATCH zcx_ca_error
             zcx_ca_intern INTO DATA(lx_catched).
         DATA(lx_error) = CAST zcx_ca_wf_bc_factory( zcx_ca_error=>create_exception(
@@ -359,8 +359,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
         ENDIF.
     ENDTRY.
   ENDMETHOD.                    "get_techn_descriptors
- 
- 
+
+
   METHOD get_techn_descr_of_key_field.
     "-----------------------------------------------------------------*
     "   Compose workflow instance key
@@ -368,16 +368,16 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
     TRY.
         DATA(lo_key_fld_container) = get_container_with_key_fields( iv_object_type ).
         DATA(lt_key_fields)        = lo_key_fld_container->if_swf_cnt_element_access_1~all_elements_list( ).
- 
+
         "Multiple key field definition is possible in principle but not supported by this class. This is due to
         "the experience that a flat structured single key field is much more convenient to handle than keys
         "that are split into multiple fields.
         has_only_one_key_field_defined( it_key_fields  = lt_key_fields
                                         iv_object_type = iv_object_type ).
- 
+
         result ?= lo_key_fld_container->if_swf_cnt_element_access_1~element_get_definition(
                                                                     name = lt_key_fields[ 1 ] )->get_typedescr( ).
- 
+
       CATCH cx_swf_cnt_container INTO DATA(lx_catched).
         DATA(lx_error) = CAST zcx_ca_wf_bc_factory( zcx_ca_error=>create_exception(
                                                            iv_excp_cls = zcx_ca_wf_bc_factory=>c_zcx_ca_wf_bc_factory
@@ -389,8 +389,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
         ENDIF.
     ENDTRY.
   ENDMETHOD.                    "get_techn_descr_of_key_field
- 
- 
+
+
   METHOD has_only_one_key_field_defined.
     "-----------------------------------------------------------------*
     "   Check whether only one key field is defined (flat structure or single field)
@@ -404,8 +404,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
           mv_msgv1 = CONV #( iv_object_type ).
     ENDIF.
   ENDMETHOD.                    "has_only_one_key_field_defined
- 
- 
+
+
   METHOD is_obj_type_a_business_class.
     "-----------------------------------------------------------------*
     "   Check whether the passed BC type is a workflow class
@@ -419,8 +419,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
           mv_msgv1 = CONV #( io_class_descr->get_relative_name( ) ).
     ENDIF.
   ENDMETHOD.                    "is_obj_type_a_business_class
- 
- 
+
+
   METHOD prepare_params_4_constructor.
     "-----------------------------------------------------------------*
     "   Prepare parameters for the constructor call of the workflow class
@@ -442,8 +442,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
           mv_msgv1 = 'NO FITTING PARAMETER FOR KEY FOUND' ##no_text.
     ENDIF.
   ENDMETHOD.                    "prepare_params_4_constructor
- 
- 
+
+
   METHOD zif_ca_wf_bc_factory~create_by_key.
     "-----------------------------------------------------------------*
     "   Create a workflow instance by its type and key
@@ -454,12 +454,12 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
     IF iv_key IS INITIAL.
       RETURN.
     ENDIF.
- 
+
     result = find_in_buffer( compose_lpor( iv_key  = iv_key
                                            iv_type = iv_type ) ).
   ENDMETHOD.                    "zif_ca_wf_bcs_factory~create_by_key
- 
- 
+
+
   METHOD zif_ca_wf_bc_factory~create_by_lpor.
     "-----------------------------------------------------------------*
     "   Create an instance by the workflow instance key
@@ -470,11 +470,11 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
     IF is_lpor-instid IS INITIAL.
       RETURN.
     ENDIF.
- 
+
     result = find_in_buffer( is_lpor ).
   ENDMETHOD.                    "zif_ca_wf_bcs_factory~create_by_lpor
- 
- 
+
+
   METHOD zif_ca_wf_bc_factory~extract_key_from_input.
     "-----------------------------------------------------------------*
     "   Extract key from input of consumer
@@ -487,13 +487,17 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
                                                       mv_msgv1 = 'IV_KEY'
                                                       mv_msgv2 = 'IV_INSTID' ) ) ##no_text.
   ENDMETHOD.                    "zif_ca_wf_bcs_factory~extract_key_from_input
- 
- 
+
+
   METHOD zif_ca_wf_bc_factory~release_from_buffer.
     "-----------------------------------------------------------------*
     "   Delete instance from buffer
     "-----------------------------------------------------------------*
     DELETE mt_buffer WHERE s_lpor EQ io_wf_object->bi_persistent~lpor( ).
   ENDMETHOD.                    "zif_ca_wf_bcs_factory~release_from_buffer
- 
+
 ENDCLASS.                     "zcl_ca_wf_bcs_factory  IMPLEMENTATION
+
+
+
+

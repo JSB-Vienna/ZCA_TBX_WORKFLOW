@@ -18,7 +18,7 @@ INTERFACE zif_ca_wf_bc_factory PUBLIC.
       RAISING
         zcx_ca_dbacc
         zcx_ca_param,
- 
+
     "! <p class="shorttext synchronized" lang="en">Create an instance by the workflow instance key</p>
     "!
     "! @parameter is_lpor      | <p class="shorttext synchronized" lang="en">Workflow instance key</p>
@@ -33,7 +33,7 @@ INTERFACE zif_ca_wf_bc_factory PUBLIC.
       RAISING
         zcx_ca_dbacc
         zcx_ca_param,
- 
+
     "! <p class="shorttext synchronized" lang="en">Extract key from input of consumer</p>
     "!
     "! @parameter iv_key       | <p class="shorttext synchronized" lang="en">Key as character string</p>
@@ -48,17 +48,12 @@ INTERFACE zif_ca_wf_bc_factory PUBLIC.
         VALUE(result) TYPE sibfinstid
       RAISING
         zcx_ca_param,
- 
+
     "! <p class="shorttext synchronized" lang="en">Delete instance from buffer</p>
     "!
     "! @parameter io_wf_object | <p class="shorttext synchronized" lang="en">Workflow instance</p>
     release_from_buffer
       IMPORTING
         io_wf_object TYPE REF TO zif_ca_workflow.
- 
+
 ENDINTERFACE.
- 
-
- 
-
- 
