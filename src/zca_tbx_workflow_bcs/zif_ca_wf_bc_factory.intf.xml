@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_CA_WF_BC_FACTORY</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX: Factory + buffering of Business Classes (= Workflow)</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CREATE_BY_KEY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create a workflow instance by its type and key</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CREATE_BY_LPOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create an instance by the workflow instance key</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EXTRACT_KEY_FROM_INPUT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Extract key from input of consumer</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>RELEASE_FROM_BUFFER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Delete instance from buffer</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_KEY</CMPNAME>
+     <SCONAME>IV_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>(Concatenated) Object key</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_KEY</CMPNAME>
+     <SCONAME>IV_TYPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Name of the class to be created</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_KEY</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Created workflow instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_KEY</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_KEY</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_LPOR</CMPNAME>
+     <SCONAME>IS_LPOR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow instance key</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_LPOR</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Created workflow instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_LPOR</CMPNAME>
+     <SCONAME>ZCX_CA_DBACC</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Database access</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_BY_LPOR</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EXTRACT_KEY_FROM_INPUT</CMPNAME>
+     <SCONAME>IV_INSTID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Key from LPOR-INSTID</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EXTRACT_KEY_FROM_INPUT</CMPNAME>
+     <SCONAME>IV_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Key as character string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EXTRACT_KEY_FROM_INPUT</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Created workflow instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EXTRACT_KEY_FROM_INPUT</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>RELEASE_FROM_BUFFER</CMPNAME>
+     <SCONAME>IO_WF_OBJECT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow instance</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>
