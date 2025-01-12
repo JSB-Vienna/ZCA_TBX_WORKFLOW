@@ -1,5 +1,5 @@
 "! <p class="shorttext synchronized" lang="en">CA-TBX exception: Error while creating a BC instance</p>
-CLASS zcx_ca_wf_bcs_factory DEFINITION
+CLASS zcx_ca_wf_bc_factory DEFINITION
   PUBLIC
   INHERITING FROM zcx_ca_param
   FINAL
@@ -17,8 +17,18 @@ CLASS zcx_ca_wf_bcs_factory DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF no_or_multiple_key_fields .
 
+    CONSTANTS:
+      BEGIN OF is_no_workflow_class,
+        msgid TYPE symsgid VALUE 'WD',
+        msgno TYPE symsgno VALUE '360',
+        attr1 TYPE scx_attrname VALUE 'MV_MSGV1',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF is_no_workflow_class .
+
     "! <p class="shorttext synchronized" lang="en">My own name</p>
-    CONSTANTS c_zcx_ca_wf_bcs_factory TYPE seoclsname VALUE 'ZCX_CA_WF_BCS_FACTORY' ##NO_TEXT.
+    CONSTANTS c_zcx_ca_wf_bc_factory TYPE seoclsname VALUE 'ZCX_CA_WF_BC_FACTORY' ##NO_TEXT.
 
     "! <p class="shorttext synchronized" lang="en">CONSTRUCTOR</p>
     METHODS constructor
@@ -39,7 +49,7 @@ ENDCLASS.
 
 
 
-CLASS zcx_ca_wf_bcs_factory IMPLEMENTATION.
+CLASS zcx_ca_wf_bc_factory IMPLEMENTATION.
 
 
   METHOD constructor ##ADT_SUPPRESS_GENERATION.

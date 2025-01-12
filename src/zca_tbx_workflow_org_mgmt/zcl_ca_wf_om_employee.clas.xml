@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZCL_CA_WF_OM_EMPLOYEE</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>WF-OM: BC Employee in Org. management (workflow-capable)</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>WF-OM: BC Employee in Org. management</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -15,66 +15,66 @@
     <item>
      <ID>I</ID>
      <KEY>DAV</KEY>
-     <ENTRY>Mitarbeiter</ENTRY>
+     <ENTRY>Employee</ENTRY>
      <LENGTH>25</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>MAD</KEY>
-     <ENTRY>Mailadresse</ENTRY>
+     <ENTRY>Mail address</ENTRY>
      <LENGTH>22</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>NID</KEY>
-     <ENTRY>NT-/Windows-Id</ENTRY>
+     <ENTRY>NT-/Windows Id</ENTRY>
      <LENGTH>24</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>PER</KEY>
-     <ENTRY>Personalnummer</ENTRY>
+     <ENTRY>Personnel Number</ENTRY>
      <LENGTH>26</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>SAP</KEY>
-     <ENTRY>SAP-Benutzer-Id</ENTRY>
+     <ENTRY>SAP user Id</ENTRY>
      <LENGTH>21</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>DAV</KEY>
-       <ENTRY>Employee</ENTRY>
+       <ENTRY>Mitarbeiter</ENTRY>
        <LENGTH>25</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>MAD</KEY>
-       <ENTRY>Mail address</ENTRY>
+       <ENTRY>Mailadresse</ENTRY>
        <LENGTH>22</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>NID</KEY>
-       <ENTRY>NT-/Windows Id</ENTRY>
+       <ENTRY>NT-/Windows-Id</ENTRY>
        <LENGTH>24</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>PER</KEY>
-       <ENTRY>Personnel Number</ENTRY>
+       <ENTRY>Personalnummer</ENTRY>
        <LENGTH>26</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>SAP</KEY>
-       <ENTRY>SAP user Id</ENTRY>
+       <ENTRY>SAP-Benutzer-Id</ENTRY>
        <LENGTH>21</LENGTH>
       </item>
      </TEXTPOOL>
@@ -82,8 +82,8 @@
    </I18N_TPOOL>
    <DESCRIPTIONS_CLASS>
     <SEOCLASSTX>
-     <LANGU>E</LANGU>
-     <DESCRIPT>WF-OM: BC Employee in Org. management</DESCRIPT>
+     <LANGU>D</LANGU>
+     <DESCRIPT>WF-OM: BC Employee in Org. management (workflow-capable)</DESCRIPT>
     </SEOCLASSTX>
    </DESCRIPTIONS_CLASS>
    <DESCRIPTIONS>

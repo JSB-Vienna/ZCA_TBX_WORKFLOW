@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCL_CA_WF_BCS_FACTORY</CLSNAME>
+    <CLSNAME>ZCL_CA_WF_BC_FACTORY</CLSNAME>
     <LANGU>E</LANGU>
     <DESCRIPT>CA-TBX: Factory + buffering of Business Classes (= Workflow)</DESCRIPT>
     <STATE>1</STATE>
@@ -28,6 +28,11 @@
      <DESCRIPT>Create a singleton instance of the factory</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>C_METHNAME_CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Methodname of Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>FIND_IN_BUFFER</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Find an instance to the workflow instance key in buffer</DESCRIPT>
@@ -38,14 +43,29 @@
      <DESCRIPT>Get container with key fields of requested object</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>GET_DETAILS_OF_CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get details of method CONSTRUCTOR of the workflow class</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_TECHN_DESCRIPTORS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get technical descriptors to workflow class</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>GET_TECHN_DESCR_OF_KEY_FIELD</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Get technical description of the workflow class key</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>IS_A_SINGLE_KEY_FIELD_DEF</CMPNAME>
+     <CMPNAME>HAS_ONLY_ONE_KEY_FIELD_DEFINED</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Check whether the key is defined in a single data object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_OBJ_TYPE_A_BUSINESS_CLASS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Check whether the passed BC type is a workflow class</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>MO_SINGLETON</CMPNAME>
@@ -61,6 +81,11 @@
      <CMPNAME>MT_BUFFER_TECHN_DESCR</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Buffer with technical descriptions</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>PREPARE_PARAMS_4_CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Prepare parameters for constr. call of the workflow class</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>TY_S_BUFFER</CMPNAME>
@@ -158,9 +183,9 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_CONTAINER_WITH_KEY_FIELDS</CMPNAME>
-     <SCONAME>IV_TYPEID</SCONAME>
+     <SCONAME>IV_OBJECT_TYPE</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Workflow instance type (= class name)</DESCRIPT>
+     <DESCRIPT>Workflow instance type</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_CONTAINER_WITH_KEY_FIELDS</CMPNAME>
@@ -170,15 +195,51 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_CONTAINER_WITH_KEY_FIELDS</CMPNAME>
-     <SCONAME>ZCX_CA_WF_BCS_FACTORY</SCONAME>
+     <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_DETAILS_OF_CONSTRUCTOR</CMPNAME>
+     <SCONAME>IO_CLASS_DESCR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Techn. class descriptor of workflow object type</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_DETAILS_OF_CONSTRUCTOR</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Technical method description of the constructor method</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_DETAILS_OF_CONSTRUCTOR</CMPNAME>
+     <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TECHN_DESCRIPTORS</CMPNAME>
+     <SCONAME>IV_OBJECT_TYPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Workflow instance type</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TECHN_DESCRIPTORS</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Technical descriptors to workflow class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_TECHN_DESCRIPTORS</CMPNAME>
+     <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_TECHN_DESCR_OF_KEY_FIELD</CMPNAME>
-     <SCONAME>IS_LPOR</SCONAME>
+     <SCONAME>IV_OBJECT_TYPE</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Workflow instance key</DESCRIPT>
+     <DESCRIPT>Workflow instance type</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_TECHN_DESCR_OF_KEY_FIELD</CMPNAME>
@@ -188,25 +249,61 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_TECHN_DESCR_OF_KEY_FIELD</CMPNAME>
-     <SCONAME>ZCX_CA_WF_BCS_FACTORY</SCONAME>
+     <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>IS_A_SINGLE_KEY_FIELD_DEF</CMPNAME>
-     <SCONAME>IO_KEY_FLD_CONTAINER</SCONAME>
+     <CMPNAME>HAS_ONLY_ONE_KEY_FIELD_DEFINED</CMPNAME>
+     <SCONAME>IT_KEY_FIELDS</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Container with key fields</DESCRIPT>
+     <DESCRIPT>Key fields of object</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>IS_A_SINGLE_KEY_FIELD_DEF</CMPNAME>
-     <SCONAME>IV_TYPEID</SCONAME>
+     <CMPNAME>HAS_ONLY_ONE_KEY_FIELD_DEFINED</CMPNAME>
+     <SCONAME>IV_OBJECT_TYPE</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Workflow instance type (= class name)</DESCRIPT>
+     <DESCRIPT>Workflow instance type</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>IS_A_SINGLE_KEY_FIELD_DEF</CMPNAME>
-     <SCONAME>ZCX_CA_WF_BCS_FACTORY</SCONAME>
+     <CMPNAME>HAS_ONLY_ONE_KEY_FIELD_DEFINED</CMPNAME>
+     <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_OBJ_TYPE_A_BUSINESS_CLASS</CMPNAME>
+     <SCONAME>IO_CLASS_DESCR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Techn. description of the workflow class type (= class name)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_OBJ_TYPE_A_BUSINESS_CLASS</CMPNAME>
+     <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_PARAMS_4_CONSTRUCTOR</CMPNAME>
+     <SCONAME>IR_KEY_FIELD</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Reference of key value</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_PARAMS_4_CONSTRUCTOR</CMPNAME>
+     <SCONAME>IR_TECHN_DESCRIPTORS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Technical descriptors to workflow class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_PARAMS_4_CONSTRUCTOR</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Parameters of CONSTRUCTOR</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PREPARE_PARAMS_4_CONSTRUCTOR</CMPNAME>
+     <SCONAME>ZCX_CA_WF_BC_FACTORY</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>CA-TBX exception: Error while creating a BC instance</DESCRIPT>
     </SEOSUBCOTX>

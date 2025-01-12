@@ -11,12 +11,6 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
-   <DESCRIPTIONS_CLASS>
-    <SEOCLASSTX>
-     <LANGU>E</LANGU>
-     <DESCRIPT>WF-OM: Conversion + helper utilities regarding employees</DESCRIPT>
-    </SEOCLASSTX>
-   </DESCRIPTIONS_CLASS>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>FIND_EMPLOYEES</CMPNAME>

@@ -1,5 +1,5 @@
 "! <p class="shorttext synchronized" lang="en">CA-TBX: Factory + buffering of Business Classes (= Workflow)</p>
-INTERFACE zif_ca_wf_bcs_factory PUBLIC.
+INTERFACE zif_ca_wf_bc_factory PUBLIC.
 * i n s t a n c e   m e t h o d s
   METHODS:
     "! <p class="shorttext synchronized" lang="en">Create a workflow instance by its type and key</p>

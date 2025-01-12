@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOINTERF>
-    <CLSNAME>ZIF_CA_WF_BCS_FACTORY</CLSNAME>
+    <CLSNAME>ZIF_CA_WF_BC_FACTORY</CLSNAME>
     <LANGU>E</LANGU>
     <DESCRIPT>CA-TBX: Factory + buffering of Business Classes (= Workflow)</DESCRIPT>
     <EXPOSURE>2</EXPOSURE>

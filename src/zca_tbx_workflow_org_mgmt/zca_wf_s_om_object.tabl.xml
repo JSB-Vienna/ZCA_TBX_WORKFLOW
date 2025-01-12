@@ -4,7 +4,7 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZCA_WF_S_OM_OBJECT</TABNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
     <LANGDEP>X</LANGDEP>
     <DDTEXT>Details to organizational object</DDTEXT>
@@ -17,7 +17,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>SWHACTOR</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Ergebnis der Regelauflösung</DDTEXT>
+     <DDTEXT>Rule Resolution Result</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_OM_OBJ_KEY</GROUPNAME>
     </DD03P>
@@ -44,11 +44,11 @@
     </DD03P>
    </DD03P_TABLE>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD02_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDLANGUAGE>D</DDLANGUAGE>
      <DDTEXT>Details to organizational object</DDTEXT>
     </item>
    </DD02_TEXTS>
