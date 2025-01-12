@@ -482,8 +482,8 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
     result = COND #( WHEN iv_instid IS NOT INITIAL  THEN iv_instid
                      WHEN iv_key    IS NOT INITIAL  THEN iv_key
                      "At least one of the following parameters must be passed: &1 &2 &3 &4
-                     ELSE THROW zcx_ca_wf_bc_factory( textid   = zcx_ca_wf_ga_settings=>param_invalid
-                                                      mv_msgty = zcx_ca_wf_ga_settings=>c_msgty_e
+                     ELSE THROW zcx_ca_wf_bc_factory( textid   = zcx_ca_wf_bc_factory=>param_invalid
+                                                      mv_msgty = zcx_ca_wf_bc_factory=>c_msgty_e
                                                       mv_msgv1 = 'IV_KEY'
                                                       mv_msgv2 = 'IV_INSTID' ) ) ##no_text.
   ENDMETHOD.                    "zif_ca_wf_bcs_factory~extract_key_from_input
