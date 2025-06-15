@@ -11,7 +11,7 @@ CLASS zcx_ca_wf_om_org_model DEFINITION
         msgno TYPE symsgno VALUE '021',
         attr1 TYPE scx_attrname VALUE 'MV_MSGV1',
         attr2 TYPE scx_attrname VALUE 'MV_MSGV2',
-        attr3 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE 'MV_MSGV3',
         attr4 TYPE scx_attrname VALUE '',
       END OF is_not_a_leader_of_this_ou .
     CONSTANTS:

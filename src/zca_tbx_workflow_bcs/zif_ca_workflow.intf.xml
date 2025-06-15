@@ -42,13 +42,13 @@
      <CMPNAME>CHECK_EXISTENCE</CMPNAME>
      <SCONAME>ZCX_CA_DBACC</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Database access</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Database access</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CHECK_EXISTENCE</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_TASK_DESCR</CMPNAME>
@@ -90,7 +90,7 @@
      <CMPNAME>RAISE_EVENT</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Common exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>

@@ -341,7 +341,6 @@ CLASS zcl_ca_wf_wapi_utils IMPLEMENTATION.
         im_witext_filter     = it_wi_text_filter
         passive_substitution = iv_passive_substitution
         time_zone            = iv_time_zone
-        do_commit            = iv_do_commit
       TABLES
         worklist             = result
         message_struct       = lt_msg_stru.

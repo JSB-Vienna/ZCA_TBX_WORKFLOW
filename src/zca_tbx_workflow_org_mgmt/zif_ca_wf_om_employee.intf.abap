@@ -63,20 +63,50 @@ INTERFACE zif_ca_wf_om_employee PUBLIC.
         zcx_ca_wf_om_employee,
 
     "! <p class="shorttext synchronized" lang="en">Is the personnel master record in status active?</p>
+    "!
+    "! @parameter rv_is_active | <p class="shorttext synchronized" lang="en">X = Personnel master record is active</p>
     is_personnel_master_active
       RETURNING
         VALUE(rv_is_active) TYPE abap_boolean
       RAISING
         zcx_ca_wf_om_employee,
 
+    "! <p class="shorttext synchronized" lang="en">Is the requested JOB assigned to her/his position?</p>
+    "!
+    "! @parameter iv_job_as      | <p class="shorttext synchronized" lang="en">Job Id => use const MO_CVC_OM-> or ZCL_CA_WF_OM_CVC=>JOB_AS*</p>
+    "! @parameter rv_is_assigned | <p class="shorttext synchronized" lang="en">X = Job is assigned</p>
+    is_assigned_to
+      IMPORTING
+        iv_job_as             TYPE zca_wf_e_job_id
+      RETURNING
+        VALUE(rv_is_assigned) TYPE abap_boolean
+      RAISING
+        zcx_ca_wf_om_employee,
+
     "! <p class="shorttext synchronized" lang="en">Is the personnel master record locked?</p>
+    "!
+    "! @parameter rv_is_locked | <p class="shorttext synchronized" lang="en">X = Personnel master record is locked</p>
     is_personnel_master_locked
       RETURNING
         VALUE(rv_is_locked) TYPE abap_boolean
       RAISING
         zcx_ca_wf_om_employee,
 
+    "! <p class="shorttext synchronized" lang="en">Is the requested TASK assigned to her/his position?</p>
+    "!
+    "! @parameter iv_task        | <p class="shorttext synchronized" lang="en">Task Id => use const MO_CVC_OM-> or ZCL_CA_WF_OM_CVC=>TASK*</p>
+    "! @parameter rv_is_assigned | <p class="shorttext synchronized" lang="en">X = Task is assigned</p>
+    is_responsible_for
+      IMPORTING
+        iv_task               TYPE zca_wf_e_task_id
+      RETURNING
+        VALUE(rv_is_assigned) TYPE abap_boolean
+      RAISING
+        zcx_ca_wf_om_employee,
+
     "! <p class="shorttext synchronized" lang="en">Is the SAP user available?</p>
+    "!
+    "! @parameter rv_is_available | <p class="shorttext synchronized" lang="en">X = SAP user is available</p>
     is_sap_user_available
       RETURNING
         VALUE(rv_is_available) TYPE abap_boolean

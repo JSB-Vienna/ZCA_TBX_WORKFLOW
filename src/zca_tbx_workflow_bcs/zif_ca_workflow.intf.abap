@@ -33,8 +33,8 @@ INTERFACE zif_ca_workflow PUBLIC.
   METHODS:
     "! <p class="shorttext synchronized" lang="en">Check existence of object</p>
     "!
-    "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
-    "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">Common exception: Database access</p>
+    "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
+    "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">CA-TBX exception: Database access</p>
     check_existence DEFAULT IGNORE
       RAISING
         zcx_ca_param
@@ -56,7 +56,7 @@ INTERFACE zif_ca_workflow PUBLIC.
     "! @parameter io_evt_cnt     | <p class="shorttext synchronized" lang="en">Instance of event container</p>
     "! @parameter iv_evt_creator | <p class="shorttext synchronized" lang="en">Event creator (user that triggered the event)</p>
     "! @parameter iv_do_commit   | <p class="shorttext synchronized" lang="en">X = Do commit here</p>
-    "! @raising   zcx_ca_param   | <p class="shorttext synchronized" lang="en">Common exception: Parameter error (INHERIT from this excep!)</p>
+    "! @raising   zcx_ca_param   | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
     raise_event DEFAULT IGNORE
       IMPORTING
         iv_event       TYPE sibfevent
