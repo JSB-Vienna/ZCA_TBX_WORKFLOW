@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_TABL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD02V>
+    <TABNAME>ZCA_WF_S_CREATION_DATA</TABNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <TABCLASS>INTTAB</TABCLASS>
+    <LANGDEP>X</LANGDEP>
+    <DDTEXT>CA-WF: Structure for creation of process instances</DDTEXT>
+    <MASTERLANG>E</MASTERLANG>
+    <EXCLASS>3</EXCLASS>
+   </DD02V>
+   <DD03P_TABLE>
+    <DD03P>
+     <FIELDNAME>.INCLUDE</FIELDNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <PRECFIELD>ZCA_S_IMAGE_KEY</PRECFIELD>
+     <MASK>      S</MASK>
+     <DDTEXT>CA-TBX: Key of archived document / object</DDTEXT>
+     <COMPTYPE>S</COMPTYPE>
+     <GROUPNAME>S_IMAGE_KEY</GROUPNAME>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>DOC_TYPE</FIELDNAME>
+     <ROLLNAME>WF_NCITYPE</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <COMPTYPE>E</COMPTYPE>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>DOC_CLASS</FIELDNAME>
+     <ROLLNAME>SAEDOKTYP</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <COMPTYPE>E</COMPTYPE>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>SCAN_DATE</FIELDNAME>
+     <ROLLNAME>ZCA_WF_E_SCAN_DATE</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <SHLPORIGIN>T</SHLPORIGIN>
+     <COMPTYPE>E</COMPTYPE>
+     <NOHISTORY>X</NOHISTORY>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>SCAN_TIME</FIELDNAME>
+     <ROLLNAME>ZCA_WF_E_SCAN_TIME</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <SHLPORIGIN>T</SHLPORIGIN>
+     <COMPTYPE>E</COMPTYPE>
+     <NOHISTORY>X</NOHISTORY>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>WF_ID</FIELDNAME>
+     <ROLLNAME>SWW_WFID</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <COMPTYPE>E</COMPTYPE>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>CREATOR</FIELDNAME>
+     <ROLLNAME>SWP_INITIA</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <COMPTYPE>E</COMPTYPE>
+    </DD03P>
+   </DD03P_TABLE>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD02_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>CA-WF: Structure for creation of process instances</DDTEXT>
+    </item>
+   </DD02_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

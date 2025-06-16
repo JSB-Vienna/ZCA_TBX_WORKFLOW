@@ -16,21 +16,62 @@ INTERFACE zif_ca_wf_om_org_model PUBLIC.
     "! <p class="shorttext synchronized" lang="en">Object is valid on</p>
     mv_valid_on      TYPE hr_date READ-ONLY.
 
+
 * i n s t a n c e   m e t h o d s
   METHODS:
+    "! <p class="shorttext synchronized" lang="en">Find employees with job x assigned to their position</p>
+    "!
+    "! @parameter iv_job_as                  | <p class="shorttext synchronized" lang="en">Job Id => use const MO_CVC_OM-> or ZCL_CA_WF_OM_CVC=>JOB_AS*</p>
+    "! @parameter iv_valid_on                | <p class="shorttext synchronized" lang="en">Object is valid on</p>
+    "! @parameter iv_search_active           | <p class="shorttext synchronized" lang="en">X = Search for an active person</p>
+    "! @parameter result                     | <p class="shorttext synchronized" lang="en">List of completed employees</p>
+    "! @raising   zcx_ca_wf_om_no_om_objects | <p class="shorttext synchronized" lang="en">WF-OM: No OM objects found to evaluation path</p>
+    "! @raising   zcx_ca_wf_om_org_model     | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+    find_employees_2_job
+      IMPORTING
+        iv_job_as        TYPE zca_wf_e_job_id
+        iv_valid_on      TYPE hr_date      DEFAULT sy-datlo
+        iv_search_active TYPE abap_boolean DEFAULT abap_true
+      RETURNING
+        VALUE(result)    TYPE zca_wf_t_employees_lookup
+      RAISING
+        zcx_ca_wf_om_no_om_objects
+        zcx_ca_wf_om_org_model,
+
+    "! <p class="shorttext synchronized" lang="en">Find employees with task x assigned to their position</p>
+    "!
+    "! @parameter iv_task                    | <p class="shorttext synchronized" lang="en">Task Id => use const MO_CVC_OM-> or ZCL_CA_WF_OM_CVC=>TASK*</p>
+    "! @parameter iv_valid_on                | <p class="shorttext synchronized" lang="en">Object is valid on</p>
+    "! @parameter iv_search_active           | <p class="shorttext synchronized" lang="en">X = Search for an active person</p>
+    "! @parameter result                     | <p class="shorttext synchronized" lang="en">List of completed employees</p>
+    "! @raising   zcx_ca_wf_om_no_om_objects | <p class="shorttext synchronized" lang="en">WF-OM: No OM objects found to evaluation path</p>
+    "! @raising   zcx_ca_wf_om_org_model     | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+    find_employees_2_task
+      IMPORTING
+        iv_task          TYPE zca_wf_e_task_id
+        iv_valid_on      TYPE hr_date      DEFAULT sy-datlo
+        iv_search_active TYPE abap_boolean DEFAULT abap_true
+      RETURNING
+        VALUE(result)    TYPE zca_wf_t_employees_lookup
+      RAISING
+        zcx_ca_wf_om_no_om_objects
+        zcx_ca_wf_om_org_model,
+
     "! <p class="shorttext synchronized" lang="en">Determine all managers to a organizational object</p>
     "!
-    "! @parameter iv_search_upwards      | <p class="shorttext synchronized" lang="en">0 = Search NOT higher; > 0 = search up to x levels above</p>
-    "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
-    "! @parameter result                 | <p class="shorttext synchronized" lang="en">Managers to the current org. object</p>
-    "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+    "! @parameter iv_search_upwards       | <p class="shorttext synchronized" lang="en">0 = Search NOT higher; > 0 = search up to x levels above</p>
+    "! @parameter iv_auth_check           | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+    "! @parameter result                  | <p class="shorttext synchronized" lang="en">Managers to the current org. object</p>
+    "! @raising   zcx_ca_wf_om_no_manager | <p class="shorttext synchronized" lang="en">WF-OM: No manager found</p>
+    "! @raising   zcx_ca_wf_om_org_model  | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
     get_all_managers
       IMPORTING
-        iv_search_upwards TYPE hi_ebene     DEFAULT 0
-        iv_auth_check     TYPE hr_authy     DEFAULT abap_false
+        iv_search_upwards TYPE hi_ebene DEFAULT 0
+        iv_auth_check     TYPE hr_authy DEFAULT abap_false
       RETURNING
         VALUE(result)     TYPE zca_wf_t_om_objects_lookup
       RAISING
+        zcx_ca_wf_om_no_manager
         zcx_ca_wf_om_org_model,
 
     "! <p class="shorttext synchronized" lang="en">Get employees to the current org. object</p>
@@ -47,27 +88,29 @@ INTERFACE zif_ca_wf_om_org_model PUBLIC.
     "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
     get_employees_2_org_object
       IMPORTING
-        iv_scope      TYPE char1    DEFAULT zcl_ca_wf_om_cvc=>scope-manager
-        iv_auth_check TYPE hr_authy DEFAULT abap_false
-        iv_all_managers type abap_boolean default abap_false
+        iv_scope        TYPE zca_wf_e_scope DEFAULT zcl_ca_wf_om_cvc=>scope-manager
+        iv_auth_check   TYPE hr_authy       DEFAULT abap_false
+        iv_all_managers TYPE abap_boolean   DEFAULT abap_false
       RETURNING
-        VALUE(result) TYPE zca_wf_t_om_objects_lookup
+        VALUE(result)   TYPE zca_wf_t_om_objects_lookup
       RAISING
         zcx_ca_wf_om_org_model,
 
     "! <p class="shorttext synchronized" lang="en">Determine one manager to a organizational object</p>
     "!
-    "! @parameter iv_search_upwards      | <p class="shorttext synchronized" lang="en">0 = Search NOT higher; > 0 = search up to x levels above</p>
-    "! @parameter iv_auth_check          | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
-    "! @parameter result                 | <p class="shorttext synchronized" lang="en">Manager to the current org. object</p>
-    "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
+    "! @parameter iv_search_upwards       | <p class="shorttext synchronized" lang="en">0 = Search NOT higher; > 0 = search up to x levels above</p>
+    "! @parameter iv_auth_check           | <p class="shorttext synchronized" lang="en">X = Authority check is active</p>
+    "! @parameter result                  | <p class="shorttext synchronized" lang="en">Manager to the current org. object</p>
+    "! @raising   zcx_ca_wf_om_no_manager | <p class="shorttext synchronized" lang="en">WF-OM: No manager found</p>
+    "! @raising   zcx_ca_wf_om_org_model  | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
     get_manager
       IMPORTING
-        iv_search_upwards TYPE hi_ebene     DEFAULT 0
-        iv_auth_check     TYPE hr_authy     DEFAULT abap_false
+        iv_search_upwards TYPE hi_ebene DEFAULT 0
+        iv_auth_check     TYPE hr_authy DEFAULT abap_false
       RETURNING
         VALUE(result)     TYPE zca_wf_s_om_object_lookup
       RAISING
+        zcx_ca_wf_om_no_manager
         zcx_ca_wf_om_org_model,
 
     "! <p class="shorttext synchronized" lang="en">Determine (depending) org. unit data (using RH_STRUC_GET)</p>
@@ -79,6 +122,7 @@ INTERFACE zif_ca_wf_om_org_model PUBLIC.
     "! @parameter iv_vflag               | <p class="shorttext synchronized" lang="en">X = Supply relationship information</p>
     "! @parameter iv_int_flag            | <p class="shorttext synchronized" lang="en">X = Read evaluation path in internal table</p>
     "! @parameter result                 | <p class="shorttext synchronized" lang="en">Merged result of FM RH_STRUC_GET</p>
+    "! @raising   zcx_ca_wf_om_no_om_objects | <p class="shorttext synchronized" lang="en">WF-OM: No OM objects found to evaluation path</p>
     "! @raising   zcx_ca_wf_om_org_model | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
     get_org_model_data
       IMPORTING
@@ -91,6 +135,7 @@ INTERFACE zif_ca_wf_om_org_model PUBLIC.
       RETURNING
         VALUE(result) TYPE zca_wf_t_org_model_data
       RAISING
+        zcx_ca_wf_om_no_om_objects
         zcx_ca_wf_om_org_model,
 
     "! <p class="shorttext synchronized" lang="en">Get short description of organizational unit</p>

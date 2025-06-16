@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZCA_WF_BASE</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>CA-WF: Common workflow relevant messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Termination triggered in business class &apos;&amp;1&apos; - Rollback required!</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Error raised in business class &apos;&amp;1&apos;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Temporary exception raised in business class &apos;&amp;1&apos;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Error while creating new instance of business class &apos;&amp;1&apos;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Error while deleting instance of business class &apos;&amp;1&apos;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Error while searching for existing instance of business class &apos;&amp;1&apos;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>No existing instance of business class &apos;&amp;1&apos; found</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Deleting instance of business class &apos;&amp;1&apos; failed: Instance does not exist</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Creating new instance of business class &apos;&amp;1&apos; failed: Inst. already exists</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>User dialog cancelled without change</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>WF controlling exception: Restart workflow</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>WF controlling exception: Finish workflow</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>WF controlling exception: Cancel workflow</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <MSGNR>014</MSGNR>
+     <TEXT>Workflow to object &amp;1 (&amp;2) was cancelled by user &amp;3</TEXT>
+    </T100>
+   </T100>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+    <LANGU>W</LANGU>
+    <LANGU>d</LANGU>
+   </I18N_LANGS>
+   <T100T>
+    <T100T>
+     <SPRSL>D</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <STEXT>CA-WF: Common workflow relevant messages</STEXT>
+    </T100T>
+    <T100T>
+     <SPRSL>W</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <STEXT>CA-WF: Общи съобщения, свързани с работния процес</STEXT>
+    </T100T>
+    <T100T>
+     <SPRSL>d</SPRSL>
+     <ARBGB>ZCA_WF_BASE</ARBGB>
+     <STEXT>Zaednicki relevantni poraki za procesot</STEXT>
+    </T100T>
+   </T100T>
+   <T100_TEXTS>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Termination triggered in business class &apos;&amp;1&apos; - Rollback required!</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Error raised in business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Temporary exception raised in business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Error while creating new instance of business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Error while deleting instance of business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Error while searching for existing instance of business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>No existing instance of business class &apos;&amp;1&apos; found</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Deleting instance of business class &apos;&amp;1&apos; failed: Instance does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>Creating new instance of business class &apos;&amp;1&apos; failed: Inst. already exists</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Benutzerdialog ohne Änderung abgebrochen</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>WF-Kontrolausnahme: Workflow erneut starten / wiederholen</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>WF-Kontrolausnahme: Workflow abschließen/beenden</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>WF-Kontrolausnahme: Workflow abbrechen</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>014</MSGNR>
+     <TEXT>Workflow zu Objekt &amp;1 (&amp;2) wurde abgebrochen durch Benutzer &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Прекратяване е задействано в бизнес клас &apos;&amp;1&apos; - Изисква се връщане назад!</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Възникна грешка в бизнес клас „&amp;1“</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Възникна временно изключение в бизнес класа „&amp;1“</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Грешка при създаване на нов екземпляр на бизнес клас „&amp;1“</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Грешка при изтриване на екземпляр от бизнес клас „&amp;1“</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Грешка при търсене на съществуващ екземпляр от бизнес клас „&amp;1“</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>Не е намерен съществуващ екземпляр на бизнес клас „&amp;1</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Изтрив. на екзем.от бизнес клас „&amp;1“ не е успешно: Екземп. не съществува</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>Неусп. създаване на нов екземпл. от бизнес класа „&amp;1“: Екз. вече същест.</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Потребителският прозорец е отменен без промяна</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>WF контролиращо изключение: Рестарт на работния процес</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>WF контролиращо изключение: Завършване на  работния процес</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>WF контролиращо изключение: Отмяна на работния процес</TEXT>
+    </item>
+    <item>
+     <SPRSL>W</SPRSL>
+     <MSGNR>014</MSGNR>
+     <TEXT>Процесът към обект &amp;1 (&amp;2) беше отменен от потребител &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Termination triggered in business class &apos;&amp;1&apos; - Rollback required!</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Error raised in business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Temporary exception raised in business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Error while creating new instance of business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Error while deleting instance of business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Error while searching for existing instance of business class &apos;&amp;1&apos;</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>No existing instance of business class &apos;&amp;1&apos; found</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Deleting instance of business class &apos;&amp;1&apos; failed: Instance does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>Creating new instance of business class &apos;&amp;1&apos; failed: Inst. already exists</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Korisnickiot dijalog e otkazan bez promena</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>WF controlling exception: Restart workflow</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>WF controlling exception: Finish workflow</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>WF controlling exception: Cancel workflow</TEXT>
+    </item>
+    <item>
+     <SPRSL>d</SPRSL>
+     <MSGNR>014</MSGNR>
+     <TEXT>Workflow za predmet &amp;1 (&amp;2) bese otkazano od korisnikot &amp;3</TEXT>
+    </item>
+   </T100_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

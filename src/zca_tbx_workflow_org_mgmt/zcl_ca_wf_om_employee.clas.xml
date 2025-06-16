@@ -195,7 +195,7 @@
     <SEOCOMPOTX>
      <CMPNAME>GET_ASSIGNED_OM_OBJECTS</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Determine assigned org. unit and its manager to employee</DESCRIPT>
+     <DESCRIPT>Get org. unit, position, assigned job+tasks of the employee</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>GET_EMAIL_ADDR_VIA_PERNR</CMPNAME>
@@ -276,6 +276,11 @@
      <CMPNAME>GET_SAP_USER_ID_VIA_PERNR</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Determine SAP user Id via personnel number</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_TASKS_2_POSITION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get tasks to the position of the employee</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>GET_VALUE_TO_COMM_TYPE</CMPNAME>
@@ -366,6 +371,11 @@
      <CMPNAME>MT_BUFFER</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Instance buffer</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_MY_TASKS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Assigned tasks to the position of the employee</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>MV_AGENT</CMPNAME>
@@ -461,6 +471,11 @@
      <CMPNAME>TY_T_BUFFER</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Instance buffer</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TY_T_TASKS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Assigned tasks to the position of the employee</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>

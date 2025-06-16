@@ -447,8 +447,8 @@ CLASS zcl_ca_wf_log IMPLEMENTATION.
     DATA(lv_object_key_for_output) = zcl_ca_wf_utils=>prepare_object_key_for_ouput( is_lpor ).
 
     add_msg( iv_msgty = c_msgty_w
-             iv_msgid = 'ZCA_WF_BASE'
-             iv_msgno = '014'
+             iv_msgid = 'ZCA_TOOLBOX'
+             iv_msgno = '128'
              iv_msgv1 = lv_object_key_for_output
              iv_msgv2 = is_lpor-typeid
              iv_msgv3 = sy-uname ) ##no_text.
@@ -456,7 +456,7 @@ CLASS zcl_ca_wf_log IMPLEMENTATION.
     save_for_workflow( ).
 
     "Workflow to object &1 (&2) was cancelled by user &3
-    MESSAGE s014(zca_wf_base) WITH lv_object_key_for_output  is_lpor-typeid  sy-uname
+    MESSAGE s128(zca_toolbox) WITH lv_object_key_for_output  is_lpor-typeid  sy-uname
                               DISPLAY LIKE c_msgty_i.
   ENDMETHOD.                    "zif_ca_wf_log~add_n_save_msg_wf_cancelled
 

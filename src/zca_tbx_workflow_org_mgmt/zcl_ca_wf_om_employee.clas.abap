@@ -29,7 +29,9 @@ CLASS zcl_ca_wf_om_employee DEFINITION PUBLIC
 *     ZIF_CA_WF_OM_EMPLOYEE methods
       change_validity_date_n_refresh FOR zif_ca_wf_om_employee~change_validity_date_n_refresh,
       compose_name_n_salutation FOR zif_ca_wf_om_employee~compose_name_n_salutation,
-      get_my_manager FOR zif_ca_wf_om_employee~get_my_manager,
+      get_my_manager     FOR zif_ca_wf_om_employee~get_my_manager,
+      is_assigned_to     FOR zif_ca_wf_om_employee~is_assigned_to,
+      is_responsible_for FOR zif_ca_wf_om_employee~is_responsible_for,
       is_personnel_master_active FOR zif_ca_wf_om_employee~is_personnel_master_active,
       is_personnel_master_locked FOR zif_ca_wf_om_employee~is_personnel_master_locked,
       is_sap_user_available FOR zif_ca_wf_om_employee~is_sap_user_available,
@@ -295,16 +297,20 @@ CLASS zcl_ca_wf_om_employee DEFINITION PUBLIC
   PRIVATE SECTION.
 *   l o c a l   t y p e   d e f i n i t i o n
     TYPES:
+      "! <p class="shorttext synchronized" lang="en">Assigned tasks to the position of the employee</p>
+      ty_t_tasks TYPE SORTED TABLE OF zca_wf_e_task_id WITH NON-UNIQUE KEY table_line,
+
       "! <p class="shorttext synchronized" lang="en">Buffered instance</p>
       BEGIN OF ty_s_buffer.
         INCLUDE TYPE sibflpor AS s_lpor.
     TYPES:
+        valid_on           TYPE hr_date,
         active_id_searched TYPE abap_boolean,
         o_persistent       TYPE REF TO zif_ca_workflow,
       END   OF ty_s_buffer,
       "! <p class="shorttext synchronized" lang="en">Instance buffer</p>
       ty_t_buffer TYPE HASHED TABLE OF ty_s_buffer
-                                       WITH UNIQUE KEY primary_key COMPONENTS s_lpor  active_id_searched.
+                              WITH UNIQUE KEY primary_key COMPONENTS s_lpor  valid_on  active_id_searched.
 
 *   c o n s t a n t s
     CONSTANTS:
@@ -327,6 +333,12 @@ CLASS zcl_ca_wf_om_employee DEFINITION PUBLIC
 *     t a b l e s
       "! <p class="shorttext synchronized" lang="en">Instance buffer</p>
       mt_buffer     TYPE ty_t_buffer.
+
+*   i n s t a n c e   a t t r i b u t e s
+    DATA:
+*     t a b l e s
+      "! <p class="shorttext synchronized" lang="en">Assigned tasks to the position of the employee</p>
+      mt_my_tasks   TYPE ty_t_tasks.
 
 *   s t a t i c   m e t h o d s
     CLASS-METHODS:
@@ -360,7 +372,7 @@ CLASS zcl_ca_wf_om_employee DEFINITION PUBLIC
         RAISING
           zcx_ca_wf_om_employee,
 
-      "! <p class="shorttext synchronized" lang="en">Determine assigned org. unit and its manager to employee</p>
+      "! <p class="shorttext synchronized" lang="en">Get org. unit, position, assigned job+tasks of the employee</p>
       "!
       "! @raising   zcx_ca_wf_om_employee | <p class="shorttext synchronized" lang="en">WF-OM: BC Employee exceptions</p>
       get_assigned_om_objects
@@ -380,6 +392,11 @@ CLASS zcl_ca_wf_om_employee DEFINITION PUBLIC
       get_org_assignments
         RAISING
           zcx_ca_wf_om_employee,
+
+      "! <p class="shorttext synchronized" lang="en">Get tasks to the position of the employee</p>
+      get_tasks_2_position
+        RETURNING
+          VALUE(rt_tasks) TYPE ty_t_tasks,
 
       "! <p class="shorttext synchronized" lang="en">Get value to communication type from PA0105</p>
       "!
@@ -434,7 +451,8 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
     "-----------------------------------------------------------------*
     "   Release instance
     "-----------------------------------------------------------------*
-    DELETE mt_buffer USING KEY primary_key WHERE s_lpor EQ ms_lpor.   "#EC CI_HASHSEQ
+    "Deletes all instances (of different dates and states) of this key / LPOR
+    DELETE mt_buffer USING KEY primary_key WHERE s_lpor EQ ms_lpor.
   ENDMETHOD.                    "bi_object~release
 
 
@@ -627,28 +645,44 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
 
   METHOD get_assigned_om_objects.
     "-----------------------------------------------------------------*
-    "   Determine assigned org. unit and its manager to employee
+    "   Get org. unit, position, assigned job+tasks of the employee
     "-----------------------------------------------------------------*
     TRY.
         DATA(lt_om_objects_to_person) =
                 zcl_ca_wf_om_org_model=>get_instance( is_key           = CONV #( mv_agent )
                                                       iv_valid_on      = mv_valid_on
                                                       iv_search_active = mv_search_active
-                          )->get_org_model_data( iv_eval_path = mo_cvc_om->evaluation_path-person_2_orgunit ).
+                          )->get_org_model_data( iv_eval_path = mo_cvc_om->evaluation_path-job_assignms_2_person ).
 
         LOOP AT lt_om_objects_to_person REFERENCE INTO DATA(lr_om_object_to_person).
           CASE lr_om_object_to_person->otype.
             WHEN swfco_org_position.
-              ms_data-otype_s      = lr_om_object_to_person->otype.
-              ms_data-objid_s      = lr_om_object_to_person->objid.
-              ms_data-name_s       = lr_om_object_to_person->stext.
-              ms_data-short_name_s = lr_om_object_to_person->short.
+              ms_data-otype_s       = lr_om_object_to_person->otype.
+              ms_data-objid_s       = lr_om_object_to_person->objid.
+              ms_data-name_s        = lr_om_object_to_person->stext.
+              ms_data-short_name_s  = lr_om_object_to_person->short.
+              ms_data-o_om_object_s = zcl_ca_wf_om_org_model=>get_instance( is_key           = ms_data-s_om_obj_key_s
+                                                                            iv_valid_on      = mv_valid_on
+                                                                            iv_search_active = mv_search_active ).
+              mt_my_tasks = get_tasks_2_position( ).
+
+            WHEN swfco_org_job.
+              ms_data-otype_c       = lr_om_object_to_person->otype.
+              ms_data-objid_c       = lr_om_object_to_person->objid.
+              ms_data-name_c        = lr_om_object_to_person->stext.
+              ms_data-short_name_c  = lr_om_object_to_person->short.
+              ms_data-o_om_object_c = zcl_ca_wf_om_org_model=>get_instance( is_key           = ms_data-s_om_obj_key_c
+                                                                            iv_valid_on      = mv_valid_on
+                                                                            iv_search_active = mv_search_active ).
 
             WHEN swfco_org_orgunit.
-              ms_data-otype_ou      = lr_om_object_to_person->otype.
-              ms_data-objid_ou      = lr_om_object_to_person->objid.
-              ms_data-name_ou       = lr_om_object_to_person->stext.
-              ms_data-short_name_ou = lr_om_object_to_person->short.
+              ms_data-otype_ou       = lr_om_object_to_person->otype.
+              ms_data-objid_ou       = lr_om_object_to_person->objid.
+              ms_data-name_ou        = lr_om_object_to_person->stext.
+              ms_data-short_name_ou  = lr_om_object_to_person->short.
+              ms_data-o_om_object_ou = zcl_ca_wf_om_org_model=>get_instance( is_key           = ms_data-s_om_obj_key_ou
+                                                                             iv_valid_on      = mv_valid_on
+                                                                             iv_search_active = mv_search_active ).
           ENDCASE.
         ENDLOOP.
 
@@ -745,6 +779,7 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
         "Is an instance already created?
         DATA(ls_buffer) = zcl_ca_wf_om_employee=>mt_buffer[ KEY primary_key
                                                                 s_lpor             = ls_lpor
+                                                                valid_on           = iv_valid_on
                                                                 active_id_searched = iv_search_active ].
         ls_buffer-o_persistent->refresh( ).
 
@@ -766,6 +801,7 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
         ls_buffer-o_persistent->default_attribute_value( ).
 
         ls_buffer-s_lpor             = ls_buffer-o_persistent->lpor( ).
+        ls_buffer-valid_on           = iv_valid_on.
         ls_buffer-active_id_searched = iv_search_active.
         INSERT ls_buffer INTO TABLE zcl_ca_wf_om_employee=>mt_buffer.
     ENDTRY.
@@ -793,15 +829,15 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
                                       iv_search_active = iv_search_active
                                       iv_valid_on      = iv_valid_on ).
 
-      CATCH zcx_ca_wf_om_employee.
-        "No personnel number found to &1 &2 or is not valid on &3
-        RAISE EXCEPTION TYPE zcx_ca_wf_om_employee
-          EXPORTING
-            textid   = zcx_ca_wf_om_employee=>pernr_not_found
-            mv_msgty = c_msgty_e
-            mv_msgv1 = 'SAP user Id'(sap)
-            mv_msgv2 = CONV #( iv_sap_user_id )
-            mv_msgv3 = CONV #( |{ iv_valid_on DATE = ENVIRONMENT }| ).
+      CATCH zcx_ca_wf_om_employee INTO DATA(lx_catched).
+        DATA(lx_error) = CAST zcx_ca_wf_om_employee( zcx_ca_error=>create_exception(
+                                                           iv_excp_cls = zcx_ca_wf_om_employee=>c_zcx_ca_wf_om_employee
+                                                           iv_class    = 'ZCL_CA_WF_OM_EMPLOYEE'
+                                                           iv_method   = 'GET_INSTANCE_BY_SAP_USER_ID'
+                                                           ix_error    = lx_catched ) ) ##no_text.
+        IF lx_error IS BOUND.
+          RAISE EXCEPTION lx_error.
+        ENDIF.
     ENDTRY.
   ENDMETHOD.                    "get_instance_by_sap_user_id
 
@@ -838,15 +874,15 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
                                           iv_valid_on      = iv_valid_on
                                           iv_search_active = iv_search_active ).
 
-      CATCH zcx_ca_wf_om_employee.
-        "No personnel number found to &1 &2 or is not valid on &3
-        RAISE EXCEPTION TYPE zcx_ca_wf_om_employee
-          EXPORTING
-            textid   = zcx_ca_wf_om_employee=>pernr_not_found
-            mv_msgty = c_msgty_e
-            mv_msgv1 = 'NT-/Windows Id'(nid)
-            mv_msgv2 = CONV #( iv_windows_net_id )
-            mv_msgv3 = CONV #( |{ iv_valid_on DATE = ENVIRONMENT }| ).
+      CATCH zcx_ca_wf_om_employee INTO DATA(lx_catched).
+        DATA(lx_error) = CAST zcx_ca_wf_om_employee( zcx_ca_error=>create_exception(
+                                                           iv_excp_cls = zcx_ca_wf_om_employee=>c_zcx_ca_wf_om_employee
+                                                           iv_class    = 'ZCL_CA_WF_OM_EMPLOYEE'
+                                                           iv_method   = 'GET_INSTANCE_BY_WINDOWS_NET_ID'
+                                                           ix_error    = lx_catched ) ) ##no_text.
+        IF lx_error IS BOUND.
+          RAISE EXCEPTION lx_error.
+        ENDIF.
     ENDTRY.
   ENDMETHOD.                    "get_instance_by_windows_net_id
 
@@ -865,7 +901,7 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
             AND endda GE @mv_valid_on
             AND begda LE @mv_valid_on
            INTO CORRESPONDING FIELDS OF @ms_master_record
-                         UP TO 1 ROWS.                  "#EC CI_NOORDER
+                UP TO 1 ROWS.                           "#EC CI_NOORDER
 
     ENDSELECT.
     IF ms_master_record IS INITIAL.
@@ -889,14 +925,9 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
             AND endda GE @mv_valid_on
             AND begda LE @mv_valid_on
            INTO CORRESPONDING FIELDS OF @ms_data
-                         UP TO 1 ROWS.                  "#EC CI_NOORDER
+                UP TO 1 ROWS.                           "#EC CI_NOORDER
 
     ENDSELECT.
-    IF ms_master_record IS INITIAL.
-      "Personnel number & does not exist
-      RAISE EXCEPTION TYPE zcx_ca_wf_om_employee
-        MESSAGE ID 'PG' TYPE 'E' NUMBER '041' WITH |{ mv_key ALPHA = OUT }|.
-    ENDIF.
   ENDMETHOD.                    "get_org_assignments
 
 
@@ -906,20 +937,14 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
     "-----------------------------------------------------------------*
     "Local data definitions
     DATA:
-      lra_active_person TYPE RANGE OF stat2,
-      lv_column_name    TYPE fieldname.
+      lra_active_person TYPE RANGE OF stat2.
 
     DATA(lo_cvc_employee) = zcl_ca_wf_om_cvc_employee=>get_instance( ).
     lo_cvc_employee->is_comm_type_valid( iv_comm_type ).
 
-    CASE iv_comm_type.
-      WHEN lo_cvc_employee->comm_type-sap_user_id     OR
-           lo_cvc_employee->comm_type-windows_net_id.
-        lv_column_name = lo_cvc_employee->column_name-usrid.
-
-      WHEN lo_cvc_employee->comm_type-email_address.
-        lv_column_name = lo_cvc_employee->column_name-usrid_long.
-    ENDCASE.
+    DATA(lv_column_name) = SWITCH fieldname( lo_cvc_employee->is_long_id_used_in_comm_type( iv_comm_type )
+                             WHEN abap_true   THEN lo_cvc_employee->column_name-usrid_long
+                             WHEN abap_false  THEN lo_cvc_employee->column_name-usrid ).
 
     DATA(lt_where) = VALUE se16n_where(
                             ( VALUE se16n_where_line( line = |{ lv_column_name } EQ @IV_COMM_VALUE| ) ) ) ##no_text.
@@ -948,11 +973,31 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
            INTO TABLE @DATA(lt_pa0105).
 
     IF lt_pa0105 IS INITIAL.
-      RAISE EXCEPTION TYPE zcx_ca_wf_om_employee.
+      "No personnel number found to &1 &2 or is not valid on &3
+      RAISE EXCEPTION NEW zcx_ca_wf_om_employee( textid   = zcx_ca_wf_om_employee=>pernr_not_found
+                                                 mv_msgty = zcx_ca_wf_om_employee=>c_msgty_e
+                                                 mv_msgv1 = CONV #( iv_comm_type )
+                                                 mv_msgv2 = CONV #( iv_comm_value )
+                                                 mv_msgv3 = CONV #( |{ iv_valid_on DATE = USER }| ) ).
     ENDIF.
 
     result = lt_pa0105[ 1 ].
   ENDMETHOD.                    "get_pers_nbr_by_comm_type_value
+
+
+  METHOD get_tasks_2_position.
+    "-----------------------------------------------------------------*
+    "   Get tasks to the position of the employee
+    "-----------------------------------------------------------------*
+    DATA(lt_tasks_2_pos) =
+            zcl_ca_wf_om_org_model=>get_instance( is_key           = ms_data-s_om_obj_key_s
+                                                  iv_valid_on      = mv_valid_on
+                                                  iv_search_active = mv_search_active
+                    )->get_org_model_data( iv_eval_path = mo_cvc_om->evaluation_path-tasks_2_position ).
+
+    rt_tasks = VALUE #( FOR ls_task IN lt_tasks_2_pos  WHERE ( otype = swfco_org_task )
+                                               ( ls_task-objid ) ).
+  ENDMETHOD.                    "get_tasks_2_position
 
 
   METHOD get_sap_user_id_via_pernr.
@@ -1098,24 +1143,9 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
   ENDMETHOD.                    "zif_ca_wf_om_employee~change_validity_date_n_refresh
 
 
-  METHOD zif_ca_wf_om_employee~is_personnel_master_active.
-    "-----------------------------------------------------------------*
-    "   Is the personnel master record in status active?
-    "-----------------------------------------------------------------*
-    IF rv_is_active IS SUPPLIED.
-      rv_is_active = xsdbool( ms_master_record-status EQ mo_cvc_employee->employment_status-is_active ).
-
-    ELSEIF ms_master_record-status NE mo_cvc_employee->employment_status-is_active.
-      "Personnel number &1 does not have 'active' status
-      RAISE EXCEPTION TYPE zcx_ca_wf_om_employee
-        MESSAGE ID 'PWWW' TYPE 'E' NUMBER '115' WITH |{ mv_key ALPHA = OUT }|.
-    ENDIF.
-  ENDMETHOD.                    "zif_ca_wf_om_employee~is_personnel_master_active
-
-
   METHOD zif_ca_wf_om_employee~compose_name_n_salutation.
     "-----------------------------------------------------------------*
-    "   Compose name inclusive salutation (IS SET INTO MS_DATA-FULL_NAME)
+    "   Read name details and compose salutation (IS SET INTO MS_DATA-FULL_NAME)
     "-----------------------------------------------------------------*
     "Compose salutation for mails / letters
     ms_data-full_name = condense( |{ COND #( WHEN ms_data-titel IS NOT INITIAL
@@ -1159,6 +1189,54 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
   ENDMETHOD.                    "zif_ca_wf_om_employee~get_my_manager
 
 
+  METHOD zif_ca_wf_om_employee~is_assigned_to.
+    "-----------------------------------------------------------------*
+    "   Is the requested JOB assigned to her/his position?
+    "-----------------------------------------------------------------*
+    TRY.
+        mo_cvc_om->is_job_id_valid( iv_job_as ).
+        rv_is_assigned = xsdbool( ms_data-objid_c EQ iv_job_as ).
+
+        IF rv_is_assigned IS NOT SUPPLIED AND
+           rv_is_assigned EQ abap_false.
+          DATA(lv_job_descr) = zcl_ca_utils=>compose_name_n_techn_id(
+                                                    iv_descr    = mo_cvc_om->get_descr_2_job( iv_job_as )
+                                                    iv_techn_id = iv_job_as ). "Team lead (10000038)
+          "Person &1 is not assigned to job &2
+          RAISE EXCEPTION NEW zcx_ca_wf_om_employee( textid   = zcx_ca_wf_om_employee=>person_is_not_assigned_to_job
+                                                     mv_msgty = zcx_ca_wf_om_employee=>c_msgty_e
+                                                     mv_msgv1 = CONV #( |{ mv_key ALPHA = OUT }| )
+                                                     mv_msgv2 = CONV #( lv_job_descr ) ) ##no_text.
+        ENDIF.
+
+      CATCH zcx_ca_error INTO DATA(lx_catched).
+        DATA(lx_error) = CAST zcx_ca_wf_om_employee( zcx_ca_error=>create_exception(
+                                                       iv_excp_cls = zcx_ca_wf_om_employee=>c_zcx_ca_wf_om_employee
+                                                       iv_class    = 'ZCL_CA_WF_OM_EMPLOYEE'
+                                                       iv_method   = 'ZIF_CA_WF_OM_EMPLOYEE~IS_ASSIGNED_TO'
+                                                       ix_error    = lx_catched ) ) ##no_text.
+        IF lx_error IS BOUND.
+          RAISE EXCEPTION lx_error.
+        ENDIF.
+    ENDTRY.
+  ENDMETHOD.                    "zif_ca_wf_om_employee~is_assigned_to
+
+
+  METHOD zif_ca_wf_om_employee~is_personnel_master_active.
+    "-----------------------------------------------------------------*
+    "   Is the personnel master record in status active?
+    "-----------------------------------------------------------------*
+    rv_is_active = xsdbool( ms_master_record-status EQ mo_cvc_employee->employment_status-is_active ).
+
+    IF rv_is_active IS SUPPLIED AND
+       rv_is_active EQ abap_false.
+      "Personnel number &1 does not have 'active' status
+      RAISE EXCEPTION TYPE zcx_ca_wf_om_employee
+        MESSAGE ID 'PWWW' TYPE 'E' NUMBER '115' WITH |{ mv_key ALPHA = OUT }|.
+    ENDIF.
+  ENDMETHOD.                    "zif_ca_wf_om_employee~is_personnel_master_active
+
+
   METHOD zif_ca_wf_om_employee~is_personnel_master_locked.
     "-----------------------------------------------------------------*
     "   Is the personnel master record locked?
@@ -1172,6 +1250,39 @@ CLASS zcl_ca_wf_om_employee IMPLEMENTATION.
         MESSAGE ID '5A' TYPE 'E' NUMBER '198' WITH |{ mv_key ALPHA = OUT }|.
     ENDIF.
   ENDMETHOD.                    "zif_ca_wf_om_employee~is_personnel_master_locked
+
+
+  METHOD zif_ca_wf_om_employee~is_responsible_for.
+    "-----------------------------------------------------------------*
+    "   Is the requested TASK assigned to her/his position?
+    "-----------------------------------------------------------------*
+    TRY.
+        mo_cvc_om->is_task_id_valid( iv_task ).
+        rv_is_assigned = xsdbool( line_exists( mt_my_tasks[ table_line = iv_task ] ) ).
+
+        IF rv_is_assigned IS NOT SUPPLIED AND
+           rv_is_assigned EQ abap_false.
+          DATA(lv_task_descr) = zcl_ca_utils=>compose_name_n_techn_id(
+                                                    iv_descr    = mo_cvc_om->get_descr_2_task( iv_task )
+                                                    iv_techn_id = iv_task ). "Approving supererogations (00000001)
+          "Person &1 is not assigned to job &2
+          RAISE EXCEPTION NEW zcx_ca_wf_om_employee( textid   = zcx_ca_wf_om_employee=>person_is_not_assigned_to_job
+                                                     mv_msgty = zcx_ca_wf_om_employee=>c_msgty_e
+                                                     mv_msgv1 = CONV #( |{ mv_key ALPHA = OUT }| )
+                                                     mv_msgv2 = CONV #( lv_task_descr ) ) ##no_text.
+        ENDIF.
+
+      CATCH zcx_ca_error INTO DATA(lx_catched).
+        DATA(lx_error) = CAST zcx_ca_wf_om_employee( zcx_ca_error=>create_exception(
+                                                       iv_excp_cls = zcx_ca_wf_om_employee=>c_zcx_ca_wf_om_employee
+                                                       iv_class    = 'ZCL_CA_WF_OM_EMPLOYEE'
+                                                       iv_method   = 'ZIF_CA_WF_OM_EMPLOYEE~IS_RESPONSIBLE_FOR'
+                                                       ix_error    = lx_catched ) ) ##no_text.
+        IF lx_error IS BOUND.
+          RAISE EXCEPTION lx_error.
+        ENDIF.
+    ENDTRY.
+  ENDMETHOD.                    "zif_ca_wf_om_employee~is_responsible_for
 
 
   METHOD zif_ca_wf_om_employee~is_sap_user_available.

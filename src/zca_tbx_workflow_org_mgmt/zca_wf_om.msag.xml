@@ -138,7 +138,25 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZCA_WF_OM</ARBGB>
      <MSGNR>021</MSGNR>
-     <TEXT>&amp;1 is not a leader of the org. unit &amp;2</TEXT>
+     <TEXT>&amp;1 &amp;2 is not a manager of the org. unit &amp;3</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>022</MSGNR>
+     <TEXT>No org. management objects found to &amp;1 &amp;2 &amp;3 using evalutation path Id &amp;4</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>023</MSGNR>
+     <TEXT>Org. unit &amp;1 has no manager</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>024</MSGNR>
+     <TEXT>Person &amp;1 is not assigned to job &amp;2</TEXT>
     </T100>
    </T100>
    <I18N_LANGS>
@@ -268,6 +286,26 @@
      <SPRSL>D</SPRSL>
      <MSGNR>020</MSGNR>
      <TEXT>Personalnr. &amp;1 ist inaktiv. Keine aktiven Pers.nrn. via CP &amp;2 gefunden.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>021</MSGNR>
+     <TEXT>&amp;1 &amp;2 ist kein Manager der Org.einheit &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>022</MSGNR>
+     <TEXT>Keine Org.managementobjekte zu &amp;1 &amp;2 &amp;3 mit Auswertungsweg &amp;4 gefunden</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>023</MSGNR>
+     <TEXT>Org.einheit &amp;1 hat keinen Manager</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>024</MSGNR>
+     <TEXT>Mitarbeiter &amp;1 hat keine Zuordnung zu Stelle/Job &amp;2</TEXT>
     </item>
     <item>
      <SPRSL>W</SPRSL>

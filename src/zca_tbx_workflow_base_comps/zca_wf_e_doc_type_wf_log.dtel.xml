@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZCA_WF_E_DOC_TYPE_WF_LOG</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DOMNAME>SADC10_DV</DOMNAME>
+    <LOGFLAG>X</LOGFLAG>
+    <HEADLEN>20</HEADLEN>
+    <SCRLEN1>10</SCRLEN1>
+    <SCRLEN2>20</SCRLEN2>
+    <SCRLEN3>40</SCRLEN3>
+    <DDTEXT>CA-WF: Document type for workflow protocol</DDTEXT>
+    <REPTEXT>Doc. type WF log</REPTEXT>
+    <SCRTEXT_S>DocTypeLog</SCRTEXT_S>
+    <SCRTEXT_M>Doc type WF log</SCRTEXT_M>
+    <SCRTEXT_L>Document type for workflow log</SCRTEXT_L>
+    <DTELMASTER>E</DTELMASTER>
+    <REFKIND>D</REFKIND>
+   </DD04V>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>CA-WF: Dokumentart für Workflowprotokoll</DDTEXT>
+     <REPTEXT>Dok.art WF-Prot.</REPTEXT>
+     <SCRTEXT_S>Dok.art WF</SCRTEXT_S>
+     <SCRTEXT_M>Dok.art WF-Prot.</SCRTEXT_M>
+     <SCRTEXT_L>Dokumentart für Workflowprotokoll</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

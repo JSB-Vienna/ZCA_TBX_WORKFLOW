@@ -255,7 +255,7 @@ CLASS zcl_ca_wf_sscr_archive_content IMPLEMENTATION.
                                                              THEN lo_document->ms_data-descr
                                                            WHEN lo_document->ms_data-filename IS NOT INITIAL
                                                              THEN lo_document->ms_data-filename
-                                                           ELSE lo_document->ms_doc_type_descr-objecttext )
+                                                           ELSE lo_document->ms_doc_type_descr-objecttext ) ##conditional_constr_ok
                                   "as it is prepared before ZCL_CA_ARCHIVE_CONTENT=>DISPLAY
                                   iv_window_id   = lo_document->ms_data-object_id+10(10)
                                   iv_no_refresh  = abap_false ).

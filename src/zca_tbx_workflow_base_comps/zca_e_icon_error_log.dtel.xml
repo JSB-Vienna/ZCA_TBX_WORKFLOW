@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZCA_E_ICON_ERROR_LOG</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DOMNAME>SYCHAR132</DOMNAME>
+    <LOGFLAG>X</LOGFLAG>
+    <HEADLEN>20</HEADLEN>
+    <SCRLEN1>10</SCRLEN1>
+    <SCRLEN2>20</SCRLEN2>
+    <SCRLEN3>40</SCRLEN3>
+    <DDTEXT>CA-WF: Icon for error log</DDTEXT>
+    <REPTEXT>Error log</REPTEXT>
+    <SCRTEXT_S>Error log</SCRTEXT_S>
+    <SCRTEXT_M>Error log</SCRTEXT_M>
+    <SCRTEXT_L>Error log</SCRTEXT_L>
+    <DTELMASTER>E</DTELMASTER>
+    <REFKIND>D</REFKIND>
+   </DD04V>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>CA-WF: Ikone für Fehlerprotokoll</DDTEXT>
+     <REPTEXT>FehlerProt</REPTEXT>
+     <SCRTEXT_S>FehlerProt</SCRTEXT_S>
+     <SCRTEXT_M>FehlerProt</SCRTEXT_M>
+     <SCRTEXT_L>Fehlerprotokoll</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -74,11 +74,14 @@ CLASS zcl_ca_wf_om_employee_utils IMPLEMENTATION.
     rt_employees = it_employees.
     LOOP AT rt_employees REFERENCE INTO DATA(lr_employee).
       TRY.
+          DATA(lv_valid_on) = COND #( WHEN lr_employee->valid_on IS NOT INITIAL
+                                        THEN lr_employee->valid_on ELSE iv_valid_on ).
+
           IF lr_employee->pernr IS NOT INITIAL.
             lr_employee->o_employee = zcl_ca_wf_om_employee=>get_instance(
                                            is_lpor          = VALUE #( instid = CONV #( lr_employee->pernr )
                                                                        typeid = CONV #( lr_employee->employee_cls_type ) )
-                                           iv_valid_on      = iv_valid_on
+                                           iv_valid_on      = lv_valid_on
                                            iv_search_active = iv_search_active
                                            iv_create_sap_user_cls_of_type = lr_employee->employee_cls_type ).
 
@@ -87,7 +90,7 @@ CLASS zcl_ca_wf_om_employee_utils IMPLEMENTATION.
                                                  iv_create_employee_cls_of_type = lr_employee->employee_cls_type
                                                  iv_create_sap_user_cls_of_type = lr_employee->sap_user_cls_type
                                                  iv_sap_user_id   = lr_employee->bname
-                                                 iv_valid_on      = iv_valid_on
+                                                 iv_valid_on      = lv_valid_on
                                                  iv_search_active = iv_search_active ).
 
           ELSEIF lr_employee->net_id IS NOT INITIAL.
@@ -95,7 +98,7 @@ CLASS zcl_ca_wf_om_employee_utils IMPLEMENTATION.
                                                  iv_create_employee_cls_of_type = lr_employee->employee_cls_type
                                                  iv_create_sap_user_cls_of_type = lr_employee->sap_user_cls_type
                                                  iv_windows_net_id = lr_employee->net_id
-                                                 iv_valid_on       = iv_valid_on
+                                                 iv_valid_on       = lv_valid_on
                                                  iv_search_active  = iv_search_active ).
 
           ELSE.
