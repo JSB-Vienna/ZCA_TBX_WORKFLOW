@@ -19,6 +19,7 @@ CLASS zcl_ca_wf_bc_factory DEFINITION PUBLIC
       create_by_key          FOR zif_ca_wf_bc_factory~create_by_key,
       create_by_lpor         FOR zif_ca_wf_bc_factory~create_by_lpor,
       extract_key_from_input FOR zif_ca_wf_bc_factory~extract_key_from_input,
+      refresh_buffer         FOR zif_ca_wf_bc_factory~refresh_buffer,
       release_from_buffer    FOR zif_ca_wf_bc_factory~release_from_buffer.
 
 *   s t a t i c   m e t h o d s
@@ -410,7 +411,7 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
     "-----------------------------------------------------------------*
     "   Check whether the passed BC type is a workflow class
     "-----------------------------------------------------------------*
-    IF NOT line_exists( io_class_descr->interfaces[ name = swfco_if_workflow ] ).
+    IF NOT line_exists( io_class_descr->interfaces[ name = CONV #( swfco_if_workflow ) ] ).
       "Class '&' does not support any workflow program exit interface
       RAISE EXCEPTION TYPE zcx_ca_wf_bc_factory
         EXPORTING
@@ -484,9 +485,20 @@ CLASS zcl_ca_wf_bc_factory IMPLEMENTATION.
   ENDMETHOD.                    "zif_ca_wf_bcs_factory~extract_key_from_input
 
 
+  METHOD zif_ca_wf_bc_factory~refresh_buffer.
+    "-----------------------------------------------------------------*
+    "   Refresh buffer (= release all instances)
+    "-----------------------------------------------------------------*
+    LOOP AT mt_buffer REFERENCE INTO DATA(lr_buffer).
+      lr_buffer->o_persistent->release( ).
+    ENDLOOP.
+    FREE mt_buffer.
+  ENDMETHOD.                    "zif_ca_wf_bcs_factory~refresh_buffer
+
+
   METHOD zif_ca_wf_bc_factory~release_from_buffer.
     "-----------------------------------------------------------------*
-    "   Delete instance from buffer
+    "   Release instance from buffer
     "-----------------------------------------------------------------*
     DELETE mt_buffer WHERE s_lpor EQ io_wf_object->bi_persistent~lpor( ).
   ENDMETHOD.                    "zif_ca_wf_bcs_factory~release_from_buffer

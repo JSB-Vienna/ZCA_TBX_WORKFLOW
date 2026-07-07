@@ -84,17 +84,18 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
 
 *   i n s t a n c e   m e t h o d s
     METHODS:
-      "! <p class="shorttext synchronized" lang="en">CONSTRUCTOR</p>
+      "! <p class="shorttext synchronized" lang="en">Is the user authorized for role (generic) role(s)?</p>
       "!
-      "! @parameter iv_key       | <p class="shorttext synchronized" lang="en">User Name in User Master Record</p>
-      "! @raising   zcx_ca_param | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
-      "! @raising   zcx_ca_dbacc | <p class="shorttext synchronized" lang="en">CA-TBX exception: Database access</p>
-      constructor
+      "! @parameter iv_role_pattern | <p class="shorttext synchronized" lang="en">Role name or role name pattern</p>
+      "! @parameter result          | <p class="shorttext synchronized" lang="en">X = User is authorized</p>
+      "! @raising   zcx_ca_param    | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
+      is_authorized_4_role
         IMPORTING
-          iv_key TYPE xubname
+          iv_role_pattern TYPE clike
+        RETURNING
+          VALUE(result)   TYPE abap_boolean
         RAISING
-          zcx_ca_param
-          zcx_ca_dbacc,
+          zcx_ca_param,
 
       "! <p class="shorttext synchronized" lang="en">Checks whether the user is a dialog user</p>
       "!
@@ -157,18 +158,29 @@ CLASS zcl_ca_wf_user DEFINITION PUBLIC
     DATA:
 *     o b j e c t   r e f e r e n c e s
       "! <p class="shorttext synchronized" lang="en">Macro handler for USR01</p>
-      mo_wfmacs_usr01 TYPE REF TO zcl_ca_wf_exec_macros,
+      mo_wfmacs_usr01    TYPE REF TO zcl_ca_wf_exec_macros,
       "! <p class="shorttext synchronized" lang="en">Macro handler for USER</p>
-      mo_wfmacs_user  TYPE REF TO zcl_ca_wf_exec_macros,
+      mo_wfmacs_user     TYPE REF TO zcl_ca_wf_exec_macros,
+
+*     t a b l e s
+      "! <p class="shorttext synchronized" lang="en">Activity groups / authority roles</p>
+      mt_activity_groups TYPE suid_tt_bapiagr,
 
 *     s t r u c t u r e s
       "! <p class="shorttext synchronized" lang="en">Users locks</p>
-      ms_is_locked    TYPE bapislockd,
+      ms_is_locked       TYPE bapislockd,
       "! <p class="shorttext synchronized" lang="en">Workflow instance key</p>
-      ms_lpor         TYPE sibflpor.
+      ms_lpor            TYPE sibflpor.
 
 *   i n s t a n c e   m e t h o d s
     METHODS:
+      "! <p class="shorttext synchronized" lang="en">CONSTRUCTOR</p>
+      "!
+      "! @parameter iv_key | <p class="shorttext synchronized" lang="en">User Name in User Master Record</p>
+      constructor
+        IMPORTING
+          iv_key TYPE xubname,
+
       "! <p class="shorttext synchronized" lang="en">Set personnel number late</p>
       "!
       "! @parameter iv_pernr | <p class="shorttext synchronized" lang="en">Personnel number</p>
@@ -371,6 +383,23 @@ CLASS zcl_ca_wf_user IMPLEMENTATION.
   ENDMETHOD.                    "get_instance_from_wf_agent
 
 
+  METHOD is_authorized_4_role.
+    "-----------------------------------------------------------------*
+    "   Is the user authorized for role (generic) role(s)?
+    "-----------------------------------------------------------------*
+    IF iv_role_pattern IS INITIAL.
+      RETURN.            "Avoid exception
+    ENDIF.
+
+    LOOP AT mt_activity_groups TRANSPORTING NO FIELDS
+                               WHERE agr_name CP iv_role_pattern.
+      EXIT.
+    ENDLOOP.
+
+    result = xsdbool( sy-subrc EQ 0 ).
+  ENDMETHOD.                    "is_authorized_4_role
+
+
   METHOD is_dialog_user.
     "-----------------------------------------------------------------*
     "   Checks whether the user is a dialog user
@@ -479,14 +508,15 @@ CLASS zcl_ca_wf_user IMPLEMENTATION.
 
     CALL FUNCTION 'BAPI_USER_GET_DETAIL'
       EXPORTING
-        username      = mv_key
-        cache_results = abap_true
+        username       = mv_key
+        cache_results  = abap_true
       IMPORTING
-        address       = ms_address
-        logondata     = ms_logon_data
-        islocked      = ms_is_locked
+        address        = ms_address
+        logondata      = ms_logon_data
+        islocked       = ms_is_locked
       TABLES
-        return        = lt_return.
+        activitygroups = mt_activity_groups
+        return         = lt_return.
 
     IF line_exists( lt_return[ type   = c_msgty_e
                                id     = '01'
@@ -513,6 +543,10 @@ CLASS zcl_ca_wf_user IMPLEMENTATION.
 
     mbo_usr01-instid = mv_key.
     mbo_user-instid  = mv_key.
+
+    DELETE mt_activity_groups WHERE NOT ( from_dat LE sy-datlo AND
+                                          to_dat   GE sy-datlo ).
+    SORT mt_activity_groups BY agr_name.
   ENDMETHOD.                    "zif_ca_workflow~check_existence
 
 ENDCLASS.

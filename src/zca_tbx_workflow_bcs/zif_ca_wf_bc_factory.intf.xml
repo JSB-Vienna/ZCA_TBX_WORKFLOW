@@ -27,9 +27,14 @@
      <DESCRIPT>Extract key from input of consumer</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>REFRESH_BUFFER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Refresh buffer (= release all instances)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>RELEASE_FROM_BUFFER</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Delete instance from buffer</DESCRIPT>
+     <DESCRIPT>Release instance from buffer</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>

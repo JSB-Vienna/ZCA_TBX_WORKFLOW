@@ -33,6 +33,11 @@
      <DESCRIPT>Create instance for an workflow agent (type US only)</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>IS_AUTHORIZED_4_ROLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Is the user authorized for role (generic) role(s)?</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>IS_DIALOG_USER</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Checks whether the user is a dialog user</DESCRIPT>
@@ -91,6 +96,11 @@
      <CMPNAME>MS_LPOR</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Workflow instance key</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_ACTIVITY_GROUPS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Activity groups / authority roles</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>MT_BUFFER</CMPNAME>
@@ -154,18 +164,6 @@
      <DESCRIPT>User Name in User Master Record</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>CONSTRUCTOR</CMPNAME>
-     <SCONAME>ZCX_CA_DBACC</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>CA-TBX exception: Database access</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>CONSTRUCTOR</CMPNAME>
-     <SCONAME>ZCX_CA_PARAM</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE</CMPNAME>
      <SCONAME>IS_LPOR</SCONAME>
      <LANGU>E</LANGU>
@@ -215,6 +213,24 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_INSTANCE_FROM_WF_AGENT</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_AUTHORIZED_4_ROLE</CMPNAME>
+     <SCONAME>IV_ROLE_PATTERN</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Role name or role name pattern</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_AUTHORIZED_4_ROLE</CMPNAME>
+     <SCONAME>RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = User is authorized</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_AUTHORIZED_4_ROLE</CMPNAME>
      <SCONAME>ZCX_CA_PARAM</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>

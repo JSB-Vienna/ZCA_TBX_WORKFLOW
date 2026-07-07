@@ -49,7 +49,10 @@ INTERFACE zif_ca_wf_bc_factory PUBLIC.
       RAISING
         zcx_ca_param,
 
-    "! <p class="shorttext synchronized" lang="en">Delete instance from buffer</p>
+    "! <p class="shorttext synchronized" lang="en">Refresh buffer (= release all instances)</p>
+    refresh_buffer,
+
+    "! <p class="shorttext synchronized" lang="en">Release instance from buffer</p>
     "!
     "! @parameter io_wf_object | <p class="shorttext synchronized" lang="en">Workflow instance</p>
     release_from_buffer
