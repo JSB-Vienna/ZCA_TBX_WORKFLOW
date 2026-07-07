@@ -1,0 +1,10 @@
+{
+  "BASEINFO": {
+    "FROM": [
+      "BALOBJ"
+    ],
+    "ASSOCIATED": [
+      "ZI_CA_BAL_OBJECTTEXT"
+    ]
+  }
+}

@@ -1,12 +1,10 @@
 {
   "BASEINFO": {
     "FROM": [
-      "ZCAWF_STATUSTX"
+      "BALOBJT"
     ],
     "ASSOCIATED": [
       "I_LANGUAGE",
-      "ZI_CAWF_ACTIVEWFAPPL",
-      "ZI_CAWF_WORKFLOWSTATUS",
       "ZI_CA_BAL_OBJECT"
     ]
   }

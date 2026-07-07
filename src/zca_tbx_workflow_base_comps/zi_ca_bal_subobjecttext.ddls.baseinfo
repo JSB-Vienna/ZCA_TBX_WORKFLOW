@@ -1,9 +1,10 @@
 {
   "BASEINFO": {
     "FROM": [
-      "ZCAWF_ACTVAPPL"
+      "BALSUBT"
     ],
     "ASSOCIATED": [
+      "I_LANGUAGE",
       "ZI_CA_BAL_OBJECT",
       "ZI_CA_BAL_SUBOBJECT"
     ]

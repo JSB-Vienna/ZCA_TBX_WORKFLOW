@@ -1,11 +1,11 @@
 {
   "BASEINFO": {
     "FROM": [
-      "ZCAWF_ACTVAPPL"
+      "BALSUB"
     ],
     "ASSOCIATED": [
       "ZI_CA_BAL_OBJECT",
-      "ZI_CA_BAL_SUBOBJECT"
+      "ZI_CA_BAL_SUBOBJECTTEXT"
     ]
   }
 }
