@@ -302,7 +302,7 @@ CLASS zcl_ca_wf_log IMPLEMENTATION.
           lv_workitem_id = VALUE #( lt_workitem_ids[ table_line = lr_workitem->wi_id ] OPTIONAL ).
 
           IF lv_workitem_id IS NOT INITIAL.
-            EXIT.
+            EXIT.                                       "#EC CI_NOORDER
           ENDIF.
         ENDLOOP.
 

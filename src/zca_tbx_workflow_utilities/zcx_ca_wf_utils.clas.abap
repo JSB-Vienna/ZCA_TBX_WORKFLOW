@@ -62,8 +62,8 @@ public section.
       END OF server_loc_incompl .
   constants:
     BEGIN OF no_alias_found,
-        msgid TYPE symsgid VALUE '/IWBEP/CM_V4_RUNTIME',
-        msgno TYPE symsgno VALUE '112',
+        msgid TYPE symsgid VALUE 'ZCA_TOOLBOX',
+        msgno TYPE symsgno VALUE '131',
         attr1 TYPE scx_attrname VALUE 'MV_MSGV1',
         attr2 TYPE scx_attrname VALUE 'MV_MSGV2',
         attr3 TYPE scx_attrname VALUE 'MV_MSGV3',

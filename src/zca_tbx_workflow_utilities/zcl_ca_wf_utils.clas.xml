@@ -147,6 +147,11 @@
      <DESCRIPT>Check if the workflow admin is active to refresh the agents</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>MT_SYSTEM_ALIASES</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>System aliases for task processing only to build links</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>MV_URL</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Assembled URL</DESCRIPT>
@@ -446,7 +451,7 @@
      <CMPNAME>CREATE_EVENT_CONTAINER</CMPNAME>
      <SCONAME>IS_LPOR</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Object instance</DESCRIPT>
+     <DESCRIPT>Object instance - providing TYPEID + CATID is enough</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CREATE_EVENT_CONTAINER</CMPNAME>
@@ -609,6 +614,12 @@
      <SCONAME>EV_WI_ID</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Active workitem Id</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_ACTIVE_WI_N_CONTAINER</CMPNAME>
+     <SCONAME>EV_WI_TYPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Active workitem type -&gt; use SWFCO_WI_* to compare</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_ACTIVE_WI_N_CONTAINER</CMPNAME>

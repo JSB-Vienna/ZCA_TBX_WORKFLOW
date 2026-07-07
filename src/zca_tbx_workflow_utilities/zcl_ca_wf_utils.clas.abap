@@ -18,6 +18,23 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
 
 *   s t a t i c   m e t h o d s
     CLASS-METHODS:
+      "! <p class="shorttext synchronized" lang="en">Add further parameter to current URL</p>
+      "!
+      "! @parameter iv_name         | <p class="shorttext synchronized" lang="en">Parameter name</p>
+      "! @parameter iv_value        | <p class="shorttext synchronized" lang="en">Unconverted parameter value</p>
+      "! @parameter iv_curr_url     | <p class="shorttext synchronized" lang="en">Current URL, otherwise kept in class</p>
+      "! @parameter result          | <p class="shorttext synchronized" lang="en">Completetd URL</p>
+      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
+      add_param_to_fiori_url
+        IMPORTING
+          iv_name       TYPE string
+          iv_value      TYPE data OPTIONAL
+          iv_curr_url   TYPE string OPTIONAL
+        RETURNING
+          VALUE(result) TYPE string
+        RAISING
+          zcx_ca_wf_utils,
+
       "! <p class="shorttext synchronized" lang="en">Assemble base URL for access to Fiori Launchpad</p>
       "!
       "! @parameter iv_icf_node_path | <p class="shorttext synchronized" lang="en">Use constants /UI2/IF_START_URL=&gt&CO_F*</p>
@@ -179,7 +196,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
 
       "! <p class="shorttext synchronized" lang="en">Create container for requested LPOR and event</p>
       "!
-      "! @parameter is_lpor         | <p class="shorttext synchronized" lang="en">Object instance</p>
+      "! @parameter is_lpor         | <p class="shorttext synchronized" lang="en">Object instance - providing TYPEID + CATID is enough</p>
       "! @parameter iv_event        | <p class="shorttext synchronized" lang="en">Event name</p>
       "! @parameter result          | <p class="shorttext synchronized" lang="en">Container instance corresponding to the class event</p>
       "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
@@ -240,6 +257,8 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
 
       "! <p class="shorttext synchronized" lang="en">Find active workitem (single task) to a workflow id</p>
       "!
+      "! <p>Returns only a dialogue or background task!!</p>
+      "!
       "! @parameter iv_wf_id               | <p class="shorttext synchronized" lang="en">Active WORKFLOWitem Id</p>
       "! @parameter iv_ignore_status_error | <p class="shorttext synchronized" lang="en">X = Raise no exception if WI is in status ERROR</p>
       "! @parameter result                 | <p class="shorttext synchronized" lang="en">Active workitem details</p>
@@ -258,6 +277,11 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! @parameter iv_raise_excep  | <p class="shorttext synchronized" lang="en">1=Raise exception if no WI was found; 0=Check result values</p>
       "! @parameter iv_wf_id        | <p class="shorttext synchronized" lang="en">Active WORKFLOWitem Id</p>
       "! @parameter ev_wi_id        | <p class="shorttext synchronized" lang="en">Active workitem Id</p>
+      "! @parameter ev_wi_type      | <p class="shorttext synchronized" lang="en">Active workitem type -> use SWFCO_WI_* to compare</p>
+      "! <ul>
+      "! <li>SWFCO_WI_NORMAL = W = Dialog workitem</li>
+      "! <li>SWFCO_WI_BATCH  = B = Background workitem</li>
+      "! </ul>
       "! @parameter eo_wi_cnt       | <p class="shorttext synchronized" lang="en">Container to active workitem</p>
       "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
       get_active_wi_n_container
@@ -266,6 +290,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
           iv_wf_id       TYPE sww_wfid OPTIONAL
         EXPORTING
           ev_wi_id       TYPE sww_wiid
+          ev_wi_type     TYPE sww_witype
           eo_wi_cnt      TYPE REF TO if_swf_cnt_container
         RAISING
           zcx_ca_wf_utils,
@@ -331,29 +356,16 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
 
 *   s t a t i c   a t t r i b u t e s
     CLASS-DATA:
+*     t a b l e s
+      "! <p class="shorttext synchronized" lang="en">System aliases for task processing only to build links</p>
+      mt_system_aliases TYPE /iwfnd/t_defi_syal,
+
 *     s i n g l e   v a l u e s
       "! <p class="shorttext synchronized" lang="en">Assembled URL</p>
-      mv_url               TYPE string.
+      mv_url            TYPE string.
 
 *   s t a t i c   m e t h o d s
     CLASS-METHODS:
-      "! <p class="shorttext synchronized" lang="en">Add further parameter to current URL</p>
-      "!
-      "! @parameter iv_name         | <p class="shorttext synchronized" lang="en">Parameter name</p>
-      "! @parameter iv_value        | <p class="shorttext synchronized" lang="en">Unconverted parameter value</p>
-      "! @parameter iv_curr_url     | <p class="shorttext synchronized" lang="en">Current URL, otherwise kept in class</p>
-      "! @parameter result          | <p class="shorttext synchronized" lang="en">Completetd URL</p>
-      "! @raising   zcx_ca_wf_utils | <p class="shorttext synchronized" lang="en">CA-TBX WF exception: Service method error</p>
-      add_param_to_fiori_url
-        IMPORTING
-          iv_name       TYPE string
-          iv_value      TYPE data
-          iv_curr_url   TYPE string OPTIONAL
-        RETURNING
-          VALUE(result) TYPE string
-        RAISING
-          zcx_ca_wf_utils,
-
       "! <p class="shorttext synchronized" lang="en">Create type conform field for conversions</p>
       "!
       "! @parameter iv_ref_struct   | <p class="shorttext synchronized" lang="en">Reference structure name</p>
@@ -372,7 +384,7 @@ CLASS zcl_ca_wf_utils DEFINITION PUBLIC
       "! <p class="shorttext synchronized" lang="en">Returns number of lines of a table</p>
       "!
       "! @parameter it_table | <p class="shorttext synchronized" lang="en">Description</p>
-      get_num_of_lines
+      get_num_of_lines ##relax
         IMPORTING
           it_table      TYPE ANY TABLE
         RETURNING
@@ -438,7 +450,6 @@ ENDCLASS.
 
 CLASS zcl_ca_wf_utils IMPLEMENTATION.
 
-
   METHOD add_param_to_fiori_url.
     "-----------------------------------------------------------------*
     "   Add further parameter to current URL
@@ -456,15 +467,22 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
     ENDIF.
 
     TRY.
-        zcl_ca_conv=>internal_2_external(
-                                    EXPORTING
-                                      internal_value = iv_value
-                                    IMPORTING
-                                      external_value = lv_value ).
+        IF iv_value IS INITIAL.
+          lv_param = iv_name.
 
-        lv_param = condense( iv_name && `=` && lv_value ) ##no_text.
+        ELSE.
+          zcl_ca_conv=>internal_2_external(
+                                      EXPORTING
+                                        internal_value = iv_value
+                                      IMPORTING
+                                        external_value = lv_value ).
 
-        IF lv_url CA `?` ##no_text.
+          lv_param = condense( iv_name && `=` && lv_value ) ##no_text.
+        ENDIF.
+
+        IF lv_param(1) EQ '#' ##no_text.
+          lv_url = lv_url && lv_param.
+        ELSEIF lv_url CA `?` ##no_text.
           lv_url = lv_url && `&` && lv_param ##no_text.
         ELSE.
           lv_url = lv_url && `?` && lv_param ##no_text.
@@ -491,11 +509,9 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
     "-----------------------------------------------------------------*
     "Local data definitions
     DATA:
-      lv_param       TYPE string,
       lv_protocol    TYPE string,
       lv_host        TYPE string,
       lv_port        TYPE string,
-      lv_langu       TYPE laiso,
       lv_access_mode TYPE c.
 
     CLEAR mv_url.
@@ -545,37 +561,48 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
     "   SAP NetWeaver -> UI Technologies -> SAP Fiori -> Initial Setup
     "   -> Connection Settings (Front...) -> Define SAP System Alias
     "-----------------------------------------------------------------*
+    "Local data definitions
+    DATA:
+      lr_alias             TYPE REF TO /iwfnd/c_dfsyal.
+
     assemble_base_url_launchpad( iv_icf_node_path ).
 
     add_param_to_fiori_url( iv_name  = `#WorkflowTask-displayInbox?allItems`
                             iv_value = `true` ) ##no_text.
 
-    "Determine
-    DATA(lo_dest_finder) = /iwfnd/cl_destin_finder=>get_destination_finder( ).
-    DATA(lv_client)      = cl_abap_syst=>get_client( ).
-    LOOP AT lo_dest_finder->get_system_aliases_list( ) ASSIGNING FIELD-SYMBOL(<ls_alias>)
-                                                       WHERE software_version EQ '/IWPGW/BWF'
-                                                         AND target_sysid     EQ sy-sysid
-                                                         AND target_client    EQ lv_client ##no_text.
-
-      DATA(lv_param) = replace( val  = c_link_fiori_spec_wi
-                                sub  = `&1`   with = <ls_alias>-system_alias
-                                occ  = 0 ).  "= all occurrences
-      lv_param = replace( val  = lv_param
-                          sub  = `&2`   with = iv_wi_id
-                          occ  = 0 ) ##no_text.  "= all occurrences
-      EXIT.
-    ENDLOOP.
-    IF sy-subrc NE 0.
-      "No system alias found for service group '&1' SID '&2' client '&3'
-      RAISE EXCEPTION TYPE zcx_ca_wf_utils
-        EXPORTING
-          textid   = zcx_ca_wf_utils=>no_alias_found
-          mv_msgty = c_msgty_e
-          mv_msgv1 = '/IWPGW/BWF'
-          mv_msgv2 = CONV #( sy-sysid )
-          mv_msgv3 = CONV #( lv_client ) ##no_text.
+    "Filter system aliases for local task processing ONLY
+    IF mt_system_aliases IS INITIAL.
+      mt_system_aliases = /iwfnd/cl_destin_finder=>get_destination_finder( )->get_system_aliases_list( ).
+      DELETE mt_system_aliases WHERE software_version NE '/IWPGW/BWF' ##no_text.
     ENDIF.
+
+    DATA(lv_client) = cl_abap_syst=>get_client( ).
+    lr_alias = REF #( mt_system_aliases[ target_sysid  = sy-sysid                 "Find with system id + client
+                                         target_client = lv_client ] OPTIONAL ).
+    IF lr_alias IS NOT BOUND.
+      lr_alias = REF #( mt_system_aliases[ target_sysid = sy-sysid ] OPTIONAL ).  "Find with system id only
+      IF lr_alias IS NOT BOUND.
+        lr_alias = REF #( mt_system_aliases[ target_client = lv_client ] OPTIONAL ).  "Find with client only
+        IF lr_alias IS NOT BOUND.
+          lr_alias = REF #( mt_system_aliases[ 1 ] OPTIONAL ).                    "Take what exist  "#EC CI_NOORDER
+          IF lr_alias IS NOT BOUND.
+            "No system alias found to software version &1 SID '&2' client '&3'
+            RAISE EXCEPTION NEW zcx_ca_wf_utils( textid   = zcx_ca_wf_utils=>no_alias_found
+                                                 mv_msgty = c_msgty_e
+                                                 mv_msgv1 = '/IWPGW/BWF'
+                                                 mv_msgv2 = CONV #( sy-sysid )
+                                                 mv_msgv3 = CONV #( lv_client ) ) ##no_text.
+          ENDIF.
+        ENDIF.
+      ENDIF.
+    ENDIF.
+
+    DATA(lv_param) = replace( val  = c_link_fiori_spec_wi
+                              sub  = `&1`   with = lr_alias->system_alias
+                              occ  = 0 ).  "= all occurrences
+    lv_param = replace( val  = lv_param
+                        sub  = `&2`   with = iv_wi_id
+                        occ  = 0 ) ##no_text.  "= all occurrences
 
     result = mv_url = mv_url && lv_param.
   ENDMETHOD.                    "assemble_url_fiori_for_wi
@@ -817,7 +844,7 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
         i_client                = iv_client
         i_windowsize            = iv_window_size
         i_saplogon_id           = iv_logon_id
-        i_custom                = iv_custom
+        i_custom                = lv_custom
       IMPORTING
         shortcut_table          = result
 *       shortcut_string         =     " Shortcut als String
@@ -920,7 +947,7 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
             mv_msgv1 = CONV #( |{ iv_wf_id ALPHA = OUT }| ).
 
       WHEN 1.
-        result = lt_act_wis[ 1 ].
+        result = lt_act_wis[ 1 ].                       "#EC CI_NOORDER
 
       WHEN OTHERS.
         "No unique result for workflow Id 1&
@@ -946,11 +973,13 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
     "   Get currently active workitem and its container
     "-----------------------------------------------------------------*
     CLEAR: ev_wi_id,
+           ev_wi_type,
            eo_wi_cnt.
 
     IF iv_wf_id IS NOT INITIAL.
       DATA(ls_wi_details) = find_active_wi_by_wf_id( iv_wf_id ).
-      ev_wi_id = ls_wi_details-wi_id.
+      ev_wi_id   = ls_wi_details-wi_id.
+      ev_wi_type = ls_wi_details-wi_type.
 
     ELSE.
       cl_swf_evt_requester=>get_workitem(
@@ -975,7 +1004,9 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
     ENDIF.
 
     TRY.
-        eo_wi_cnt = zcl_ca_wf_wapi_utils=>read_container( iv_wi_id = ev_wi_id ).
+        IF eo_wi_cnt IS SUPPLIED.
+          eo_wi_cnt = zcl_ca_wf_wapi_utils=>read_container( iv_wi_id = ev_wi_id ).
+        ENDIF.
 
       CATCH zcx_ca_param
             cx_swf_ifs_exception INTO DATA(lx_error).
@@ -1037,7 +1068,7 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
     SELECT SINGLE FROM /iwpgw/c_tgw_scn
                 FIELDS @abap_true
                  WHERE scenario_id EQ @iv_scenario_id
-                  INTO @result.
+                  INTO @result.                           "#EC CI_SUBRC
     IF result EQ abap_false AND
        result IS NOT SUPPLIED.
       "Parameter '&1' has invalid value '&2'
@@ -1137,8 +1168,7 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
       lv_key_val_output TYPE sibfinstid.
 
     FIELD-SYMBOLS:
-      <lv_key_string> TYPE data,
-      <lv_key_value>  TYPE data.
+      <lv_key_value>    TYPE data.
 
     TRY.
         ls_name_for_excep = VALUE #( clsname = 'CL_SWF_UTL_DEF_SERVICES'
@@ -1283,7 +1313,7 @@ CLASS zcl_ca_wf_utils IMPLEMENTATION.
             RAISE EXCEPTION TYPE zcx_ca_wf_utils.
         ENDCASE.
 
-      CATCH cx_root INTO DATA(lx_catched).
+      CATCH cx_root INTO DATA(lx_catched) ##catch_all ##needed.
         result = is_lpor-instid.
     ENDTRY.
   ENDMETHOD.                    "prepare_object_for_ouput
