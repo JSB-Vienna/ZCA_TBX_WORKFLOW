@@ -13,6 +13,7 @@ CLASS zcl_ca_wf_dia_base_ctlr DEFINITION PUBLIC
       "! @parameter iv_dialog_name   | <p class="shorttext synchronized" lang="en">Dialog name (e. g. helpful for screen control)</p>
       "! @parameter iv_open_as       | <p class="shorttext synchronized" lang="en">Open as screen or popup -&gt; use ZCL_CA_C_SCR_FW=>OPEN_AS-*</p>
       "! @parameter is_popup_corners | <p class="shorttext synchronized" lang="en">Definition of the popup corner points</p>
+      "! @raising   zcx_ca_param     | <p class="shorttext synchronized" lang="en">CA-TBX exception: Parameter error (INHERIT from this excep!)</p>
       constructor
         IMPORTING
           io_log           TYPE REF TO zif_ca_wf_log OPTIONAL

@@ -61,6 +61,11 @@
      <DESCRIPT>Constructor</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CS_VISIBILITY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Visibility</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>C_CCONT_NAME_EDITOR</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Name of custom container that contains the editor control</DESCRIPT>
@@ -144,6 +149,12 @@
      <SCONAME>IV_TEXT_OBJECT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Text object (must be defined in SE75)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_VISIBILITY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Visibility -&gt; use const. CS_VISIBILITY-*</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CONSTRUCTOR</CMPNAME>

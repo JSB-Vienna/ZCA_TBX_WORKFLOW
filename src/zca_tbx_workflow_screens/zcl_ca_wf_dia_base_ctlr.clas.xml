@@ -54,6 +54,12 @@
      <LANGU>E</LANGU>
      <DESCRIPT>Open as screen or popup -&gt; use ZCL_CA_C_SCR_FW=&gt;OPEN_AS-*</DESCRIPT>
     </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>ZCX_CA_PARAM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX exception: Parameter error (INHERIT from this excep!)</DESCRIPT>
+    </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>
  </asx:abap>

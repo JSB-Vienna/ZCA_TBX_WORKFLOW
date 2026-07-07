@@ -4,11 +4,21 @@ CLASS zcl_ca_wf_sscr_note_editor DEFINITION PUBLIC
                                             CREATE PUBLIC.
 * P U B L I C   S E C T I O N
   PUBLIC SECTION.
+*   c o n s t a n t s
+    CONSTANTS:
+      "! <p class="shorttext synchronized" lang="en">Visibility</p>
+      BEGIN OF cs_visibility,
+        display_n_change TYPE numc1 VALUE '1' ##no_text,
+        display_only     TYPE numc1 VALUE '2' ##no_text,
+        change_only      TYPE numc1 VALUE '3' ##no_text,
+      END OF cs_visibility.
+
 *   i n s t a n c e   m e t h o d s
     METHODS:
       "! <p class="shorttext synchronized" lang="en">Constructor</p>
       "!
       "! @parameter io_log              | <p class="shorttext synchronized" lang="en">Workflow specific Business Application Logging (BAL)</p>
+      "! @parameter iv_visibility       | <p class="shorttext synchronized" lang="en">Visibility -&gt; use const. CS_VISIBILITY-*</p>
       "! @parameter iv_text_object      | <p class="shorttext synchronized" lang="en">Text object (must be defined in SE75)</p>
       "! @parameter iv_text_id          | <p class="shorttext synchronized" lang="en">Text id (must be defined in SE75)</p>
       "! @parameter iv_text_key         | <p class="shorttext synchronized" lang="en">Text key, typically the id of an business object</p>
@@ -20,6 +30,7 @@ CLASS zcl_ca_wf_sscr_note_editor DEFINITION PUBLIC
       constructor
         IMPORTING
           io_log              TYPE REF TO zif_ca_wf_log OPTIONAL
+          iv_visibility       TYPE numc1     DEFAULT cs_visibility-display_only
           iv_text_object      TYPE tdobject
           iv_text_id          TYPE tdid
           iv_text_key         TYPE tdobname  OPTIONAL
@@ -65,7 +76,10 @@ CLASS zcl_ca_wf_sscr_note_editor DEFINITION PUBLIC
       "! <p class="shorttext synchronized" lang="en">Custom container for embedding viewer</p>
       mo_cc_note_editor TYPE REF TO cl_gui_custom_container,
       "! <p class="shorttext synchronized" lang="en">Note editor (enter a note and/or display notes history)</p>
-      mo_note_editor    TYPE REF TO zcl_ca_note_editor.
+      mo_note_editor    TYPE REF TO zcl_ca_note_editor,
+
+*     s i n g l e   v a l u e s
+      mv_visibility     TYPE numc1.
 
 *   i n s t a n c e   m e t h o d s
     METHODS:
@@ -89,17 +103,27 @@ ENDCLASS.
 
 CLASS ZCL_CA_WF_SSCR_NOTE_EDITOR IMPLEMENTATION.
 
-
   METHOD constructor.
     "-----------------------------------------------------------------*
     "   Constructor
     "-----------------------------------------------------------------*
+    IF iv_visibility CN '123'.
+      "Parameter '&1' hat ungültigen Wert '&2'
+      RAISE EXCEPTION TYPE zcx_ca_param
+        EXPORTING
+          textid   = zcx_ca_param=>param_invalid
+          mv_msgty = zcx_ca_param=>c_msgty_e
+          mv_msgv1 = 'IV_VISIBILITY'
+          mv_msgv2 = CONV #( iv_visibility ) ##no_text.
+    ENDIF.
+
     super->constructor( iv_frame_label = iv_frame_descr
                         io_log         = io_log ).
 
     mv_repid       = c_frame_prog_screens.
     mv_dynnr       = '0900'.
     mv_screen_name = c_my_view_name.
+    mv_visibility  = iv_visibility.
 
     IF mv_frame_label IS INITIAL.
       mv_frame_label = 'Notes'(not).
@@ -114,24 +138,12 @@ CLASS ZCL_CA_WF_SSCR_NOTE_EDITOR IMPLEMENTATION.
   ENDMETHOD.                    "constructor
 
 
-  METHOD set_visibility.
+  METHOD get_notes_editor.
     "-----------------------------------------------------------------*
-    "   Set visibility of the notes editor
+    "   Get notes editor
     "-----------------------------------------------------------------*
-    IF iv_event NE mo_scr_options->event-pbo.
-      RETURN.     "Only during PBO allowed
-    ENDIF.
-
-    CASE iv_is_visible.
-      WHEN abap_true.
-        mo_scr_fld_attr->make_visible( screen_field_name  = 'GS_FRAME_LABEL-D0900' ) ##no_text.
-        mo_cc_note_editor->set_visible( iv_is_visible ).
-
-      WHEN abap_false.
-        mo_scr_fld_attr->hide( screen_field_name  = 'GS_FRAME_LABEL-D0900' ) ##no_text.
-        mo_cc_note_editor->set_visible( iv_is_visible ).
-    ENDCASE.
-  ENDMETHOD.                    "set_visibility
+    ro_notes_editor = mo_note_editor.
+  ENDMETHOD.                    "get_notes_editor
 
 
   METHOD handle_pbo.
@@ -147,12 +159,15 @@ CLASS ZCL_CA_WF_SSCR_NOTE_EDITOR IMPLEMENTATION.
 
         mo_cc_note_editor = zcl_ca_cfw_util=>create_custom_container( iv_cnt_name = c_ccont_name_editor ).
 
-        CASE mo_screen->mv_mode.
-          WHEN mo_screen->mo_scr_options->mode-modify.
+        CASE mv_visibility.
+          WHEN cs_visibility-display_n_change.
             mo_note_editor->create_display_change_control( io_parent = mo_cc_note_editor ).
 
-          WHEN mo_screen->mo_scr_options->mode-display.
+          WHEN cs_visibility-display_only.
             mo_note_editor->create_display_control( io_parent = mo_cc_note_editor ).
+
+          WHEN cs_visibility-change_only.
+            mo_note_editor->create_change_control( io_parent = mo_cc_note_editor ).
         ENDCASE.
 
       CATCH zcx_ca_error INTO DATA(lx_catched).
@@ -171,18 +186,11 @@ CLASS ZCL_CA_WF_SSCR_NOTE_EDITOR IMPLEMENTATION.
     ENDIF.
 
     FREE: mo_cc_note_editor,
-          mo_note_editor.
+          mo_note_editor,
+          mv_visibility.
 
     super->on_closed( ).
   ENDMETHOD.                    "on_closed
-
-
-  METHOD get_notes_editor.
-    "-----------------------------------------------------------------*
-    "   Get notes editor
-    "-----------------------------------------------------------------*
-    ro_notes_editor = mo_note_editor.
-  ENDMETHOD.                    "Get_notes_editor
 
 
   METHOD on_process_fcode.
@@ -204,4 +212,25 @@ CLASS ZCL_CA_WF_SSCR_NOTE_EDITOR IMPLEMENTATION.
         MESSAGE lx_catched TYPE c_msgty_e.
     ENDTRY.
   ENDMETHOD.                    "on_process_fcode
+
+
+  METHOD set_visibility.
+    "-----------------------------------------------------------------*
+    "   Set visibility of the notes editor
+    "-----------------------------------------------------------------*
+    IF iv_event NE mo_scr_options->event-pbo.
+      RETURN.     "Only during PBO allowed
+    ENDIF.
+
+    CASE iv_is_visible.
+      WHEN abap_true.
+        mo_scr_fld_attr->make_visible( screen_field_name  = 'GS_FRAME_LABEL-D0900' ) ##no_text.
+        mo_cc_note_editor->set_visible( iv_is_visible ).
+
+      WHEN abap_false.
+        mo_scr_fld_attr->hide( screen_field_name  = 'GS_FRAME_LABEL-D0900' ) ##no_text.
+        mo_cc_note_editor->set_visible( iv_is_visible ).
+    ENDCASE.
+  ENDMETHOD.                    "set_visibility
+
 ENDCLASS.
