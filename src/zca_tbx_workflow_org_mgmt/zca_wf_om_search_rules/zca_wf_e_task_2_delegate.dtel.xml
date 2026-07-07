@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZCA_WF_E_TASK_2_DELEGATE</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DOMNAME>ZCA_WF_D_TASK_ID</DOMNAME>
+    <HEADLEN>10</HEADLEN>
+    <SCRLEN1>10</SCRLEN1>
+    <SCRLEN2>20</SCRLEN2>
+    <SCRLEN3>40</SCRLEN3>
+    <DDTEXT>CA-WF: OM Delegation task</DDTEXT>
+    <REPTEXT>Delgt task</REPTEXT>
+    <SCRTEXT_S>Delgt task</SCRTEXT_S>
+    <SCRTEXT_M>Delegation task</SCRTEXT_M>
+    <SCRTEXT_L>Delegation task</SCRTEXT_L>
+    <DTELMASTER>E</DTELMASTER>
+    <SHLPNAME>ZCAWF_SH_OM_PARTICIPATG_TASK</SHLPNAME>
+    <SHLPFIELD>TASK_ID</SHLPFIELD>
+    <REFKIND>D</REFKIND>
+   </DD04V>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>CA-WF: OM Aufg., um Genehmigersuche zu verlassen</DDTEXT>
+     <REPTEXT>ExitAufgbe</REPTEXT>
+     <SCRTEXT_S>ExitAufgbe</SCRTEXT_S>
+     <SCRTEXT_M>Exit Aufgabe</SCRTEXT_M>
+     <SCRTEXT_L>Aufg. Exit Suche</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

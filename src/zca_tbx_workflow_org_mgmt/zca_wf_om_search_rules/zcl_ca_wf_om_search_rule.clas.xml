@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_CA_WF_OM_SEARCH_RULE</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-WF: OM Search rule</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>APJ</KEY>
+     <ENTRY>approver jobs</ENTRY>
+     <LENGTH>30</LENGTH>
+    </item>
+   </TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CV_INITIAL_OBJECT_ID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Initial OM object Id for comparison in selections</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_APPROVING_JOBS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get valid approving jobs to rule Id and level</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_DELEGATION_TASKS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get valid delegation tasks to rule Id and level</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_SELF_APPROVING_JOBS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get valid self-approving jobs to rule Id and level</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>HAS_TASK_4_DELEGATION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Has employee a task assigned for approval delegation?</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_ASSIGNED_AS_APPROVER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Is employee an approver according to the job assignment?</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_SELF_APPROVING</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Is employee allowed to approve her-/himself?</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MO_CVC_SO</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-TBX: Constants and value checks for select option tables</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MRA_DEFINED_APPROVER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid approving jobs</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MRA_SELF_APPROVER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid self-approving jobs</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MT_DELEGATION_TASKS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid delegation tasks</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_DELEG_TASKS_SEL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Delegating tasks already selected</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_SEARCH_LEVEL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-WF: OM Search rule level</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_SEARCH_RULE_ID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-WF: OM Search rule Id</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_SELF_APPRV_JOBS_SEL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Self-approving jobs already selected</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MV_VALID_ON</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validity date</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TY_T_TASKS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Valid delegation tasks to rule Id and level</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_SEARCH_LEVEL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-WF: OM Search rule level</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_SEARCH_RULE_ID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-WF: OM Search rule Id</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_VALID_ON</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validity date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_APPROVING_JOBS</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_SEARCH_RULE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-WF: OM Search rule exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>HAS_TASK_4_DELEGATION</CMPNAME>
+     <SCONAME>IO_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee in Org. management</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>HAS_TASK_4_DELEGATION</CMPNAME>
+     <SCONAME>RV_HAS_TASK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Has task for approval delegation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>HAS_TASK_4_DELEGATION</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_SEARCH_RULE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-WF: OM Search rule exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ASSIGNED_AS_APPROVER</CMPNAME>
+     <SCONAME>IO_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee in Org. management</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ASSIGNED_AS_APPROVER</CMPNAME>
+     <SCONAME>RV_IS_ASSIGNED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Is assigned as approver</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_ASSIGNED_AS_APPROVER</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_SEARCH_RULE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-WF: OM Search rule exception</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SELF_APPROVING</CMPNAME>
+     <SCONAME>IO_EMPLOYEE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>WF-OM: BC Employee in Org. management</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SELF_APPROVING</CMPNAME>
+     <SCONAME>RV_CAN_APPROVE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>X = Can approve her-/himself</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_SELF_APPROVING</CMPNAME>
+     <SCONAME>ZCX_CA_WF_OM_SEARCH_RULE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>CA-WF: OM Search rule exception</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

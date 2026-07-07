@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_TTYP" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD40V>
+    <TYPENAME>ZCA_WF_T_OM_RANGE_4_TASK</TYPENAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <ROWTYPE>ZCA_WF_S_OM_RANGE_ROW_4_TASK</ROWTYPE>
+    <ROWKIND>S</ROWKIND>
+    <DATATYPE>STRU</DATATYPE>
+    <ACCESSMODE>T</ACCESSMODE>
+    <KEYDEF>D</KEYDEF>
+    <KEYKIND>N</KEYKIND>
+    <DDTEXT>CA-WF: Range table for org. object Task (otype T)</DDTEXT>
+    <TTYPKIND>R</TTYPKIND>
+    <RANGE_CTYP>ZCA_WF_E_TASK_ID</RANGE_CTYP>
+    <CTDATATYPE>NUMC</CTDATATYPE>
+    <CTLENG>000008</CTLENG>
+   </DD40V>
+  </asx:values>
+ </asx:abap>
+</abapGit>
