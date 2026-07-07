@@ -6,11 +6,11 @@
     <ROLLNAME>ZCA_WF_E_JOB_ID</ROLLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DOMNAME>ZCA_WF_D_JOB_ID</DOMNAME>
-    <HEADLEN>55</HEADLEN>
+    <HEADLEN>10</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>20</SCRLEN2>
     <SCRLEN3>40</SCRLEN3>
-    <DDTEXT>CA-WF: Job Id (OType = C)</DDTEXT>
+    <DDTEXT>CA-WF: OM Job Id (OType = C)</DDTEXT>
     <REPTEXT>Job Id</REPTEXT>
     <SCRTEXT_S>Job Id</SCRTEXT_S>
     <SCRTEXT_M>Job Id</SCRTEXT_M>
@@ -18,6 +18,19 @@
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
    </DD04V>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>CA-WF: OM Stellennumer (OType = C)</DDTEXT>
+     <REPTEXT>Stellennr.</REPTEXT>
+     <SCRTEXT_S>Stellennr.</SCRTEXT_S>
+     <SCRTEXT_M>Stellennr.</SCRTEXT_M>
+     <SCRTEXT_L>Stellennr.</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

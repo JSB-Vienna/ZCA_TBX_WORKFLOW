@@ -86,6 +86,24 @@ CLASS zcx_ca_wf_om_employee DEFINITION
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
       END OF person_is_not_assigned_to_job .
+    CONSTANTS:
+      BEGIN OF employee_has_no_assignment_to,
+        msgid TYPE symsgid VALUE 'ZCA_WF_OM',
+        msgno TYPE symsgno VALUE '026',
+        attr1 TYPE scx_attrname VALUE 'MV_MSGV1',
+        attr2 TYPE scx_attrname VALUE 'MV_MSGV2',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF employee_has_no_assignment_to .
+    CONSTANTS:
+      BEGIN OF check_lead_assignm_of_employee,
+        msgid TYPE symsgid VALUE 'ZCA_WF_OM',
+        msgno TYPE symsgno VALUE '027',
+        attr1 TYPE scx_attrname VALUE 'MV_MSGV1',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF check_lead_assignm_of_employee.
     CONSTANTS c_zcx_ca_wf_om_employee TYPE seoclsname VALUE 'ZCX_CA_WF_OM_EMPLOYEE' ##NO_TEXT.
 
     METHODS constructor

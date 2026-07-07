@@ -7,7 +7,7 @@
     <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
     <LANGDEP>X</LANGDEP>
-    <DDTEXT>Details to organizational object</DDTEXT>
+    <DDTEXT>WF-CA: Details to organizational object</DDTEXT>
     <MASTERLANG>E</MASTERLANG>
     <EXCLASS>4</EXCLASS>
    </DD02V>
@@ -20,6 +20,20 @@
      <DDTEXT>Rule Resolution Result</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_OM_OBJ_KEY</GROUPNAME>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>BEGDA</FIELDNAME>
+     <ROLLNAME>BEGDA</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <SHLPORIGIN>T</SHLPORIGIN>
+     <COMPTYPE>E</COMPTYPE>
+    </DD03P>
+    <DD03P>
+     <FIELDNAME>ENDDA</FIELDNAME>
+     <ROLLNAME>ENDDA</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <SHLPORIGIN>T</SHLPORIGIN>
+     <COMPTYPE>E</COMPTYPE>
     </DD03P>
     <DD03P>
      <FIELDNAME>NAME</FIELDNAME>
@@ -49,7 +63,7 @@
    <DD02_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
-     <DDTEXT>Details to organizational object</DDTEXT>
+     <DDTEXT>WF-CA: Details to organizational object</DDTEXT>
     </item>
    </DD02_TEXTS>
   </asx:values>

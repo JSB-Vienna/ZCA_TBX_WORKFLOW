@@ -10,7 +10,7 @@
     <OUTPUTLEN>000241</OUTPUTLEN>
     <LOWERCASE>X</LOWERCASE>
     <CONVEXIT>SXIDN</CONVEXIT>
-    <DDTEXT>eMail address (like AD_SMTPADR, but output length 50)</DDTEXT>
+    <DDTEXT>CA-WF: eMail address (like AD_SMTPADR, but output length 50)</DDTEXT>
     <DOMMASTER>E</DOMMASTER>
    </DD01V>
    <I18N_LANGS>
@@ -19,7 +19,7 @@
    <DD01_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
-     <DDTEXT>eMail address (like AD_SMTPADR, but output length 50)</DDTEXT>
+     <DDTEXT>CA-WF: eMail address (like AD_SMTPADR, but output length 50)</DDTEXT>
     </item>
    </DD01_TEXTS>
   </asx:values>

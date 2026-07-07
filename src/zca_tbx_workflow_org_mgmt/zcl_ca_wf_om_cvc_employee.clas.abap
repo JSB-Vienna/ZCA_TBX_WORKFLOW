@@ -6,7 +6,7 @@ CLASS zcl_ca_wf_om_cvc_employee DEFINITION PUBLIC
   PUBLIC SECTION.
 *   c o n s t a n t s
     CONSTANTS:
-      "! <p class="shorttext synchronized" lang="en">Employment status</p>
+      "! <p class="shorttext synchronized" lang="en">Employment status - fits for SAP and customer status</p>
       BEGIN OF employment_status,
         is_leaving  TYPE stat2 VALUE pfrd3_c_stat2_leave,      "= 0
         is_inactive TYPE stat2 VALUE pfrd3_c_stat2_inactive,   "= 1

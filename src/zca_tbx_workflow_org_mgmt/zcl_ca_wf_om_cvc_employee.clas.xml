@@ -30,7 +30,7 @@
     <SEOCOMPOTX>
      <CMPNAME>EMPLOYMENT_STATUS</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Employment status</DESCRIPT>
+     <DESCRIPT>Employment status - fits for SAP and customer status</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>GET_INSTANCE</CMPNAME>

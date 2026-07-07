@@ -7,7 +7,7 @@
     <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
     <LANGDEP>X</LANGDEP>
-    <DDTEXT>Search result for org. management object</DDTEXT>
+    <DDTEXT>WF-CA: Search result for org. management object</DDTEXT>
     <MASTERLANG>E</MASTERLANG>
     <EXCLASS>4</EXCLASS>
    </DD02V>
@@ -17,7 +17,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>ZCA_WF_S_OM_OBJECT</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Details to organizational object</DDTEXT>
+     <DDTEXT>WF-CA: Details to organizational object</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_OM_OBJECT</GROUPNAME>
     </DD03P>
@@ -35,7 +35,7 @@
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>ZCA_WF_S_OM_ERROR</PRECFIELD>
      <MASK>      S</MASK>
-     <DDTEXT>Error information (instead exception)</DDTEXT>
+     <DDTEXT>WF-CA: Error information (instead exception)</DDTEXT>
      <COMPTYPE>S</COMPTYPE>
      <GROUPNAME>S_ERROR</GROUPNAME>
     </DD03P>
@@ -46,7 +46,7 @@
    <DD02_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
-     <DDTEXT>Search result for org. management object</DDTEXT>
+     <DDTEXT>WF-CA: Search result for org. management object</DDTEXT>
     </item>
    </DD02_TEXTS>
   </asx:values>

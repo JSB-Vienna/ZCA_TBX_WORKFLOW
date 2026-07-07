@@ -158,6 +158,24 @@
      <MSGNR>024</MSGNR>
      <TEXT>Person &amp;1 is not assigned to job &amp;2</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>025</MSGNR>
+     <TEXT>No valid &amp;1 found to rule &amp;2 and level &amp;3 valid on &amp;4</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>026</MSGNR>
+     <TEXT>Person &amp;1 is not assigned to &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCA_WF_OM</ARBGB>
+     <MSGNR>027</MSGNR>
+     <TEXT>Check lead assignments of personnel Id &amp;1</TEXT>
+    </T100>
    </T100>
    <I18N_LANGS>
     <LANGU>D</LANGU>

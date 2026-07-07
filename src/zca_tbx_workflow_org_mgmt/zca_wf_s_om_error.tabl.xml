@@ -6,7 +6,7 @@
     <TABNAME>ZCA_WF_S_OM_ERROR</TABNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
-    <DDTEXT>Error information (instead exception)</DDTEXT>
+    <DDTEXT>WF-CA: Error information (instead exception)</DDTEXT>
     <MASTERLANG>E</MASTERLANG>
     <EXCLASS>4</EXCLASS>
    </DD02V>
@@ -41,7 +41,7 @@
    <DD02_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
-     <DDTEXT>Error information (instead exception)</DDTEXT>
+     <DDTEXT>WF-CA: Error information (instead exception)</DDTEXT>
     </item>
    </DD02_TEXTS>
   </asx:values>

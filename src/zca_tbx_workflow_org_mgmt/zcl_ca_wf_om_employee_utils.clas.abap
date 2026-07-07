@@ -83,7 +83,7 @@ CLASS zcl_ca_wf_om_employee_utils IMPLEMENTATION.
                                                                        typeid = CONV #( lr_employee->employee_cls_type ) )
                                            iv_valid_on      = lv_valid_on
                                            iv_search_active = iv_search_active
-                                           iv_create_sap_user_cls_of_type = lr_employee->employee_cls_type ).
+                                           iv_create_sap_user_cls_of_type = lr_employee->sap_user_cls_type ).
 
           ELSEIF lr_employee->bname IS NOT INITIAL.
             lr_employee->o_employee = zcl_ca_wf_om_employee=>get_instance_by_sap_user_id(

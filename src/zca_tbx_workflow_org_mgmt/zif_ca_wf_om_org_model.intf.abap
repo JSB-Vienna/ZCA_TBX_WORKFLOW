@@ -40,7 +40,7 @@ INTERFACE zif_ca_wf_om_org_model PUBLIC.
 
     "! <p class="shorttext synchronized" lang="en">Find employees with task x assigned to their position</p>
     "!
-    "! @parameter iv_task                    | <p class="shorttext synchronized" lang="en">Task Id => use const MO_CVC_OM-> or ZCL_CA_WF_OM_CVC=>TASK*</p>
+    "! @parameter iv_task_responsible_for    | <p class="shorttext synchronized" lang="en">Task Id => use const MO_CVC_OM-> or ZCL_CA_WF_OM_CVC=>TASK*</p>
     "! @parameter iv_valid_on                | <p class="shorttext synchronized" lang="en">Object is valid on</p>
     "! @parameter iv_search_active           | <p class="shorttext synchronized" lang="en">X = Search for an active person</p>
     "! @parameter result                     | <p class="shorttext synchronized" lang="en">List of completed employees</p>
@@ -48,11 +48,11 @@ INTERFACE zif_ca_wf_om_org_model PUBLIC.
     "! @raising   zcx_ca_wf_om_org_model     | <p class="shorttext synchronized" lang="en">WF-OM: Org. model determination exceptions</p>
     find_employees_2_task
       IMPORTING
-        iv_task          TYPE zca_wf_e_task_id
-        iv_valid_on      TYPE hr_date      DEFAULT sy-datlo
-        iv_search_active TYPE abap_boolean DEFAULT abap_true
+        iv_task_responsible_for TYPE zca_wf_e_task_id
+        iv_valid_on             TYPE hr_date      DEFAULT sy-datlo
+        iv_search_active        TYPE abap_boolean DEFAULT abap_true
       RETURNING
-        VALUE(result)    TYPE zca_wf_t_employees_lookup
+        VALUE(result)           TYPE zca_wf_t_employees_lookup
       RAISING
         zcx_ca_wf_om_no_om_objects
         zcx_ca_wf_om_org_model,
