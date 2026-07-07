@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SOBJ" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <SWOTDV>
+    <SWOTDV>
+     <OBJTYPE>ZIMAGE</OBJTYPE>
+     <VERB>DESCRIPTION</VERB>
+     <VERBTYPE>A</VERBTYPE>
+     <CREA_REL>758</CREA_REL>
+     <EDITORDER>0001</EDITORDER>
+     <EDITELEM>Description</EDITELEM>
+     <REFTYPE>D</REFTYPE>
+     <REFSTRUCT>TOASP</REFSTRUCT>
+     <REFFIELD>OBJECTTEXT</REFFIELD>
+     <ELEMTYPE>E</ELEMTYPE>
+     <ATTRTYPE>V</ATTRTYPE>
+    </SWOTDV>
+   </SWOTDV>
+   <TOJTB>
+    <TOJTB>
+     <NAME>ZIMAGE</NAME>
+     <ACTIVE>X</ACTIVE>
+     <ACTIVELANG>D</ACTIVELANG>
+     <PARENT>IMAGE</PARENT>
+     <PROGNAME>ZCA_BO_IMAGE</PROGNAME>
+     <EDITELEM>Z_Image</EDITELEM>
+     <EPRIMETHOD>Display</EPRIMETHOD>
+     <EPRIATTRIB>Description</EPRIATTRIB>
+     <APPLIC>*</APPLIC>
+     <CREA_REL>758</CREA_REL>
+     <CHAN_REL>758</CHAN_REL>
+     <VERSION>758</VERSION>
+     <OBJTYPECLS>01</OBJTYPECLS>
+     <KEYLENGTH>42</KEYLENGTH>
+    </TOJTB>
+   </TOJTB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

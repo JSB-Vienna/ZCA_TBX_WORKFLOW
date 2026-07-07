@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOINTERF>
     <CLSNAME>ZIF_MM_C_WF_BOS</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>CA-TBX: Workflow classes and supporting utilities</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>CA-TBX Workflow: Constants with predefined MM BO types</DESCRIPT>
     <EXPOSURE>2</EXPOSURE>
     <STATE>1</STATE>
     <UNICODE>X</UNICODE>
@@ -13,7 +13,7 @@
    <DESCRIPTIONS_INTERFACE>
     <SEOCLASSTX>
      <LANGU>D</LANGU>
-     <DESCRIPT>CA-TBX: Workflow classes and supporting utilities</DESCRIPT>
+     <DESCRIPT>CA-TBX Workflow: Constants with predefined MM BO types</DESCRIPT>
     </SEOCLASSTX>
    </DESCRIPTIONS_INTERFACE>
    <DESCRIPTIONS>
@@ -23,13 +23,38 @@
      <DESCRIPT>BO type BUS2009 - SAP MM purchase requisition item</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2009</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type BUS2009 - SAP MM purchase requisition item</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>CBO_BUS2012</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>BO type BUS2012 - SAP MM purchase order</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2012</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type BUS2012 - SAP MM purchase order</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2014</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>BO type BUS2014 - SAP MM purchase contract</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2014</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type BUS2014 - SAP MM purchase contract</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>CBO_BUS2081</CMPNAME>
      <LANGU>D</LANGU>
+     <DESCRIPT>BO type BUS2081 - SAP MM incoming invoice</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2081</CMPNAME>
+     <LANGU>E</LANGU>
      <DESCRIPT>BO type BUS2081 - SAP MM incoming invoice</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
@@ -38,13 +63,28 @@
      <DESCRIPT>BO type BUS2105 - SAP MM purchase requisition (all items)</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CBO_BUS2105</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type BUS2105 - SAP MM purchase requisition (all items)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>CBO_LFA1</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>BO type LFA1 - SAP vendor</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CBO_LFA1</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BO type LFA1 - SAP vendor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>CBO_LFM1</CMPNAME>
      <LANGU>D</LANGU>
+     <DESCRIPT>BO type LFM1 - SAP vendor MM / level purchasing org.</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CBO_LFM1</CMPNAME>
+     <LANGU>E</LANGU>
      <DESCRIPT>BO type LFM1 - SAP vendor MM / level purchasing org.</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>

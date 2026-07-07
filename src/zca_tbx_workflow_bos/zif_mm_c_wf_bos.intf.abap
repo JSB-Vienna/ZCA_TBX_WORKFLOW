@@ -23,6 +23,13 @@ INTERFACE zif_mm_c_wf_bos PUBLIC.
       catid  TYPE sibfcatid  VALUE swfco_objtype_bor,
     END   OF cbo_bus2012,
 
+    "! <p class="shorttext synchronized" lang="en">BO type BUS2014 - SAP MM purchase contract</p>
+    BEGIN OF cbo_bus2014,
+      instid TYPE sibfboriid VALUE space,
+      typeid TYPE sibftypeid VALUE 'BUS2014' ##no_text,
+      catid  TYPE sibfcatid  VALUE swfco_objtype_bor,
+    END   OF cbo_bus2014,
+
     "! <p class="shorttext synchronized" lang="en">BO type BUS2009 - SAP MM purchase requisition item</p>
     BEGIN OF cbo_bus2009,
       instid TYPE sibfboriid VALUE space,
